@@ -17,7 +17,7 @@ https://canwe.herokuapp.com/
 
 iii. Cerita aplikasi dan manfaatnya
 
-Aplikasi CanWe merupakan aplikasi untuk mengumpulkan donasi dan penggalangan dana untuk membantu sebagian rakyat Indonesia di bidang ekonomi. Aplikasi CanWe berfokus pada penggalangan dana yang ditujukan untuk orang yang kelaparan. Aplikasi CanWe dibentuk agar meningkatkan kesadaran masyarakat Indonesia untuk saling peduli dan berbagi terhadap saudara- saudara kita yang kekurangan pangan. 
+Aplikasi CanWe merupakan aplikasi untuk mengumpulkan donasi dan penggalangan dana untuk membantu sebagian rakyat Indonesia di bidang ekonomi. Aplikasi CanWe berfokus pada penggalangan dana yang ditujukan untuk orang yang kelaparan. Aplikasi CanWe dibentuk agar meningkatkan kesadaran masyarakat Indonesia untuk saling peduli dan berbagi terhadap saudara-saudara kita yang kekurangan pangan. 
 
 iv. Daftar modul yang akan diimplementasikan
 
