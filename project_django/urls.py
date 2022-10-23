@@ -20,6 +20,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('canwe.urls')),
     path('user/', include('user.urls')),
+    path('donasi/', include('donasi.urls'))
 ]
-
-# TODO: Implement Routings Here
