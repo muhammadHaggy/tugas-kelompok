@@ -10,4 +10,4 @@ class Donasi(models.Model):
     foto = models.ImageField()
 
     def __str__(self):
-        return self.name
+        return self.nama
