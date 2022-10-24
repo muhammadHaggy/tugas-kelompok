@@ -7,6 +7,8 @@ from django.urls import reverse
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
 
+def index(request):
+    return redirect(reverse('user:login_user'))
 # Create your views here.
 def login_user(request):
     if request.method == 'POST':

@@ -1,7 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
+from moderation.db import ModeratedModel
 
-class Donasi(models.Model):
+class Donasi(ModeratedModel):
     penggalang = models.ForeignKey(User, on_delete=models.CASCADE)
     tipe = models.CharField(max_length=50)
     nama = models.CharField(max_length=50)

@@ -15,7 +15,7 @@
 
   <!-- My Style -->
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
-
+  {% block css %}
   <style type="text/css">
     :root {
       /* primary color */
@@ -289,11 +289,12 @@
     }
 
   </style>
+  {% endblock css %}
   
 </head>
 
 <body>
-
+  {% block content %}
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-transparent position-fixed w-100">
     <div class="container">
@@ -327,7 +328,7 @@
       </div>
     </div>
   </nav>
-
+  
   <!-- Hero Section -->
   <section id="hero">
     <div class="hero-section">
@@ -510,7 +511,7 @@
       });
     }
   </script>
-
+  {% endblock content %}
 </body>
 
 </html>
