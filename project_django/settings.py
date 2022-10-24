@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'user',
     'donasi',
     'moderation',
+    'notifikasi',
 ]
 
 SITE_ID = 1

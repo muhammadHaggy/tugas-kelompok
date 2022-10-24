@@ -20,5 +20,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('user/', include('user.urls')),
     path('donasi/', include('donasi.urls')),
+    path('notifikasi/', include('notifikasi.urls')),
     path('', include('canwe.urls')),
 ]
