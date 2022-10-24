@@ -140,7 +140,15 @@
        background-color: #048353;   
     }
 
+    .table-responsive {
+   border-collapse: collapse; /* [1] */
+}
 
+.table-responsive th, .table-responsive td {
+  /* border-bottom: 5px solid transparent; [2] */
+  background-clip: padding-box; /* [4] */
+  text-align: justify;
+}
     /* Fitur */
     #features {
       padding: 10px 10px;
@@ -383,7 +391,7 @@
 
 
   <section id= "mail position-fixed w-100">
-    <div class="container" style="margin-top: 20px; margin-bottom: 40px;">
+    <div class="container" style="margin-top: 20px; margin-bottom: 0px;">
         <div>
         <p class="text me-2 fw-bold" style="text-align: left; font-family: 'Object Sans'; font-size: x-large;">Notifikasi</p>
         </div>
@@ -395,9 +403,7 @@
 
    </section>
 
-   <div class="container-fluid>
-  <header>
-  </header>
+  <div class="container-fluid">
   <div class="row py-5">
     <div class="col-lg-10 mx-auto">
       <div class="card rounded shadow border-0">
@@ -409,6 +415,7 @@
                     <th>Akun</th>
                     <th>Jenis</th>
                     <th>Deskripsi</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -416,56 +423,89 @@
                     <td>WeCan</td>
                     <td>Galang Dana</td>
                     <td>Penggalangan dana untuk anak-anak suku baduy</td> 
+                    <td>
+                      <button type="button" class="btn btn-link">View Details</button>
+                    </td>
                 </tr>
                 <tr>
                     <td>WeCan</td>
                     <td>Galang Dana</td>
-                    <td>enggalangan dana untuk pelatihan Gizi di Mamuju</td>
+                    <td>Penggalangan dana untuk pelatihan Gizi di Mamuju</td>
+                    <td>
+                      <button type="button" class="btn btn-link">View Details</button>
+                    </td>
                 </tr>
                 <tr>
                     <td>WeCan</td>
                     <td>Donasi</td>
                     <td>Donasi makanan bagi anak-anak yang berada di Kepulauan Yapen</td>
+                    <td>
+                      <button type="button" class="btn btn-link">View Details</button>
+                    </td>
                 </tr>
                 <tr>
                     <td>WeCan</td>
                     <td>Galang Dana</td>
                     <td>Penggalangan dana untuk menyumbang makanan di Nduga</td>
+                    <td>
+                      <button type="button" class="btn btn-link">View Details</button>
+                    </td>
                 </tr>
                 <tr>
                     <td>WeCan</td>
                     <td>Donasi</td>
                     <td>Donasi makanan kepada anak-anak di pelosok Indonesia</td>
+                    <td>
+                      <button type="button" class="btn btn-link">View Details</button>
+                    </td>
                 </tr>
                 <tr>
                     <td>WeCan</td>
                     <td>Galang Dana</td>
                     <td>Penggalangan Dana untuk masyarakat tertimpa musibah</td>
+                    <td>
+                      <button type="button" class="btn btn-link">View Details</button>
+                    </td>
                 </tr>
                 <tr>
                     <td>WeCan</td>
                     <td>Donasi</td>
                     <td>Donasi untuk pembelian makanan di Sorong</td>
+                    <td>
+                      <button type="button" class="btn btn-link">View Details</button>
+                    </td>
                 </tr>
                 <tr>
                     <td>WeCan</td>
                     <td>Donasi</td>
                     <td>Donasi makanan bagi di Aceh</td>
+                    <td>
+                      <button type="button" class="btn btn-link">View Details</button>
+                    </td>
                 </tr>
                 <tr>
                     <td>WeCan</td>
                     <td>Galang Dana</td>
                     <td>Penggalangan dana untuk pelatihan pemberian gizi</td>
+                    <td>
+                      <button type="button" class="btn btn-link">View Details</button>
+                    </td>
                 </tr>
                 <tr>
                     <td>WeCan</td>
                     <td>Donasi</td>
                     <td>Donasi makanan di Merauke</td>
+                    <td>
+                      <button type="button" class="btn btn-link">View Details</button>
+                    </td>
                 </tr>
                 <tr>
                     <td>WeCan</td>
                     <td>Galang Dana</td>
                     <td>Penggalangan dana untuk Tanah Abang</td>
+                    <td>
+                      <button type="button" class="btn btn-link">View Details</button>
+                    </td>
                 </tr>
               </tbody>
             </table>
@@ -476,6 +516,42 @@
   </div>
 </div>
 
+   <!-- Footer -->
+   <section id="footer">
+    <ul class="list text-center">
+      <li>
+        <a href="#">Home</a>
+      </li>
+
+      <li>
+        <a href="#">Donasi</a>
+      </li>
+
+      <li>
+        <a href="#">Galang Dana</a>
+      </li>
+
+      <li>
+        <a href="#">Histori</a>
+      </li>
+
+      <li>
+        <a href="#">Notifikasi</a>
+      </li>
+
+      <li>
+        <a href="#">Login</a>
+      </li>
+    </ul>
+
+    <br>
+
+    <p class="copyright">
+      Made with 
+      <span><ion-icon name="heart"></ion-icon></span> and <span><ion-icon name="sad"></ion-icon></span>
+      from Kelompok D-05
+    </p>
+  </section>
 
   {% endblock content %}
 </body>
