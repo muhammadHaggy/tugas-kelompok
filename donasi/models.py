@@ -9,7 +9,7 @@ class Donasi(ModeratedModel):
     nama = models.CharField(max_length=50)
     deskripsi = models.TextField()
     target = models.BigIntegerField()
-    foto = models.ImageField()
+    foto = models.ImageField(upload_to='foto/')
     terkumpul = models.BigIntegerField(default=0)
 
     def __str__(self):
