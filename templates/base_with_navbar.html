@@ -1,0 +1,451 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Bootsrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css"></script>
+  <script src="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css"></script>
+
+  <!-- Icon -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+
+  <!-- My Style -->
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  {% block css %}
+  <style type="text/css">
+    :root {
+      /* primary color */
+      --pr-color: #048353;
+    }
+
+    body {
+      font-family: 'Object Sans';
+      background-color: #F3FFF4;
+    }
+
+    /* Navbar Style */
+    .navbar-brand {
+      font-weight: 700;
+      font-size: 20px;
+    }
+
+    .nav-link {
+      font-size: 16px;
+    }
+
+    .button-login {
+      width: 107px;
+      height: 40px;
+      background-color: #fff;
+      color: var(--pr-color);
+      border: none;
+      font-size: 16px;
+      font-weight: 700;
+      border-radius: 8px;
+    }
+
+    .nav-color {
+      background-color: var(--pr-color);
+      transition: all ease-in-out .3s;
+    }
+
+    .bg-transparent {
+      transition: all ease-in .3s;
+    }
+
+    nav {
+      z-index: 9999;
+    }
+
+    /* Hero Section */
+    #hero {
+      width: 100%;
+      height: 10vh;
+      background: linear-gradient(F3FFF4, F3FFF4), no-repeat center / cover;
+      color: white;
+    }
+
+    .hero-section {
+      width: 100%;
+      height: 100%;
+      max-width: 0px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .hero-section .contains a {
+      text-decoration: none;
+      color: black;
+      background: var(--pr-color);
+      padding: 10px 30px;
+      border-radius: 8px;
+      margin-top: 10px;
+      display: inline-block;
+      margin-top: 1rem;
+    }
+
+    /* About CanWe */
+    #about {
+      text-align: center;
+      padding-top: 100px;
+      padding-left: 200px;
+      padding-right: 200px;
+      padding-bottom: 80px;
+    }
+
+    .content-table {
+      border-collapse: collapse;
+      margin: 35px 0;
+      border-radius: 5px 5px 0 0;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+      /* font-size: 0.9cm; */
+    }
+
+    .content-table thead tr {
+      background-color: #048353;
+      color: #fff;
+      text-align: left;
+      font-weight: bold;
+      /* font-size: 0.9cm; */
+    }
+
+    .content-table thead th,
+    .content-table thead td {
+      padding: 12px 15px;
+    }
+
+    .content-table tbody tr {
+      border-bottom: 1px solid #dddddd;
+    }
+
+    .content-table tbody tr:nth-of-type(even) {
+      background-color: #f3f3f3;
+    }
+
+    .content-table tbody tr:last-of-type {
+      background-color: #048353;
+    }
+
+    .table-responsive {
+      border-collapse: collapse;
+      /* [1] */
+    }
+
+    .table-responsive th,
+    .table-responsive td {
+      /* border-bottom: 5px solid transparent; [2] */
+      background-clip: padding-box;
+      /* [4] */
+      text-align: justify;
+    }
+
+    /* Fitur */
+    #features {
+      padding: 10px 10px;
+      margin: 0px;
+    }
+
+    h2 {
+      padding-top: 20px;
+      padding-bottom: 20px;
+      text-align: center;
+      font-weight: 500;
+      color: var(--pr-color);
+    }
+
+    .card {
+      width: 100%;
+      height: 100%;
+      background-color: white;
+      padding-bottom: 15px;
+      border-radius: 8px;
+      box-shadow: 0 0 7px 3px rgba(0, 0, 0, 0.05);
+    }
+
+    .picture img {
+      width: 100%;
+      height: 90%;
+      border-radius: 8px;
+    }
+
+    .card-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .title {
+      font-size: 20px;
+      font-weight: 500;
+      color: #000;
+    }
+
+    .description {
+      padding-left: 50px;
+      padding-right: 50px;
+      font-size: 16px;
+      color: #707070;
+      text-align: center;
+    }
+
+    .button-card {
+      border: none;
+      font-size: 16px;
+      color: #fff;
+      padding: 8px 16px;
+      background-color: var(--pr-color);
+      border-radius: 8px;
+      margin: 5px;
+      cursor: pointer;
+      transition: all 0.1s ease-in;
+    }
+
+    .button-card:hover {
+      border: none;
+      font-size: 16px;
+      color: #fff;
+      padding: 8px 16px;
+      background-color: var(-scd-color);
+      border-radius: 8px;
+      margin: 5px;
+      cursor: pointer;
+      transition: all 0.1s ease-in;
+    }
+
+    /* Footer */
+    #footer {
+      padding: 30px 20px;
+      background-color: var(--pr-color);
+    }
+
+    #footer ul {
+      margin-top: 0;
+      padding: 0;
+      list-style: none;
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 0;
+    }
+
+    #footer ul li a {
+      text-align: center;
+      color: #F3FFF4;
+      text-decoration: none;
+      opacity: 0.8;
+    }
+
+    #footer ul li a:hover {
+      opacity: 1;
+    }
+
+    #footer ul li {
+      display: inline-block;
+      padding: 0 15px;
+    }
+
+    #footer .copyright {
+      margin-top: 15px;
+      text-align: center;
+      font-style: 16px;
+      color: whitesmoke;
+    }
+
+    /* FAQ */
+    .faq-heading {
+      padding: 20px 60px;
+    }
+
+    .faq-container {
+      padding-top: 20px;
+      padding-bottom: 50px;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    .hr-line {
+      width: 60%;
+      margin: auto;
+    }
+
+    .faq-page {
+      color: #444;
+      cursor: pointer;
+      padding: 30px 20px;
+      width: 60%;
+      border: none;
+      outline: none;
+      transition: 0.4s;
+      margin: auto;
+    }
+
+    .faq-body {
+      margin: auto;
+      width: 60%;
+      padding: auto;
+    }
+
+    .active,
+    .faq-page:hover {
+      color: white;
+      background-color: var(--scd-color);
+    }
+
+    .faq-body {
+      padding: 0 18px;
+      display: none;
+      overflow: hidden;
+    }
+
+    .faq-page:after {
+      content: '\2795';
+      font-size: 13px;
+      color: #777;
+      float: right;
+      margin-left: 5px;
+    }
+
+    .active:after {
+      content: "\2796";
+    }
+
+    /* Responsive Style */
+
+    /* Dekstop */
+    @media screen and (max-width : 922px) {}
+
+    /* Tablet */
+    @media screen and (max-width : 576px) {}
+
+    /* Smartphones */
+    @media screen and (max-width : 350px) {}
+  </style>
+  {% endblock css %}
+
+</head>
+
+<body>
+  {% block content %}
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark position-fixed w-100" style="background-color: #048353;">
+    <div class="container" ">
+      <a class=" navbar-brand" href="#">
+      <span class="myapp me-2">CanWe</span>
+      <img src="https://cdn-icons-png.flaticon.com/128/2904/2904948.png" width="30" height="30">
+      </a>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item mx-2">
+            <a class="nav-link" href="#">Donasi</a>
+          </li>
+
+          <li class="nav-item mx-2">
+            <a class="nav-link" href="#">Galang Dana</a>
+          </li>
+
+          <li class="nav-item mx-2">
+            <a class="nav-link" href="#">Histori</a>
+          </li>
+
+          <li class="nav-item mx-2">
+            <a class="nav-link" href="#">Notifikasi</a>
+          </li>
+        </ul>
+
+        <div>
+          {% block login_button %}
+          <button class="button-login">Login</button>
+          <script>
+            $('.button-login').click(function () {
+              location.href = "{% url 'user:login_user' %}";
+            });
+          </script>
+          {% endblock login_button%}
+        </div>
+      </div>
+    </div>
+  </nav>
+
+
+
+  <!-- Hero Section -->
+  <section id="hero">
+    <div class="hero-section">
+      <div class="contains">
+      </div>
+
+    </div>
+  </section>
+
+  {% block container %}
+  
+  {% endblock container %}
+
+
+  <!-- Footer -->
+  <section id="footer">
+    <ul class="list text-center">
+      <li>
+        <a href="#">Home</a>
+      </li>
+
+      <li>
+        <a href="#">Donasi</a>
+      </li>
+
+      <li>
+        <a href="#">Galang Dana</a>
+      </li>
+
+      <li>
+        <a href="#">Histori</a>
+      </li>
+
+      <li>
+        <a href="#">Notifikasi</a>
+      </li>
+
+      <li>
+        <a href="#">Login</a>
+      </li>
+    </ul>
+
+    <br>
+
+    <p class="copyright">
+      Made with
+      <span>
+        <ion-icon name="heart"></ion-icon>
+      </span> and <span>
+        <ion-icon name="sad"></ion-icon>
+      </span>
+      from Kelompok D-05
+    </p>
+  </section>
+
+  {% endblock content %}
+</body>
+
+</html>
+
+<script>
+  $(document).ready(function () {
+    $('#example').DataTable();
+  });
+</script>

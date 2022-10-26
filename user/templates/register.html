@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base_with_navbar.html' %}
 
 {% block meta %}
 <title>Registrasi Akun</title>
@@ -6,23 +6,22 @@
 
 {% endblock meta %}
 
-{% block css %} {% endblock css %}
 
-
-{% block content %}  
+{% block container %}  
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
-
-<nav class="navbar navbar-light px-4 mb-3" style="background-color: #e3f2fd;">
+{% comment %}
+<!-- <nav class="navbar navbar-light px-4 mb-3" style="background-color: #e3f2fd;">
     <span class="navbar-text mb-0 h5">Not Logged in</span>
     <span class="navbar-brand mb-0 h1">CanWe</span>
     <form action="{% url 'user:login_user' %}">
         {% csrf_token %}
         <button type="submit" class="btn btn-outline-primary">Login</button>
     </form>
-</nav>
+</nav> -->
+{% endcomment %}
 
 
-<div class = "login container h-100 d-flex flex-column justify-content-center align-items-center">
+<div class = "login container vh-100 d-flex flex-column justify-content-center align-items-center">
     
 
     <form class="form-horizontal col-sm-8 col-md-6 col-lg-3" method="POST">{% csrf_token %}
@@ -67,4 +66,4 @@
 
 </div>  
 
-{% endblock content %}
+{% endblock container %}
