@@ -1,0 +1,97 @@
+{% extends 'base_donasi.html' %}
+
+{% block script %}
+<script>
+
+    async function showDonasi(json) {
+        console.log(json)
+        document.getElementById('card-makanan').innerHTML = "";
+        document.getElementById('card-pendidikan').innerHTML = "";
+
+        let cardMakanan = ``;
+        let cardPendidikan = ``;
+        let temp = ``;
+        let counterMakanan = 0;
+        let counterPendidikan = 0;
+
+        $.each(json, function (index, donasi) {
+            fields = donasi.fields
+            console.log(fields.nama)
+            temp = `\n
+        <div class="col-12 col-md-4" style="margin-bottom: 20px;">
+            <div class="card">
+                <div class="picture">
+                    <img src="${fields.urlFoto}" height=80px>
+                </div>
+    
+                <div class="card-content">
+                    <div style="align-items: left;">
+                        <h3 class="title">${donasi.fields.nama}</h3>
+                        <p class="description">${donasi.fields.deskripsi}</p>
+                    </div>
+                    <button class="button-card approve" onclick="approve(${donasi.pk});">
+                        Approve
+                    </button>
+                    <button class="button-card reject" style="background-color: red;" onclick="reject(${donasi.pk});">
+                        Reject
+                    </button>
+                </div>
+            </div>
+        </div>
+        `
+
+            if (donasi.fields.tipe == "Makanan") {
+                if (counterMakanan % 3 == 0) {
+                    cardMakanan += `\n<div class="row">`;
+                }
+
+                cardMakanan += temp;
+                counterMakanan++;
+
+                if (counterMakanan % 3 == 0) {
+                    cardMakanan += `\n</div>`;
+                }
+            }
+
+            if (donasi.fields.tipe == "Pendidikan") {
+                if (counterPendidikan % 3 == 0) {
+                    cardPendidikan += `\n<div class="row">`;
+                }
+
+                cardPendidikan += temp;
+                counterPendidikan++;
+
+                if (counterPendidikan % 3 == 0) {
+                    cardPendidikan += `\n</div>`;
+                }
+            }
+        });
+
+        document.getElementById('card-makanan').innerHTML = cardMakanan;
+        document.getElementById('card-pendidikan').innerHTML = cardPendidikan;
+    }
+    function updateDonasi() {
+        $.getJSON("{% url 'user:pending_task_json' %}", showDonasi);
+        
+    }
+    function approve(pk) {
+        $.get({
+            url: `approve/${pk}`,
+            success: function (data){
+                updateDonasi();
+            },
+        });
+    }
+    function reject(pk) {
+        $.get({
+            url: `reject/${pk}`,
+            success: function (data){
+                updateDonasi();
+            },
+        });
+    }
+    $(document).ready(function (){
+        updateDonasi();
+    })
+</script>
+{% endblock script %}

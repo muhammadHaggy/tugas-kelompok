@@ -11,6 +11,7 @@ class Donasi(models.Model):
     foto = models.ImageField(upload_to='upload/')
     terkumpul = models.BigIntegerField(default=0)
     urlFoto = models.TextField(default='')
+    is_approved = models.BooleanField(null=True, editable=False)
 
     def __str__(self):
         return self.nama
