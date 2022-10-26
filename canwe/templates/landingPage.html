@@ -1,0 +1,545 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<style>
+    :root {
+      /* primary color */
+      --pr-color : #048353; 
+      --scd-color : #01492E;
+    }
+
+    body {
+      font-family: 'Object Sans';
+      background-color: #F3FFF4;
+    }
+
+    /* Navbar Style */
+    .navbar-brand {
+      font-weight: 700;
+      font-size: 20px;
+    }
+
+    .nav-link {
+      font-size: 16px;
+    }
+
+    .button-login {
+      width: 107px;
+      height: 40px;
+      background-color: #fff;
+      color: var(--pr-color);
+      border: none;
+      font-size: 16px;
+      font-weight: 700;
+      border-radius: 8px;
+    }
+
+    .nav-color {
+      background-color: var(--pr-color);
+      transition: all ease-in-out .3s;
+    }
+
+    .bg-transparent {
+      transition: all ease-in .3s;
+    }
+
+    nav {
+      z-index: 9999;
+    }
+
+    /* Hero Section */
+    #hero {
+      width: 100%;
+      height: 100vh;
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://cdn.pixabay.com/photo/2017/02/03/17/41/poverty-2035694_960_720.jpg') no-repeat center / cover;
+      color: white;
+    }
+
+    .hero-section {
+      width: 80%;
+      height: 100%;
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .hero-section .contains a {
+      text-decoration: none;
+      color: #fff;
+      background: var(--pr-color);
+      padding: 10px 30px;
+      border-radius: 8px;
+      margin-top: 10px;
+      display: inline-block;
+      margin-top: 1rem;
+    }
+
+    /* About CanWe */
+    #about {
+      text-align: center;
+      padding-top: 130px;
+      padding-left: 200px;
+      padding-right: 200px;
+      padding-bottom: 100px;
+    }
+
+    /* Fitur */
+    #features {
+      padding: 0px 0px;
+      margin: 0px;
+    }
+
+    h2 {
+      padding-bottom: 20px;
+      text-align: center;
+      font-weight: 500;
+      color: var(--pr-color);
+    }
+
+    .card {
+      width: 100%;
+      height: 100%;
+      background-color: white;
+      padding-bottom: 15px;
+      border-radius: 8px;
+      box-shadow: 0 0 7px 3px rgba(0,0,0,0.05);
+    }
+
+    .picture img {
+      width: 100%;
+      height: 90%;
+      border-radius: 8px;
+    }
+
+    .card-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .title {
+      font-size: 20px;
+      font-weight: 500;
+      color: #000;
+    }
+
+    .description {
+      padding-left: 50px;
+      padding-right: 50px;
+      font-size: 16px;
+      color: #707070;
+      text-align: center;
+    }
+
+    .button-card {
+      border: none;
+      font-size: 16px;
+      color: #fff;
+      padding: 8px 16px;
+      background-color: var(--pr-color);
+      border-radius: 8px;
+      margin: 5px;
+      cursor: pointer;
+      transition: all 0.1s ease-in;
+    }
+
+    .button-card:hover {
+      border: none;
+      font-size: 16px;
+      color: #fff;
+      padding: 8px 16px;
+      background-color: var(-scd-color);
+      border-radius: 8px;
+      margin: 5px;
+      cursor: pointer;
+      transition: all 0.1s ease-in;
+    }
+
+    /* FAQ */
+    .faq-heading{
+      padding: 60px 60px;
+    }
+
+    .faq-container{
+      padding-top: 20px;
+      padding-bottom: 50px;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    .hr-line{
+      width: 60%;
+      margin: auto;
+    }
+
+    .faq-page {
+      color: #444;
+      cursor: pointer;
+      padding: 30px 20px;
+      width: 60%;
+      border: none;
+      outline: none;
+      transition: 0.4s;
+      margin: auto;
+    }
+
+    .faq-body{
+      margin: auto;
+      width: 60%; 
+      padding: auto;
+    }
+    
+    .active,
+    .faq-page:hover {
+      color: white;
+      background-color: var(--scd-color);
+    }
+    
+    .faq-body {
+      padding: 0 18px;
+      display: none;
+      overflow: hidden;
+    }
+
+    .faq-page:after {
+      content: '\2795';
+      font-size: 13px;
+      color: white;
+      float: right;
+      margin-left: 5px;
+    }
+
+    .active:after {
+      content: "\2796";
+    }
+
+    .btn-faq {
+      border: none;
+      font-size: 16px;
+      color: #fff;
+      padding: 8px 16px;
+      background-color: var(--pr-color);
+      border-radius: 8px;
+      margin: 0 550px;
+      margin-top: 20px;
+      align-items: center;
+    }
+
+    /* Footer */
+    #footer {
+      padding: 30px 20px;
+      background-color: var(--pr-color);
+    }
+
+    #footer ul {
+      margin-top: 0;
+      padding: 0;
+      list-style: none;
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 0;
+    }
+
+    #footer ul li a {
+      text-align: center;
+      color: #F3FFF4;
+      text-decoration: none;
+      opacity: 0.8;
+    }
+
+    #footer ul li a:hover {
+      opacity: 1;
+    }
+
+    #footer ul li {
+      display: inline-block;
+      padding: 0 15px;
+    }
+
+    #footer .copyright {
+      margin-top: 15px;
+      text-align: center;
+      font-style: 16px;
+      color: whitesmoke;
+    }
+
+    /* Carousel */
+    .carousel {
+      width: 100vw;
+      height: 100vh;
+      position: relative;
+    }
+
+    .carousel > ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: 200ms opacity ease-in-out;
+      transition-delay: 200ms;
+     
+    }
+
+    .slide > img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .slide[data-active] {
+      opacity: 1;
+      z-index: 1;
+      transition-delay: 0ms;
+    }
+
+    .carousel-button {
+      position: absolute;
+      z-index: 2;
+      background: none;
+      border: none;
+      font-size: 4rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: rgba(255,255,255,.5);
+      cursor: pointer;
+      border-radius: .25rem;
+      padding: 0 .5rem;
+      background-color: rgba(0,0,0,.1);
+    }
+
+    .carousel-button:hover, .carousel-button:focus {
+      color: white;
+      background-color: rgba(0,0,0,.2);
+    }
+
+    .carousel-button:focus{
+      outline: 1px solid black;
+    }
+
+    .carousel-button.prev {
+      left: 1rem;
+    }
+
+    .carousel-button.next {
+      right: 2rem;
+    }
+
+</style>
+{% endblock css %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<section id="hero">
+    <div class="hero-section">
+        <div class="contains">
+            <h1>Selamat Datang di CanWe!</h1>
+
+            <a href="#about">Get to know more
+                <span>
+                    <ion-icon name="arrow-down-outline"></ion-icon>
+                </span>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- About CanWe Section -->
+<section id="about">
+  <div class="section-about">
+      <div class="row">
+          <div class="col-12">
+              <p>
+                Menurut Global Hunger Index (GHI), tingkat kelaparan Indonesia menempati urutan ketiga tertinggi di Asia Tenggara pada 2021. Indonesia mendapatkan skor indeks sebesar 18 poin atau termasuk ke dalam level moderat. GHI menggambarkan situasi kelaparan suatu negara yang berhubungan dengan kebutuhan dasar fisiologis manusia, yaitu kebutuhan pangan dan nutrisi. Skor indeks GHI didasarkan pada empat komponen, yaitu kondisi kurang gizi, anak yang kurus, stunting anak, dan kematian anak.
+              </p>
+          </div>
+      </div>
+  </div>
+</section>
+
+<!-- Photo Carousel -->
+<section aria-label="Newest Photos">
+  <div class="carousel" data-carousel>
+    <button class="carousel-button prev" data-carousel-button="prev">&#60</button>
+    <button class="carousel-button next" data-carousel-button="next">&#62</button>
+
+    <ul data-slides>
+      <li class="slide" data-active>
+        <img src="https://images.unsplash.com/photo-1518980065353-d484da071b8b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" alt="Picture 1">
+      </li>
+
+      <li class="slide">
+        <img src="https://images.unsplash.com/photo-1627223160302-db88fc808907?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" alt="Picture 2">
+      </li>
+
+      <li class="slide">
+        <img src="https://images.unsplash.com/photo-1540126281354-f549412ac6b8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" alt="Picture 3">
+      </li>
+
+      <li class="slide">
+        <img src="https://images.unsplash.com/photo-1533285962792-0c3c5e9cb0d7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" alt="Picture 4">
+      </li>
+
+      <li class="slide">
+        <img src="https://images.unsplash.com/photo-1641621367614-3cd5549a8474?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1032&q=80" alt="Picture 5">
+      </li>
+
+      <li class="slide">
+        <img src="https://images.unsplash.com/photo-1542562755-7c6b4617ca9d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" alt="Picture 6">
+      </li>
+    </ul>
+  </div>
+</section>
+
+<script>
+  const buttons = document.querySelectorAll("[data-carousel-button]")
+
+  buttons.forEach(button => {
+    button.addEventListener("click", () => {
+      const offset = button.dataset.carouselButton === "next" ? 1 : -1
+      const slides = button
+        .closest("[data-carousel]")
+        .querySelector("[data-slides]")
+      
+      const activeSlide = slides.querySelector("[data-active]")
+      let newIndex = [...slides.children].indexOf(activeSlide) + offset
+      if (newIndex < 0) newIndex = slides.children.length + 1
+      if (newIndex >= slides.children.length) newIndex = 0
+
+      slides.children[newIndex].dataset.active = true
+      delete activeSlide.dataset.active
+    })
+  })
+</script>
+
+<!-- About CanWe Section -->
+<section id="about">
+  <div class="section-about">
+      <div class="row">
+          <div class="col-12">
+              <p>
+                CanWe hadir untuk membantu menanggulangi permasalahan yang dihadapi masyarakat Indonesia dalam memenuhi kebutuhan pangan dan nutrisi. CanWe merupakan situs yang bertujuan untuk mengumpulkan donasi dan penggalangan dana agar dapat meningkatkan kualitas hidup anak-anak dan keluarga yang membutuhkan dengan menyediakan makanan sehat dan pendidikan gizi. Melalui CanWe, kami berharap dapat memastikan bahwa lebih banyak anak yang tidak hanya dapat bertahan, melainkan berkembang, hari ini, dan seterusnya.
+              </p>
+          </div>
+      </div>
+  </div>
+</section>
+
+<!-- Features Section -->
+<section id="features">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2>Layanan Kami</h2>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="picture">
+                        <img src="https://images.unsplash.com/photo-1437914983566-976d85602771?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" height=80px>
+                    </div>
+
+                    <div class="card-content">
+                        <!-- <div class="card-image car-1"></div> -->
+                        <h3 class="title">Donasi</h3>
+                        <p class="description">Dengan melakukan donasi, kamu turut berpartisipasi dalam meningkatkan kualitas hidup anak-anak dan keluarga yang membutuhkan.</p>
+                        <button class="button-card">Lebih lanjut tentang donasi</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="picture">
+                        <img src="https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" height=80px>
+                    </div>
+
+                    <div class="card-content">
+                        <!-- <div class="card-image car-2"></div> -->
+                        <h3 class="title">Galang Dana</h3>
+                        <p class="description">Dengan membuat penggalangan dana, kamu akan menjadi perantara untuk meningkatkan kualitas hidup anak-anak dan keluarga yang membutuhkan.</p>
+                        <button class="button-card">Lebih lanjut tentang galang dana</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-container">
+    <h2 class="faq-heading">Frequently Asked Questions</h2>
+    <div class="faq-one">
+        <!-- faq question -->
+        <h5 class="faq-page">Bagaimana mekanisme donasi pada CanWe?</h5>
+        <!-- faq answer -->
+        <div class="faq-body">
+            <p>Kamu tinggal memilih donasi mana yang ingin dilakukan, lalu
+              ikuti langkah-langkah yang telah disediakan!
+            </p>
+        </div>
+    </div>
+      
+    <hr class="hr-line">
+
+    <div class="faq-two">
+        <!-- faq question -->
+        <h5 class="faq-page">Apakah CanWe dapat dipercaya?</h5>
+        <!-- faq answer -->
+        <div class="faq-body">
+            <p>Ya, CanWe sangat dapat dipercaya untuk kamu gunakan dalam memilih donasi
+              dan melakukan penggalngan dana.
+            </p>
+        </div>
+    </div>
+
+    <hr class="hr-line">
+    
+    <div class="faq-three">
+        <!-- faq question -->
+        <h5 class="faq-page">Dimana saya bisa mendownload aplikasi CanWe?</h5>
+        <!-- faq answer -->
+        <div class="faq-body">
+            <p>Sangat disayangkan, untuk saat ini CanWe hanya tersedia dalam bentuk website saja.
+              Nantikan terus update dari CanWe terkait mobile app yang sedang dikembangkan yaa!
+            </p>
+        </div>
+    </div>
+
+    <button class="btn-faq">Kirim pertanyaan</button>
+
+</section>
+
+<!-- Responsive FAQ -->
+<script>
+    var faq = document.getElementsByClassName("faq-page");
+    var i;
+
+    for (i = 0; i < faq.length; i++) {
+        faq[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            var body = this.nextElementSibling;
+            if (body.style.display === "block") {
+                body.style.display = "none";
+            } else {
+                body.style.display = "block";
+            }
+        });
+    }
+</script>
+
+{% endblock content %}

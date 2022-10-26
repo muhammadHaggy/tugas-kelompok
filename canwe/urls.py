@@ -1,8 +1,9 @@
 from django.urls import path
-from .views import index
+from .views import landingPage
 
 app_name = 'canwe'
 
 urlpatterns = [
-    path('', index, name="index"),
+    path('', landingPage, name="landingPage"),
+    path('canwe/', landingPage, name="landingPage")
 ]

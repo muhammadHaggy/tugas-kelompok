@@ -2,516 +2,217 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <!-- Required meta tags -->
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Bootsrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-  
-  <!-- Icon -->
-  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-
-  <!-- My Style -->
-  <link rel="stylesheet" href="{% static 'css/style.css' %}">
-  {% block css %}
-  <style type="text/css">
-    :root {
-      /* primary color */
-      --pr-color : #048353; 
-      --scd-color : #01492E;
-    }
-
-    body {
-      font-family: 'Object Sans';
-      background-color: #F3FFF4;
-    }
-  
-    /* Navbar Style */
-    .navbar-brand {
-      font-weight: 700;
-      font-size: 20px;
-    }
-
-    .nav-link {
-      font-size: 16px;
-    }
-
-    .button-login {
-      width: 107px;
-      height: 40px;
-      background-color: #fff;
-      color: var(--pr-color);
-      border: none;
-      font-size: 16px;
-      font-weight: 700;
-      border-radius: 8px;
-    }
-
-    .nav-color {
-      background-color: var(--pr-color);
-      transition: all ease-in-out .3s;
-    }
-
-    .bg-transparent {
-      transition: all ease-in .3s;
-    }
-
-    nav {
-      z-index: 9999;
-    }
-
-    /* Hero Section */
-    #hero {
-      width: 100%;
-      height: 100vh;
-      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://cdn.pixabay.com/photo/2017/02/03/17/41/poverty-2035694_960_720.jpg') no-repeat center / cover;
-      color: white;
-    }
-
-    .hero-section {
-      width: 80%;
-      height: 100%;
-      max-width: 1000px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-    }
-
-    .hero-section .contains a {
-      text-decoration: none;
-      color: #fff;
-      background: var(--pr-color);
-      padding: 10px 30px;
-      border-radius: 8px;
-      margin-top: 10px;
-      display: inline-block;
-      margin-top: 1rem;
-    }
-
-    /* About CanWe */
-    #about {
-      text-align: center;
-      padding-top: 100px;
-      padding-left: 200px;
-      padding-right: 200px;
-      padding-bottom: 80px;
-    }
-
-    /* Fitur */
-    #features {
-      padding: 10px 10px;
-      margin: 0px;
-    }
-
-    h2 {
-      padding-top: 20px;
-      padding-bottom: 20px;
-      text-align: center;
-      font-weight: 500;
-      color: var(--pr-color);
-    }
-
-    .card {
-      width: 100%;
-      height: 100%;
-      background-color: white;
-      padding-bottom: 15px;
-      border-radius: 8px;
-      box-shadow: 0 0 7px 3px rgba(0,0,0,0.05);
-    }
-
-    .picture img {
-      width: 100%;
-      height: 90%;
-      border-radius: 8px;
-    }
-
-    .card-content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .title {
-      font-size: 20px;
-      font-weight: 500;
-      color: #000;
-    }
-
-    .description {
-      padding-left: 50px;
-      padding-right: 50px;
-      font-size: 16px;
-      color: #707070;
-      text-align: center;
-    }
-
-    .button-card {
-      border: none;
-      font-size: 16px;
-      color: #fff;
-      padding: 8px 16px;
-      background-color: var(--pr-color);
-      border-radius: 8px;
-      margin: 5px;
-      cursor: pointer;
-      transition: all 0.1s ease-in;
-    }
-
-    .button-card:hover {
-      border: none;
-      font-size: 16px;
-      color: #fff;
-      padding: 8px 16px;
-      background-color: var(-scd-color);
-      border-radius: 8px;
-      margin: 5px;
-      cursor: pointer;
-      transition: all 0.1s ease-in;
-    }
-
-    /* Footer */
-    #footer {
-      padding: 30px 20px;
-      background-color: var(--pr-color);
-    }
-
-    #footer ul {
-      margin-top: 0;
-      padding: 0;
-      list-style: none;
-      font-size: 16px;
-      line-height: 1.6;
-      margin-bottom: 0;
-    }
-
-    #footer ul li a {
-      text-align: center;
-      color: #F3FFF4;
-      text-decoration: none;
-      opacity: 0.8;
-    }
-
-    #footer ul li a:hover {
-      opacity: 1;
-    }
-
-    #footer ul li {
-      display: inline-block;
-      padding: 0 15px;
-    }
-
-    #footer .copyright {
-      margin-top: 15px;
-      text-align: center;
-      font-style: 16px;
-      color: whitesmoke;
-    }
-
-    /* FAQ */
-    .faq-heading{
-      padding: 20px 60px;
-    }
-
-    .faq-container{
-      padding-top: 20px;
-      padding-bottom: 50px;
-      display: flex;
-      justify-content: center;
-      flex-direction: column;
-    }
-
-    .hr-line{
-      width: 60%;
-      margin: auto;
-    }
-
-    .faq-page {
-      color: #444;
-      cursor: pointer;
-      padding: 30px 20px;
-      width: 60%;
-      border: none;
-      outline: none;
-      transition: 0.4s;
-      margin: auto;
-    }
-
-    .faq-body{
-      margin: auto;
-      width: 60%; 
-      padding: auto;
-    }
+    <!-- Bootsrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     
-    .active,
-    .faq-page:hover {
-      color: white;
-      background-color: var(--scd-color);
-    }
+    <!-- Icon -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+
+    <!-- My Style -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    {% block css %}
+    <style type="text/css">
+      :root {
+        /* primary color */
+        --pr-color : #048353; 
+        --scd-color : #01492E;
+      }
+
+      body {
+        font-family: 'Object Sans';
+        background-color: #F3FFF4;
+      }
     
-    .faq-body {
-      padding: 0 18px;
-      display: none;
-      overflow: hidden;
-    }
+      /* Navbar Style */
+      .navbar-brand {
+        font-weight: 700;
+        font-size: 20px;
+      }
 
-    .faq-page:after {
-      content: '\2795';
-      font-size: 13px;
-      color: #777;
-      float: right;
-      margin-left: 5px;
-    }
+      .nav-link {
+        font-size: 16px;
+      }
 
-    .active:after {
-      content: "\2796";
-    }
+      .button-login {
+        width: 107px;
+        height: 40px;
+        background-color: #fff;
+        color: var(--pr-color);
+        border: none;
+        font-size: 16px;
+        font-weight: 700;
+        border-radius: 8px;
+      }
 
-    /* Responsive Style */
+      .nav-color {
+        background-color: var(--pr-color);
+        transition: all ease-in-out .3s;
+      }
 
-    /* Dekstop */
-    @media screen and (max-width : 922px) {
+      .bg-transparent {
+        transition: all ease-in .3s;
+      }
+
+      nav {
+        z-index: 9999;
+      }
+
+      /* Footer */
+      #footer {
+        padding: 30px 20px;
+        background-color: var(--pr-color);
+      }
+
+      #footer ul {
+        margin-top: 0;
+        padding: 0;
+        list-style: none;
+        font-size: 16px;
+        line-height: 1.6;
+        margin-bottom: 0;
+      }
+
+      #footer ul li a {
+        text-align: center;
+        color: #F3FFF4;
+        text-decoration: none;
+        opacity: 0.8;
+      }
+
+      #footer ul li a:hover {
+        opacity: 1;
+      }
+
+      #footer ul li {
+        display: inline-block;
+        padding: 0 15px;
+      }
+
+      #footer .copyright {
+        margin-top: 15px;
+        text-align: center;
+        font-style: 16px;
+        color: whitesmoke;
+      }
+
+      /* Responsive Style */
+
+      /* Dekstop */
+      @media screen and (max-width : 922px) {
+      
+      }
     
-    }
-  
-    /* Tablet */
-    @media screen and (max-width : 576px) {
-        
-    }
-  
-    /* Smartphones */
-    @media screen and (max-width : 350px) {
-        
-    }
+      /* Tablet */
+      @media screen and (max-width : 576px) {
+          
+      }
+    
+      /* Smartphones */
+      @media screen and (max-width : 350px) {
+          
+      }
 
-  </style>
-  {% endblock css %}
-  
-</head>
+    </style>
+    {% endblock css %}
+    
+  </head>
 
-<body>
-  {% block content %}
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-transparent position-fixed w-100">
-    <div class="container">
-      <a class="navbar-brand" href="#">
-        <span class="myapp me-2">CanWe</span>
-        <img src="https://cdn-icons-png.flaticon.com/128/2904/2904948.png" width="30" height="30">
-      </a>
+  <body>
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-dark bg-transparent position-fixed w-100">
+        <div class="container">
+          <a class="navbar-brand" href="/canwe">
+            <span class="myapp me-2">CanWe</span>
+            <img src="https://cdn-icons-png.flaticon.com/128/2904/2904948.png" width="30" height="30">
+          </a>
 
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav mx-auto">
-          <li class="nav-item mx-2">
-            <a class="nav-link" href="#">Donasi</a>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mx-auto">
+              <li class="nav-item mx-2">
+                <a class="nav-link" href="#">Donasi</a>
+              </li>
+
+              <li class="nav-item mx-2">
+                <a class="nav-link" href="#">Galang Dana</a>
+              </li>
+
+              <li class="nav-item mx-2">
+                <a class="nav-link" href="#">Histori</a>
+              </li>
+
+              <li class="nav-item mx-2">
+                <a class="nav-link" href="/notifikasi">Notifikasi</a>
+              </li>
+            </ul>
+
+            <div>
+              <button type="button" class="button-login">
+                <a class="button-login" id="loginbtn" href="{% url 'user:login_user' %}">Login</a>
+              </button>
+            </div>
+
+          </div>
+        </div>
+      </nav>
+
+      <!-- Membedakan navbar saat scroll dan di hero -->
+      <script>
+        const navbar = document.getElementsByTagName('nav')[0];
+        window.addEventListener('scroll', function(){
+          console.log(window.scrollY);
+          if (window.scrollY > 1){
+            navbar.classList.replace('bg-transparent', 'nav-color');
+          } else if (window.scrollY <= 0){
+            navbar.classList.replace('nav-color', 'bg-transparent');
+          }
+        });
+      </script>
+
+      {% block content %}{% endblock %}
+
+      <!-- Footer -->
+      <section id="footer">
+        <ul class="list text-center">
+          <li>
+            <a href="/canwe">Home</a>
           </li>
 
-          <li class="nav-item mx-2">
-            <a class="nav-link" href="#">Galang Dana</a>
+          <li>
+            <a href="#">Donasi</a>
           </li>
 
-          <li class="nav-item mx-2">
-            <a class="nav-link" href="#">Histori</a>
+          <li>
+            <a href="#">Galang Dana</a>
           </li>
 
-          <li class="nav-item mx-2">
-            <a class="nav-link" href="#">Notifikasi</a>
+          <li>
+            <a href="#">Histori</a>
+          </li>
+
+          <li>
+            <a href="/notifikasi">Notifikasi</a>
+          </li>
+
+          <li>
+            <a href="{% url 'user:login_user' %}">Login</a>
           </li>
         </ul>
 
-        <div>
-          <button class="button-login">Login</button>
-        </div>
-      </div>
-    </div>
-  </nav>
-  
-  <!-- Hero Section -->
-  <section id="hero">
-    <div class="hero-section">
-      <div class="contains">
-        <h1>Selamat Datang di CanWe!</h1>
+        <br>
 
-        <a href="#">Get to know more
-          <span>
-            <ion-icon name="arrow-down-outline"></ion-icon>
-          </span>
-        </a>
-      </div>
-    </div>
-  </section>
-  
-  <!-- About CanWe Section -->
-  <section id="about">
-    <div class="section-about">
-      <div class="row">
-        <div class="col-12">
-          <p>
-            CanWe hadir untuk membantu menanggulangi permasalahan yang dihadapi masyarakat Indonesia dalam memenuhi kebutuhan pangan dan nutrisi. CanWe merupakan situs yang bertujuan untuk mengumpulkan donasi dan penggalangan dana agar dapat meningkatkan kualitas hidup anak-anak dan keluarga yang membutuhkan dengan menyediakan makanan sehat dan pendidikan gizi. Melalui CanWe, kami berharap dapat memastikan bahwa lebih banyak anak yang tidak hanya dapat bertahan, melainkan berkembang, hari ini, dan seterusnya.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
+        <p class="copyright">
+          Made with 
+          <span><ion-icon name="heart"></ion-icon></span> and <span><ion-icon name="sad"></ion-icon></span>
+          from Kelompok D-05
+        </p>
+      </section>
 
-  <!-- Features Section -->
-  <section id="features">
-    <div class="container">
-      <div class="row">
-        <div class="col-12 text-center">
-          <h2>Layanan Kami</h2>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-6">
-          <div class="card">
-            <div class="picture">
-              <img src="https://images.unsplash.com/photo-1437914983566-976d85602771?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" height=80px>
-            </div>
-
-            <div class="card-content">
-              <!-- <div class="card-image car-1"></div> -->
-              <h3 class="title">Donasi</h3>
-              <p class="description">Dengan melakukan donasi, kamu turut berpartisipasi dalam meningkatkan kualitas hidup anak-anak dan keluarga yang membutuhkan.</p>
-              <button class="button-card">Lebih lanjut tentang donasi</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-6">
-          <div class="card">
-            <div class="picture">
-              <img src="https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" height=80px>
-            </div>
-
-            <div class="card-content">
-              <!-- <div class="card-image car-2"></div> -->
-              <h3 class="title">Galang Dana</h3>
-              <p class="description">Dengan membuat penggalangan dana, kamu akan menjadi perantara untuk meningkatkan kualitas hidup anak-anak dan keluarga yang membutuhkan.</p>
-              <button class="button-card">Lebih lanjut tentang galang dana</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section class="faq-container">
-    <h2 class="faq-heading">Frequently Asked Questions</h2>
-    <div class="faq-one">
-      <!-- faq question -->
-      <h5 class="faq-page">What is an FAQ Page?</h5>
-      <!-- faq answer -->
-      <div class="faq-body">
-          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Velit saepe sequi, illum facere
-              necessitatibus cum aliquam id illo omnis maxime, totam soluta voluptate amet ut sit ipsum
-              aperiam.
-              Perspiciatis, porro!</p>
-      </div>
-    </div>
-      
-    <hr class="hr-line">
-
-    <div class="faq-two">
-      <!-- faq question -->
-      <h5 class="faq-page">Why do you need an FAQ page?</h5>
-      <!-- faq answer -->
-      <div class="faq-body">
-          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Velit saepe sequi, illum facere
-              necessitatibus cum aliquam id illo omnis maxime, totam soluta voluptate amet ut sit ipsum
-              aperiam.
-              Perspiciatis, porro!</p>
-      </div>
-    </div>
-
-    <hr class="hr-line">
-    
-    <div class="faq-three">
-      <!-- faq question -->
-      <h5 class="faq-page">Does it improves the user experience of a website?</h5>
-      <!-- faq answer -->
-      <div class="faq-body">
-          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Velit saepe sequi, illum facere
-              necessitatibus cum aliquam id illo omnis maxime, totam soluta voluptate amet ut sit ipsum
-              aperiam.
-              Perspiciatis, porro!</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <section id="footer">
-    <ul class="list text-center">
-      <li>
-        <a href="#">Home</a>
-      </li>
-
-      <li>
-        <a href="#">Donasi</a>
-      </li>
-
-      <li>
-        <a href="#">Galang Dana</a>
-      </li>
-
-      <li>
-        <a href="#">Histori</a>
-      </li>
-
-      <li>
-        <a href="#">Notifikasi</a>
-      </li>
-
-      <li>
-        <a href="#">Login</a>
-      </li>
-    </ul>
-
-    <br>
-
-    <p class="copyright">
-      Made with 
-      <span><ion-icon name="heart"></ion-icon></span> and <span><ion-icon name="sad"></ion-icon></span>
-      from Kelompok D-05
-    </p>
-  </section>
-
-  <!-- Membedakan navbar saat scroll dan di hero -->
-  <script>
-    const navbar = document.getElementsByTagName('nav')[0];
-    window.addEventListener('scroll', function(){
-      console.log(window.scrollY);
-      if (window.scrollY > 1){
-        navbar.classList.replace('bg-transparent', 'nav-color');
-      } else if (window.scrollY <= 0){
-        navbar.classList.replace('nav-color', 'bg-transparent');
-      }
-    });
-  </script>
-
-  <!-- Responsive FAQ -->
-  <script>
-    var faq = document.getElementsByClassName("faq-page");
-    var i;
-
-    for (i = 0; i < faq.length; i++) {
-      faq[i].addEventListener("click", function () {
-        this.classList.toggle("active");
-        var body = this.nextElementSibling;
-        if (body.style.display === "block") {
-            body.style.display = "none";
-        } else {
-            body.style.display = "block";
-        }
-      });
-    }
-  </script>
-  {% endblock content %}
-</body>
+  </body>
 
 </html>
