@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'canwe',
     'user',
     'donasi',
-    'moderation',
     'notifikasi',
 ]
 

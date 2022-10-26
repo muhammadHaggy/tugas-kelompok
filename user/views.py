@@ -6,7 +6,8 @@ import datetime
 from django.urls import reverse
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
-
+from django.contrib.auth.decorators import login_required
+from donasi.models import Donasi
 def index(request):
     return redirect(reverse('user:login_user'))
 # Create your views here.
@@ -18,7 +19,7 @@ def login_user(request):
         if user is not None:
             login(request, user)  # melakukan login terlebih dahulu
             response = HttpResponseRedirect(
-                reverse("canwe:index"))  # membuat response
+                reverse("canwe:landingPage"))  # membuat response
             # membuat cookie last_login dan menambahkannya ke dalam response
             response.set_cookie('last_login', str(datetime.datetime.now()))
             return response
@@ -38,3 +39,12 @@ def register(request):
 
     context = {'form': form}
     return render(request, 'register.html', context)
+
+@login_required(login_url='user/login')
+def admin_approval(request):
+    if request.user.is_staff:
+        data_donasi_pending = Donasi.moderated_object.get(status='Pending')
+        return JsonResponse(data_donasi_pending)
+    return HttpResponse()
+
+
