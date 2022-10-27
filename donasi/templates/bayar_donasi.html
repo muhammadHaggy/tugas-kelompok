@@ -1,0 +1,205 @@
+{% extends 'base_with_navbar.html' %}
+
+{% block css %}
+<style>
+    :root {
+      /* primary color */
+      --pr-color : #048353; 
+      --scd-color : #01492E;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #F3FFF4;
+    }
+
+    /* Navbar Style */
+    .navbar-brand {
+      font-weight: 700;
+      font-size: 20px;
+    }
+
+    .nav-link {
+      font-size: 16px;
+    }
+
+    .button-login {
+      width: 107px;
+      height: 40px;
+      background-color: #fff;
+      color: var(--pr-color);
+      border: none;
+      font-size: 16px;
+      font-weight: 700;
+      border-radius: 8px;
+    }
+
+    .nav-color {
+      background-color: var(--pr-color);
+      transition: all ease-in-out .3s;
+    }
+
+    .bg-transparent {
+      transition: all ease-in .3s;
+    }
+
+    nav {
+      z-index: 9999;
+    }
+
+    /* Hero Section */
+    #hero {
+      width: 100%;
+      background: linear-gradient(F3FFF4, F3FFF4), no-repeat center / cover;
+      color: white;
+    }
+
+    .hero-section {
+      width: 80%;
+      height: 100%;
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .hero-section .contains a {
+      text-decoration: none;
+      color: #fff;
+      background: var(--pr-color);
+      padding: 10px 30px;
+      border-radius: 8px;
+      margin-top: 10px;
+      display: inline-block;
+      margin-top: 1rem;
+    }
+
+    /* Pembayaran */
+    #pembayaran {
+        margin-top: 55px;
+        padding: 30px 50px;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    .box-button {
+        padding: 10px;
+        border-radius: 8px;
+        width: fit-content;
+        margin-bottom: 30px;
+    }
+
+    .button-back {
+        color: #03fd9d;
+    }
+
+    .glass {
+        background-color: #048352b4;
+        border-radius: 8px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.7);
+        -webkit-backdrop-filter: blur(3px);
+        backdrop-filter: blur(3px);
+    }
+
+    /* Info */
+    #donasi {
+        padding: 3px 40px;
+        
+    }
+    #donasi h2 {
+        font-size: 45px;
+        color: rgb(126, 255, 205);
+        font-weight: bold;
+        margin-top: 30px;
+    }
+
+    #donasi h3 {
+        font-size: 38px;
+        color: #d7ffdb;
+        margin-top: 60px;
+        font-weight: bold;
+    }
+
+    #donasi #deskripsi {
+        text-align: justify;
+        font-size: 20px;
+        margin-top: 15px;
+        color: white;
+    }
+
+    #donasi #masukkan-nominal {
+        font-size: 15px;
+        margin-top: 60px;
+        color: white;
+    }
+
+    /* Footer */
+    #footer {
+      padding: 30px 20px;
+      background-color: var(--pr-color);
+    }
+
+    #footer ul {
+      margin-top: 0;
+      padding: 0;
+      list-style: none;
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 0;
+    }
+
+    #footer ul li a {
+      text-align: center;
+      color: #F3FFF4;
+      text-decoration: none;
+      opacity: 0.8;
+    }
+
+    #footer ul li a:hover {
+      opacity: 1;
+    }
+
+    #footer ul li {
+      display: inline-block;
+      padding: 0 15px;
+    }
+
+    #footer .copyright {
+      margin-top: 15px;
+      text-align: center;
+      font-style: 16px;
+      color: whitesmoke;
+    }
+
+</style>
+{% endblock css %}
+
+{% block container %}
+<section id="pembayaran" style="background-image: url(/media/{{foto_donasi}});">
+    <div class="box-button glass">
+        <a href="/donasi/" class="button-back">
+            Donasi</a>
+        <a style="font-weight: bold; color: #F3FFF4">
+            > Pembayaran
+        </a>
+    </div>
+
+    <section id="donasi" class="glass">
+        <h2>Pembayaran</h2>
+
+        <h3>{{ nama_donasi }}</h3>
+        <p id="deskripsi">{{ deskripsi_donasi }}</p>
+
+        <p id="masukkan-nominal">Masukkan Nominal</p>
+    </section>
+
+
+</section>
+{% endblock container %}
+
+<script>
+
+</script>
