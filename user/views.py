@@ -45,9 +45,14 @@ def register(request):
 def pending_task_json(request):
     if request.user.is_staff:
         data_donasi_pending = Donasi.objects.filter(is_approved__isnull=True).all()
+        data = []
         for item in data_donasi_pending:
             item.urlFoto = item.foto.url
-        return HttpResponse(serializers.serialize("json", data_donasi_pending), content_type="application/json")
+            data.append({'pk': item.pk, 'fields': {'deskripsi': item.deskripsi, 'is_approved': item.is_approved, 'nama': item.nama, 'penggalang': item.penggalang.username, 'target': item.target, 'tipe': item.tipe, 'urlFoto': item.urlFoto}}) 
+            json = serializers.serialize("json", data_donasi_pending)
+        # return HttpResponse(json, content_type="application/json")
+        data = {'data': data}
+        return JsonResponse(data)
     return JsonResponse({'error': 'User bukan staff canwe'})
 
 @login_required(login_url='user/login')

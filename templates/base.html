@@ -2,218 +2,225 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+  {% block meta %}
+  {% endblock meta %}
 
-    <!-- Bootsrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    
-    <!-- Icon -->
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <!-- Required meta tags -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- My Style -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <!-- Bootsrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 
-    {% block css %}
-    <style type="text/css">
-      :root {
-        /* primary color */
-        --pr-color : #048353; 
-        --scd-color : #01492E;
-      }
+  <!-- Icon -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 
-      body {
-        font-family: 'Object Sans';
-        background-color: #F3FFF4;
-      }
-    
-      /* Navbar Style */
-      .navbar-brand {
-        font-weight: 700;
-        font-size: 20px;
-      }
+  <!-- My Style -->
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
-      .nav-link {
-        font-size: 16px;
-      }
+  {% block css %}
+  <style type="text/css">
+    :root {
+      /* primary color */
+      --pr-color: #048353;
+      --scd-color: #01492E;
+    }
 
-      .button-login {
-        width: 107px;
-        height: 40px;
-        background-color: #fff;
-        color: var(--pr-color);
-        border: none;
-        font-size: 16px;
-        font-weight: 700;
-        border-radius: 8px;
-      }
+    body {
+      font-family: 'Object Sans';
+      background-color: #F3FFF4;
+    }
 
-      .nav-color {
-        background-color: var(--pr-color);
-        transition: all ease-in-out .3s;
-      }
+    /* Navbar Style */
+    .navbar-brand {
+      font-weight: 700;
+      font-size: 20px;
+    }
 
-      .bg-transparent {
-        transition: all ease-in .3s;
-      }
+    .nav-link {
+      font-size: 16px;
+    }
 
-      nav {
-        z-index: 9999;
-      }
+    .button-login {
+      width: 107px;
+      height: 40px;
+      background-color: #fff;
+      color: var(--pr-color);
+      border: none;
+      font-size: 16px;
+      font-weight: 700;
+      border-radius: 8px;
+    }
 
-      /* Footer */
-      #footer {
-        padding: 30px 20px;
-        background-color: var(--pr-color);
-      }
+    .nav-color {
+      background-color: var(--pr-color);
+      transition: all ease-in-out .3s;
+    }
 
-      #footer ul {
-        margin-top: 0;
-        padding: 0;
-        list-style: none;
-        font-size: 16px;
-        line-height: 1.6;
-        margin-bottom: 0;
-      }
+    .bg-transparent {
+      transition: all ease-in .3s;
+    }
 
-      #footer ul li a {
-        text-align: center;
-        color: #F3FFF4;
-        text-decoration: none;
-        opacity: 0.8;
-      }
+    nav {
+      z-index: 9999;
+    }
 
-      #footer ul li a:hover {
-        opacity: 1;
-      }
+    /* Footer */
+    #footer {
+      padding: 30px 20px;
+      background-color: var(--pr-color);
+    }
 
-      #footer ul li {
-        display: inline-block;
-        padding: 0 15px;
-      }
+    #footer ul {
+      margin-top: 0;
+      padding: 0;
+      list-style: none;
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 0;
+    }
 
-      #footer .copyright {
-        margin-top: 15px;
-        text-align: center;
-        font-style: 16px;
-        color: whitesmoke;
-      }
+    #footer ul li a {
+      text-align: center;
+      color: #F3FFF4;
+      text-decoration: none;
+      opacity: 0.8;
+    }
 
-      /* Responsive Style */
+    #footer ul li a:hover {
+      opacity: 1;
+    }
 
-      /* Dekstop */
-      @media screen and (max-width : 922px) {
-      
-      }
-    
-      /* Tablet */
-      @media screen and (max-width : 576px) {
-          
-      }
-    
-      /* Smartphones */
-      @media screen and (max-width : 350px) {
-          
-      }
+    #footer ul li {
+      display: inline-block;
+      padding: 0 15px;
+    }
 
-    </style>
-    {% endblock css %}
-    
-  </head>
+    #footer .copyright {
+      margin-top: 15px;
+      text-align: center;
+      font-style: 16px;
+      color: whitesmoke;
+    }
 
-  <body>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-      <!-- Navbar -->
-      <nav class="navbar navbar-expand-lg navbar-dark bg-transparent position-fixed w-100">
-        <div class="container">
-          <a class="navbar-brand" href="/canwe">
-            <span class="myapp me-2">CanWe</span>
-            <img src="https://cdn-icons-png.flaticon.com/128/2904/2904948.png" width="30" height="30">
-          </a>
+    /* Responsive Style */
 
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav mx-auto">
-              <li class="nav-item mx-2">
-                <a class="nav-link" href="#">Donasi</a>
-              </li>
+    /* Dekstop */
+    @media screen and (max-width : 922px) {}
 
-              <li class="nav-item mx-2">
-                <a class="nav-link" href="#">Galang Dana</a>
-              </li>
+    /* Tablet */
+    @media screen and (max-width : 576px) {}
 
-              <li class="nav-item mx-2">
-                <a class="nav-link" href="#">Histori</a>
-              </li>
+    /* Smartphones */
+    @media screen and (max-width : 350px) {}
+  </style>
+  {% endblock css %}
 
-              <li class="nav-item mx-2">
-                <a class="nav-link" href="/notifikasi">Notifikasi</a>
-              </li>
-            </ul>
+</head>
 
-            <div>
-              <button type="button" class="button-login">
-                <a class="button-login" id="loginbtn" href="{% url 'user:login_user' %}">Login</a>
-              </button>
-            </div>
+<body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark nav-color position-fixed w-100">
+    <div class="container">
+      <a class="navbar-brand" href="/canwe">
+        <span class="myapp me-2">CanWe</span>
+        <img src="https://cdn-icons-png.flaticon.com/128/2904/2904948.png" width="30" height="30">
+      </a>
 
-          </div>
-        </div>
-      </nav>
-
-      <!-- Membedakan navbar saat scroll dan di hero -->
-      <script>
-        const navbar = document.getElementsByTagName('nav')[0];
-        window.addEventListener('scroll', function(){
-          console.log(window.scrollY);
-          if (window.scrollY > 1){
-            navbar.classList.replace('bg-transparent', 'nav-color');
-          } else if (window.scrollY <= 0){
-            navbar.classList.replace('nav-color', 'bg-transparent');
-          }
-        });
-      </script>
-
-      {% block content %}{% endblock %}
-
-      <!-- Footer -->
-      <section id="footer">
-        <ul class="list text-center">
-          <li>
-            <a href="/canwe">Home</a>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item mx-2">
+            <a class="nav-link" href="/donasi">Donasi</a>
           </li>
 
-          <li>
-            <a href="#">Donasi</a>
+          <li class="nav-item mx-2">
+            <a class="nav-link" href="#">Galang Dana</a>
           </li>
 
-          <li>
-            <a href="#">Galang Dana</a>
+          <li class="nav-item mx-2">
+            <a class="nav-link" href="#">Histori</a>
           </li>
 
-          <li>
-            <a href="#">Histori</a>
-          </li>
-
-          <li>
-            <a href="/notifikasi">Notifikasi</a>
-          </li>
-
-          <li>
-            <a href="{% url 'user:login_user' %}">Login</a>
+          <li class="nav-item mx-2">
+            <a class="nav-link" href="/notifikasi">Notifikasi</a>
           </li>
         </ul>
+        {% if user.is_authenticated == False %}
+        <div>
+          <button type="button" class="button-login">
+            <a class="button-login" id="loginbtn" href="{% url 'user:login_user' %}">Login</a>
+          </button>
+        </div>
+        {% endif %}
+        {% if user.is_staff %}
+      <div>
+        <button type="button" class="button-login">
+          <a class="button-login" id="loginbtn" href="{% url 'user:moderator' %}">Moderator</a>
+        </button>
+      </div>
+      {% endif %}
+      </div>
+    </div>
+  </nav>
 
-        <br>
+  <!-- Membedakan navbar saat scroll dan di hero -->
+  <script>
+    const navbar = document.getElementsByTagName('nav')[0];
+    window.addEventListener('scroll', function () {
+      console.log(window.scrollY);
+      if (window.scrollY > 1) {
+        navbar.classList.replace('bg-transparent', 'nav-color');
+      } else if (window.scrollY <= 0) {
+        navbar.classList.replace('nav-color', 'bg-transparent');
+      }
+    });
+  </script>
 
-        <p class="copyright">
-          Made with 
-          <span><ion-icon name="heart"></ion-icon></span> and <span><ion-icon name="sad"></ion-icon></span>
-          from Kelompok D-05
-        </p>
-      </section>
+  {% block content %}{% endblock %}
 
-  </body>
+  <!-- Footer -->
+  <section id="footer">
+    <ul class="list text-center">
+      <li>
+        <a href="/canwe">Home</a>
+      </li>
+
+      <li>
+        <a href="#">Donasi</a>
+      </li>
+
+      <li>
+        <a href="#">Galang Dana</a>
+      </li>
+
+      <li>
+        <a href="#">Histori</a>
+      </li>
+
+      <li>
+        <a href="/notifikasi">Notifikasi</a>
+      </li>
+      <li>
+        <a href="{% url 'user:login_user' %}">Login</a>
+      </li>
+    </ul>
+
+    <br>
+
+    <p class="copyright">
+      Made with
+      <span>
+        <ion-icon name="heart"></ion-icon>
+      </span> and <span>
+        <ion-icon name="sad"></ion-icon>
+      </span>
+      from Kelompok D-05
+    </p>
+  </section>
+
+</body>
 
 </html>
