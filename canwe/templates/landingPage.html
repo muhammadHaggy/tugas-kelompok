@@ -3,319 +3,359 @@
 
 {% block css %}
 <style>
-  /* Hero Section */
-  #hero {
-    width: 100%;
-    height: 100vh;
-    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://cdn.pixabay.com/photo/2017/02/03/17/41/poverty-2035694_960_720.jpg') no-repeat center / cover;
-    color: white;
-  }
+    :root {
+      /* primary color */
+      --pr-color : #048353; 
+      --scd-color : #01492E;
+    }
 
-  .hero-section {
-    width: 80%;
-    height: 100%;
-    max-width: 1000px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-  }
+    body {
+      font-family: 'Poppins';
+      background-color: #F3FFF4;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+    }
 
-  .hero-section .contains a {
-    text-decoration: none;
-    color: #fff;
-    background: var(--pr-color);
-    padding: 10px 30px;
-    border-radius: 8px;
-    margin-top: 10px;
-    display: inline-block;
-    margin-top: 1rem;
-  }
+    /* Navbar Style */
+    .navbar-brand {
+      font-weight: 700;
+      font-size: 20px;
+    }
 
-  /* About CanWe */
-  #about1 {
-    text-align: center;
-    padding-top: 130px;
-    padding-left: 200px;
-    padding-right: 200px;
-    padding-bottom: 45px;
-  }
+    .nav-link {
+      font-size: 16px;
+    }
 
-  #about2 {
-    text-align: center;
-    padding-top: 200px;
-    padding-left: 200px;
-    padding-right: 200px;
-    padding-bottom: 100px;
-  }
+    .button-login {
+      width: 107px;
+      height: 40px;
+      background-color: #fff;
+      color: var(--pr-color);
+      border: none;
+      font-size: 16px;
+      font-weight: 700;
+      border-radius: 8px;
+    }
 
-  /* Fitur */
-  #features {
-    padding: 0px 0px;
-    margin: 0px;
-  }
+    .nav-color {
+      background-color: var(--pr-color);
+      transition: all ease-in-out .3s;
+    }
 
-  h2 {
-    padding-bottom: 20px;
-    text-align: center;
-    font-weight: 500;
-    color: var(--pr-color);
-  }
+    .bg-transparent {
+      transition: all ease-in .3s;
+    }
 
-  .card {
-    width: 100%;
-    height: 100%;
-    background-color: white;
-    padding-bottom: 15px;
-    border-radius: 8px;
-    box-shadow: 0 0 7px 3px rgba(0,0,0,0.05);
-  }
+    nav {
+      z-index: 9999;
+    }
 
-  .picture img {
-    width: 100%;
-    height: 90%;
-    border-radius: 8px;
-  }
+    /* Hero Section */
+    #hero {
+      width: 100%;
+      height: 100vh;
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://cdn.pixabay.com/photo/2017/02/03/17/41/poverty-2035694_960_720.jpg') no-repeat center / cover;
+      color: white;
+    }
 
-  .card-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+    .hero-section {
+      width: 80%;
+      height: 100%;
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
 
-  .title {
-    font-size: 20px;
-    font-weight: 500;
-    color: #000;
-  }
+    .hero-section .contains a {
+      text-decoration: none;
+      color: #fff;
+      background: var(--pr-color);
+      padding: 10px 30px;
+      border-radius: 8px;
+      margin-top: 10px;
+      display: inline-block;
+      margin-top: 1rem;
+    }
 
-  .description {
-    padding-left: 50px;
-    padding-right: 50px;
-    font-size: 16px;
-    color: #707070;
-    text-align: center;
-  }
+    .hero-section .contains a:hover {
+      color: whitesmoke;
+      background-color: var(--scd-color);
+      transition: all 0.2s ease-in-out;
+    }
 
-  .button-card {
-    border: none;
-    font-size: 16px;
-    color: #fff;
-    padding: 8px 16px;
-    background-color: var(--pr-color);
-    border-radius: 8px;
-    margin: 5px;
-    cursor: pointer;
-    transition: all 0.1s ease-in;
-  }
+    /* About CanWe */
+    #about1 {
+      text-align: center;
+      padding-top: 130px;
+      padding-left: 200px;
+      padding-right: 200px;
+      padding-bottom: 45px;
+    }
 
-  .button-card:hover {
-    border: none;
-    font-size: 16px;
-    color: #fff;
-    padding: 8px 16px;
-    background-color: var(-scd-color);
-    border-radius: 8px;
-    margin: 5px;
-    cursor: pointer;
-    transition: all 0.1s ease-in;
-  }
+    #about2 {
+      text-align: center;
+      padding-top: 200px;
+      padding-left: 200px;
+      padding-right: 200px;
+      padding-bottom: 100px;
+    }
 
-  /* FAQ */
-  .faq-heading{
-    padding: 60px 60px;
-  }
+    /* Fitur */
+    #features {
+      padding: 0px 100px;
+      margin: 0px;
+    }
 
-  .faq-container{
-    padding-top: 20px;
-    padding-bottom: 50px;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-  }
+    h2 {
+      padding-bottom: 20px;
+      text-align: center;
+      font-weight: 500;
+      color: var(--pr-color);
+    }
 
-  .hr-line{
-    width: 60%;
-    margin: auto;
-  }
+    .card-title {
+      font-size: 20px;
+      font-weight: 500;
+      color: #000;
+      text-align: center;
+    }
 
-  .faq-page {
-    color: #444;
-    cursor: pointer;
-    padding: 30px 20px;
-    width: 60%;
-    border: none;
-    outline: none;
-    transition: 0.4s;
-    margin: auto;
-  }
+    .card-description {
+      padding-left: 50px;
+      padding-right: 50px;
+      font-size: 16px;
+      color: #707070;
+      text-align: center;
+    }
 
-  .faq-body{
-    margin: auto;
-    width: 60%; 
-    padding: auto;
-  }
+    .btn {
+      background-color: var(--scd-color);
+      color: white;
+      padding: 0.8rem;
+      font-size: 14px;
+      text-transform: uppercase;
+      border-radius: 4px;
+      font-weight: 400;
+      display: block;
+      width: 100%;
+      cursor: pointer;
+      transition: all 0.2s ease-in;
+    }
+
+    .btn:hover {
+      background-color: white;
+      color: var(--scd-color);
+      font-weight: 800;
+      transition: all 0.2s ease-in;
+    }
+
+    /* FAQ */
+    .faq-heading{
+      padding: 30px 0px;
+    }
+
+    .faq-container{
+      padding-top: 20px;
+      padding-bottom: 50px;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    .hr-line{
+      width: 60%;
+      margin: auto;
+    }
+
+    .faq-page {
+      color: #444;
+      cursor: pointer;
+      padding: 30px 20px;
+      width: 60%;
+      border: none;
+      outline: none;
+      transition: 0.4s;
+      margin: auto;
+    }
+
+    .faq-body{
+      margin: auto;
+      width: 60%; 
+      padding: auto;
+    }
     
-  .active,
-  .faq-page:hover {
-    color: white;
-    background-color: var(--scd-color);
-  }
-  
-  .faq-body {
-    padding: 0 18px;
-    display: none;
-    overflow: hidden;
-  }
+    .active,
+    .faq-page:hover {
+      color: white;
+      background-color: var(--scd-color);
+    }
+    
+    .faq-body {
+      padding: 0 18px;
+      display: none;
+      overflow: hidden;
+    }
 
-  .faq-page:after {
-    content: '\2795';
-    font-size: 13px;
-    color: white;
-    float: right;
-    margin-left: 5px;
-  }
+    .faq-page:after {
+      content: '\2795';
+      font-size: 13px;
+      color: white;
+      float: right;
+      margin-left: 5px;
+    }
 
-  .active:after {
-    content: "\2796";
-  }
+    .active:after {
+      content: "\2796";
+    }
 
-  .btn-faq {
-    border: none;
-    font-size: 16px;
-    color: #fff;
-    padding: 8px 16px;
-    background-color: var(--pr-color);
-    border-radius: 8px;
-    margin: 0 550px;
-    margin-top: 20px;
-    align-items: center;
-  }
+    .btn-faq {
+      border: none;
+      font-size: 16px;
+      padding: 12px 20px;
+      color: #fff;
+      background-color: var(--pr-color);
+      border-radius: 8px;
+      margin-top: 20px;
+      align-items: center;
+      cursor: pointer;
+      transition: all 0.2s ease-in;
+    }
 
-  /* Carousel */
-  .slidershow {
-    width: 700px;
-    height: 500px;
-    overflow: hidden;
-    border-radius: 10px;
-  }
+    .btn-faq:hover {
+      color: #fff;
+      background-color: var(--scd-color);
+      cursor: pointer;
+      transition: all 0.2s ease-in;
+    }
 
-  .middle {
-    position: relative;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-  }
+    /* Carousel */
+    .slidershow {
+      width: 700px;
+      height: 500px;
+      overflow: hidden;
+      border-radius: 10px;
+    }
 
-  .navigation {
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    width: 700px;
-    margin-top: -40px;
-  }
+    .middle {
+      position: relative;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+    }
 
-  .bar {
-    border: 2px solid white;
-    cursor: pointer;
-    padding: 5px;
-    transition: 1s;
-    border-radius: 10px;
-  }
+    .navigation {
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      width: 700px;
+      margin-top: -40px;
+    }
 
-  .bar:hover {
-    background: var(--scd-color);
-  }
+    .bar {
+      border: 2px solid white;
+      cursor: pointer;
+      padding: 5px;
+      transition: 1s;
+      border-radius: 10px;
+    }
 
-  .bar:not(:last-child) {
-    margin-right: 40px;
-  }
+    .bar:hover {
+      background: var(--scd-color);
+    }
 
-  input[name="r"] {
-    position: absolute;
-    visibility: hidden;
-  }
+    .bar:not(:last-child) {
+      margin-right: 40px;
+    }
 
-  .slides {
-    width: 500%;
-    height: 500px;
-    display: flex;
-  }
+    input[name="r"] {
+      position: absolute;
+      visibility: hidden;
+    }
 
-  .slides input {
-    display: none;
-  }
+    .slides {
+      width: 500%;
+      height: 500px;
+      display: flex;
+    }
 
-  .slide {
-    width: 20%;
-    transition: 2s;
-  }
+    .slides input {
+      display: none;
+    }
 
-  .slide img {
-    width: 700px;
-    height: 500px;
-  }
+    .slide {
+      width: 20%;
+      transition: 2s;
+    }
 
-  #r1:checked ~ .s1 {
-    margin-left: 0;
-  }
+    .slide img {
+      width: 700px;
+      height: 500px;
+    }
 
-  #r2:checked ~ .s1 {
-    margin-left: -20%;
-  }
+    #r1:checked ~ .s1 {
+      margin-left: 0;
+    }
 
-  #r3:checked ~ .s1 {
-    margin-left: -40%;
-  }
+    #r2:checked ~ .s1 {
+      margin-left: -20%;
+    }
 
-  #r4:checked ~ .s1 {
-    margin-left: -60%;
-  }
+    #r3:checked ~ .s1 {
+      margin-left: -40%;
+    }
 
-  #r5:checked ~ .s1 {
-    margin-left: -80%;
-  }
-  
-  #r6:checked ~ .s1 {
-    margin-left: -80%;
-  }
+    #r4:checked ~ .s1 {
+      margin-left: -60%;
+    }
 
-  .navigation-auto {
-    position: absolute;
-    display: flex;
-    width: 800px;
-    justify-content: center;
-    margin-top: 460px;
-  }
+    #r5:checked ~ .s1 {
+      margin-left: -80%;
+    }
 
-  .navigation-auto div:not(:last-child) {
-    margin-right: 40px;
-  }
+    #r6:checked ~ .s1 {
+      margin-left: -80%;
+    }
 
-  #r1:checked ~ .navigation-auto .auto-btn1 {
-    background: var(--scd-color);
-  }
+    .navigation-auto {
+      position: absolute;
+      display: flex;
+      width: 800px;
+      justify-content: center;
+      margin-top: 460px;
+    }
 
-  #r2:checked ~ .navigation-auto .auto-btn2 {
-    background: var(--scd-color);
-  }
+    .navigation-auto div:not(:last-child) {
+      margin-right: 40px;
+    }
 
-  #r3:checked ~ .navigation-auto .auto-btn3 {
-    background: var(--scd-color);
-  }
+    #r1:checked ~ .navigation-auto .auto-btn1 {
+      background: var(--scd-color);
+    }
 
-  #r4:checked ~ .navigation-auto .auto-btn4 {
-    background: var(--scd-color);
-  }
+    #r2:checked ~ .navigation-auto .auto-btn2 {
+      background: var(--scd-color);
+    }
 
-  #r5:checked ~ .navigation-auto .auto-btn5 {
-    background: var(--scd-color);
-  }
+    #r3:checked ~ .navigation-auto .auto-btn3 {
+      background: var(--scd-color);
+    }
 
-  #r6:checked ~ .navigation-auto .auto-btn6 {
-    background: var(--scd-color);
-  }
+    #r4:checked ~ .navigation-auto .auto-btn4 {
+      background: var(--scd-color);
+    }
+
+    #r5:checked ~ .navigation-auto .auto-btn5 {
+      background: var(--scd-color);
+    }
+
+    #r6:checked ~ .navigation-auto .auto-btn6 {
+      background: var(--scd-color);
+    }
+
 </style>
 {% endblock css %}
 
@@ -327,7 +367,7 @@
         <div class="contains">
             <h1>Selamat Datang di CanWe!</h1>
 
-            <a href="#about1">Get to know more
+            <a id="btn-hero" href="#about1">Get to know more
               <span>
                 <ion-icon name="arrow-down-outline"></ion-icon>
               </span>
@@ -429,45 +469,35 @@
 
 <!-- Features Section -->
 <section id="features">
-    <div class="container">
-        <div class="row">
-            <div class="col-12 text-center">
-                <h2>Layanan Kami</h2>
-            </div>
+  <h2>Layanan Kami</h2>
+
+  <div class="row row-cols-1 row-cols-md-2 g-4">
+    <div class="col">
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1437914983566-976d85602771?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" height="300px" class="card-img-top" alt="Donasi"/>
+        <div class="card-body">
+          <h3 class="card-title">Donasi</h3>
+          <p class="card-description">
+            Dengan melakukan donasi, kamu turut berpartisipasi dalam meningkatkan kualitas hidup anak-anak dan keluarga yang membutuhkan.
+          </p>
+          <button class="btn card_btn">Lebih lanjut tentang donasi</button>
         </div>
-
-        <div class="row">
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="picture">
-                        <img src="https://images.unsplash.com/photo-1437914983566-976d85602771?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" height=80px>
-                    </div>
-
-                    <div class="card-content">
-                        <!-- <div class="card-image car-1"></div> -->
-                        <h3 class="title">Donasi</h3>
-                        <p class="description">Dengan melakukan donasi, kamu turut berpartisipasi dalam meningkatkan kualitas hidup anak-anak dan keluarga yang membutuhkan.</p>
-                        <button class="button-card">Lebih lanjut tentang donasi</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="picture">
-                        <img src="https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" height=80px>
-                    </div>
-
-                    <div class="card-content">
-                        <!-- <div class="card-image car-2"></div> -->
-                        <h3 class="title">Galang Dana</h3>
-                        <p class="description">Dengan membuat penggalangan dana, kamu akan menjadi perantara untuk meningkatkan kualitas hidup anak-anak dan keluarga yang membutuhkan.</p>
-                        <button class="button-card">Lebih lanjut tentang galang dana</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
+
+    <div class="col">
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" height="300px" class="card-img-top" alt="Galang dana"/>
+        <div class="card-body">
+          <h3 class="card-title">Galang Dana</h3>
+          <p class="card-description">
+            Dengan membuat penggalangan dana, kamu akan menjadi perantara untuk meningkatkan kualitas hidup anak-anak dan keluarga yang membutuhkan.
+          </p>
+          <button class="btn card_btn">Lebih lanjut tentang galang dana</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- FAQ -->
@@ -510,7 +540,9 @@
         </div>
     </div>
 
-    <button class="btn-faq">Kirim pertanyaan</button>
+    <div style="text-align: center;">
+      <button class="btn-faq">Kirim pertanyaan</button>
+    </div>
 
 </section>
 
