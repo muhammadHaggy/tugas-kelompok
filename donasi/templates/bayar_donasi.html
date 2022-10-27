@@ -78,47 +78,47 @@
 
     /* Pembayaran */
     #pembayaran {
-        margin-top: 55px;
-        padding: 30px 50px;
+        margin-top: 50px;
+        padding: 4vh 7vw;
         background-position: center;
         background-size: cover;
         background-repeat: no-repeat;
     }
 
-    .box-button {
-        padding: 10px;
-        border-radius: 8px;
-        width: fit-content;
-        margin-bottom: 30px;
-    }
-
     .button-back {
-        color: #03fd9d;
+        color: var(--pr-color);
+        text-decoration: none;
     }
 
     .glass {
-        background-color: #048352b4;
+        background-color: rgba(246, 255, 247, 0.719);
         border-radius: 8px;
-        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.7);
-        -webkit-backdrop-filter: blur(3px);
-        backdrop-filter: blur(3px);
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+        -webkit-backdrop-filter: blur(4px);
+        backdrop-filter: blur(4px);
     }
 
-    /* Info */
+    /* Donasi */
     #donasi {
-        padding: 3px 40px;
-        
+        padding: 20px 40px;
+        margin: 40px;
+        min-width: fit-content;
+        align-items: left;
+        display: flex;
+        flex-direction: column;
     }
+
     #donasi h2 {
         font-size: 45px;
-        color: rgb(126, 255, 205);
+        color: #29452a;
         font-weight: bold;
-        margin-top: 30px;
+        margin-top: 10px;
     }
 
     #donasi h3 {
         font-size: 38px;
-        color: #d7ffdb;
+        color: var(--pr-color);
+        color: #426246;
         margin-top: 60px;
         font-weight: bold;
     }
@@ -127,14 +127,79 @@
         text-align: justify;
         font-size: 20px;
         margin-top: 15px;
-        color: white;
+        margin-bottom: 80px;
+        color: rgb(80, 80, 80);
+    }
+
+    #donasi #nominal {
+        font-size: 15px;
+        font-weight: bold;
+        color: #048353;
     }
 
     #donasi #masukkan-nominal {
         font-size: 15px;
-        margin-top: 60px;
-        color: white;
+        margin-bottom: 5px;
+        color: rgb(80, 80, 80);
     }
+
+    #input-nominal {
+        border-radius: 4px;
+        border: none;
+        box-shadow: 0px 0px 4px #29452a7e;
+        width: 100%;
+        height: 5%;
+        padding: 10px 15px;
+        margin-bottom: 10px;
+        font-size: 20px;
+    }
+
+    .btn-submit {
+        text-align: right;
+    }
+
+    input[type=submit] {
+        border: none;
+        font-size: 16px;
+        color: #fff;
+        padding: 8px 16px;
+        background-color: var(--pr-color);
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.1s ease-in;
+        width: 150px;
+    }
+
+    .div-message {
+        text-align: center;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    #success {
+        text-decoration: none;
+        font-size: 10px;
+    }
+
+    #success:hover {
+        color: #a7f8aa;
+    }
+
+    .success {
+        background-color: #048353;
+        color: #a7f8aa;
+        width: fit-content;
+        padding: 10px;
+        text-align: center;
+        border-radius: 8px;
+        transition: all .2s;
+    }
+
+    .success-hide {
+        opacity: 0;
+        transition: all .5s;
+    }
+    
 
     /* Footer */
     #footer {
@@ -178,28 +243,54 @@
 {% endblock css %}
 
 {% block container %}
-<section id="pembayaran" style="background-image: url(/media/{{foto_donasi}});">
-    <div class="box-button glass">
-        <a href="/donasi/" class="button-back">
-            Donasi</a>
-        <a style="font-weight: bold; color: #F3FFF4">
-            > Pembayaran
-        </a>
-    </div>
+<section id="pembayaran" style="background-image: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), url(/media/{{foto_donasi}});">
 
     <section id="donasi" class="glass">
+
+        <a href="/donasi/" class="button-back">
+            < Donasi</a>
+
         <h2>Pembayaran</h2>
 
         <h3>{{ nama_donasi }}</h3>
         <p id="deskripsi">{{ deskripsi_donasi }}</p>
 
-        <p id="masukkan-nominal">Masukkan Nominal</p>
+        <p id="masukkan-nominal">Masukkan nominal donasi kamu:</p>
+
+        <form id="bayar-donasi" method="POST">
+            {% csrf_token %}
+            {{ form }}
+            <br>
+            <div class="btn-submit">
+                <input type="submit" value="Lakukan Donasi" onclick="return bayar()">
+            </div>
+        </form>
+
+        <div class="div-message">
+            <a id="success" class="success-hide">Terima kasih, donasi Anda telah kami terima!</a>
+        </div>
+
     </section>
-
-
 </section>
-{% endblock container %}
 
 <script>
+    function bayar() {
+        const message = document.getElementById('success')
+
+        fetch('/donasi/bayar/proses/{{id}}', {
+            method: "POST",
+            body: new FormData(document.querySelector('#bayar-donasi'))
+        }).then()
+        document.getElementById('input-nominal').value = ''
+        message.classList.replace('success-hide', 'success')
+        setTimeout(hapusMessage, 3000)
+        return false
+    }
+
+    function hapusMessage() {
+        const message = document.getElementById('success')
+        message.classList.replace('success', 'success-hide')
+    }
 
 </script>
+{% endblock container %}

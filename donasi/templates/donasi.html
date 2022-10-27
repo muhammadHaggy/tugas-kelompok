@@ -100,9 +100,10 @@
       border-radius: 8px 8px 0px 0px;
     }
 
-    /* .picture {
+    .picture {
+      margin-top: auto;
       margin-bottom: auto;
-    } */
+    }
 
     .card-content {
       padding: 40px;
@@ -116,15 +117,26 @@
       font-weight: 500;
       color: #000;
       text-align: left;
+      font-weight: bold;
     }
 
-    .description {
+    .target {
+      margin-top: 20px;
+      margin-bottom: 1px;
+      font-size: 16px;
+      color: #707070;
+      text-align: left;
+    }
+
+    .terkumpul {
+      margin-top: 1px;
       font-size: 16px;
       color: #707070;
       text-align: left;
     }
 
     .div-button {
+      margin-top: 40px;
       text-align: right;
     }
 
@@ -239,24 +251,33 @@
         let counterPendidikan = 0
 
         dataDonasi.forEach(donasi => {
+            let rupiahIDR = Intl.NumberFormat("en-US", {
+                style: "currency",
+                currency: "IDR",
+            });
+
+            const target = rupiahIDR.format(`${donasi.fields.target}`)
+            const terkumpul = rupiahIDR.format(`${donasi.fields.terkumpul}`)
                       
             temp = `\n
             <div class="col-12 col-md-4" style="margin-bottom: 20px;">
                 <div class="card">
                     <div class="picture">
-                        <img src="${donasi.fields.urlFoto}" height=80px>
+                        <img src="${donasi.fields.urlFoto}">
                     </div>
         
                     <div class="card-content">
                         <div>
                             <h3 class="title">${donasi.fields.nama}</h3>
-                            <p class="description">${donasi.fields.deskripsi}</p>
+                            <p class="author">Digalang oleh: ${donasi.fields.penggalang}</p>
+                            <p class="target">Target: ${target}</p>
+                            <p class="terkumpul">Terkumpul: ${terkumpul}</p>
                         </div>
 
                           <div class="div-button">
                             <button class="button-card pull-right">
                                 <a href="/donasi/bayar/${donasi.pk}" style="text-decoration: none; color: white;">
-                                    Lakukan Donasi
+                                    Lihat Detail
                                 </a>
                             </button>
                           </div>
@@ -301,4 +322,3 @@
 </script>
 
 {% endblock container %}
-

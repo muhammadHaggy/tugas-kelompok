@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from donasi.models import Donasi
+from donasi.forms import Pembayaran
 from django.http import HttpResponse
 from django.core import serializers
 
@@ -13,9 +14,23 @@ def bayar_donasi(request, id):
         'nama_donasi': donasi.nama,
         'deskripsi_donasi': donasi.deskripsi,
         'foto_donasi': donasi.foto,
+        'terkumpul':donasi.terkumpul,
+        'target': donasi.target,
+        'form': Pembayaran(),
+        'id': id,
     }
     return render(request, 'bayar_donasi.html', context)
-    # return render(request, 'bayar_donasi.html')
+
+def bayar_proses(request, id):
+    if request.method == 'POST':
+        form = Pembayaran(request.POST)
+        donasi = Donasi.objects.get(pk = id)
+        if form.is_valid():
+            nominal = form.cleaned_data['nominal']
+            donasi.terkumpul += nominal
+            donasi.save()
+
+    return HttpResponse(serializers.serialize('json', donasi))
 
 def get_data_donasi(request):
     donasi = Donasi.objects.all()
@@ -23,3 +38,7 @@ def get_data_donasi(request):
             item.urlFoto = item.foto.url
 
     return HttpResponse(serializers.serialize('json', donasi))
+
+def get_data_donasi_id(request, id):
+    donasiTerkumpul = Donasi.objects.get(pk = id).terkumpul
+    return HttpResponse(serializers.serialize('json', donasiTerkumpul))
