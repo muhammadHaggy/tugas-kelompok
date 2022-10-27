@@ -5,7 +5,7 @@
     {% csrf_token %}
     <section style="background-color: #eee;" class="pt-5">
         <div class="col-lg-8 mt-3">
-            <div class="card mb-4">
+            <!-- <div class="card mb-4">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-sm-3">
@@ -70,15 +70,64 @@
                         </div>
                     </div>
                 </div>
+            </div> -->
+            {% for field in user_form %}
+            {% if field.errors %}
+            <div class="control-group error">
+                <label class="control-label">{{ field.label }}</label>
+                <div class="controls">{{ field }}
+                    {% for error in field.errors %}
+                    <div class="help-inline">
+                        <small class="text-danger">{{ error }}</small>
+                    </div>
+                    {% endfor %}
+                </div>
             </div>
+            {% else %}
+            <div class="card control-group">
+                <label class="control-label">{{ field.label }}</label>
+                <div class="controls">{{ field }}
+                    {% if field.help_text %}
+                    <p class="help-inline"><small>{{ field.help_text }}</small></p>
+                    {% endif %}
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+
+
+            {% for field in user_detail_form %}
+            {% if field.errors %}
+            <div class="control-group error">
+                <label class="control-label">{{ field.label }}</label>
+                <div class="controls">{{ field }}
+                    {% for error in field.errors %}
+                    <div class="help-inline">
+                        <small class="text-danger">{{ error }}</small>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% else %}
+            <div class="card control-group">
+                <label class="control-label">{{ field.label }}</label>
+                <div class="controls">{{ field }}
+                    {% if field.help_text %}
+                    <p class="help-inline"><small>{{ field.help_text }}</small></p>
+                    {% endif %}
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
         </div>
     </section>
     <div class="text-center mb-5">
-        <button type="button" class="btn btn-success" id="edit-button">Edit Profile</button>
         <button type="submit" class="btn btn-success" id="submit-button">Submit Changes</button>
     </div>
 
 </form>
+
+
 
 <script>
 
@@ -93,7 +142,6 @@
         return indexed_array;
     }
 
-    $('#submit-button').hide();
     $('#edit-profile-form').submit(function (e) {
         e.preventDefault();
         var $form = $(this);
@@ -108,11 +156,6 @@
                 location.reload();
             }
         });
-    });
-    $('#edit-button').click(function () {
-        $('input').removeAttr('readonly');
-        $('#edit-button').hide();
-        $('#submit-button').show();
     });
 </script>
 {% endblock content %}

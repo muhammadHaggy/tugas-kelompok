@@ -11,6 +11,7 @@ from django.contrib.auth.decorators import login_required
 from donasi.models import Donasi
 from django.core import serializers
 from django.contrib.auth.models import User
+from user.forms import UserDetailsForm, UserForm
 from user.models import UserDetails
 def index(request):
     return redirect(reverse('user:login_user'))
@@ -86,19 +87,24 @@ def logout_user(request):
 
 @login_required(login_url='user/login')
 def profile_dashboard(request):
+    user = User.objects.get(pk = request.user.pk)
+    user_detail = UserDetails.objects.get(user=user)
     if request.method == "POST":
-        user = User.objects.get(pk = request.user.pk)
-        user_detail = UserDetails.objects.get(user=user)
-        user.username = request.POST['username']
-        user.first_name = request.POST['firstname']
-        user.last_name = request.POST['lastname']
-        user.email = request.POST['email']
-        user_detail.tanggal = request.POST['tanggal']
-        user_detail.bio = request.POST['bio']
-        user.save()
-        user_detail.save()
+        user_detail_form = UserDetailsForm(request.POST, instance=user_detail)
+        user_form = UserForm(request.POST, instance=user)
+        if (user_form.is_valid() and user_detail_form.is_valid()):
+            user_form.save()
+            user_detail_form.save()
+        # user.username = request.POST['username']
+        # user.first_name = request.POST['firstname']
+        # user.last_name = request.POST['lastname']
+        # user.email = request.POST['email']
+        # user_detail.tanggal = request.POST['tanggal']
+        # user_detail.bio = request.POST['bio']
+        # user.save()
+        # user_detail.save()
         return HttpResponse()
-
-    user_detail = UserDetails.objects.get(user=request.user)
-    context = {'user_detail': user_detail}
+    user_detail_form = UserDetailsForm(instance=user_detail)
+    user_form = UserForm(instance=user)
+    context = {'user_detail': user_detail, 'user_form': user_form, 'user_detail_form': user_detail_form}
     return render(request, 'profile.html', context)
