@@ -16,11 +16,14 @@
 
   <!-- Icon -->
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
 
   <!-- My Style -->
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
-  {% block css %}
   <style type="text/css">
     :root {
       /* primary color */
@@ -29,173 +32,233 @@
     }
 
     body {
-      font-family: 'Poppins';
+      font-family: 'Poppins', sans-serif;
       background-color: #F3FFF4;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
     }
 
     /* Navbar Style */
-    .navbar-brand {
-      font-weight: 700;
-      font-size: 20px;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    .nav-link {
-      font-size: 16px;
-    }
-
-    .button-login {
-      width: 107px;
-      height: 40px;
+    #login {
       background-color: #fff;
-      color: var(--pr-color);
+      color: var(--scd-color);
+      width: 80px;
+      height: 35px;
+      padding: 5px 8px;
       border: none;
       font-size: 16px;
       font-weight: 700;
       border-radius: 8px;
+      text-align: center;
+      justify-content: center;
     }
 
-    .nav-color {
-      background-color: var(--pr-color);
-      transition: all ease-in-out .3s;
+    #login:hover {
+      background-color: var(--scd-color);
+      color: white;
     }
 
-    .bg-transparent {
+    header {
+      z-index: 999;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 30px 100px;
+      height: 50px;
       transition: all ease-in .3s;
     }
 
-    nav {
-      z-index: 9999;
+    header.sticky {
+      background: var(--pr-color);
+      padding: 30px 100px;
+      transition: all ease-in-out .3s;
+    }
+
+    header .brand {
+      color: white;
+      font-size: 20px;
+      font-weight: 700;
+      text-decoration: none;
+      letter-spacing: 2px;
+    }
+
+    header .menu {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    header .menu a {
+      color: white;
+      font-size: 16px;
+      font-weight: 500;
+      text-decoration: none;
+      margin: 0 20px;
+      transition: 0.3s;
+    }
+
+    header .menu a:hover {
+      color: var(--scd-color);
+    }
+
+    header .btn {
+      color: white;
+      font-size: 25px;
+      cursor: pointer;
+      display: none;
+    }
+
+    @media (max-width: 1060px) {
+      header .btn {
+        display: block;
+      }
+
+      header .menu {
+        position: fixed;
+        background: var(--pr-color);
+        flex-direction: column;
+        min-width: 400px;
+        height: 100vh;
+        width: 100px;
+        top: 0;
+        right: -100%;
+        padding: 80px 50px;
+      }
+
+      header .menu.active {
+        right: 0;
+      }
+
+      header .menu .close-btn {
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin: 25px;
+      }
+
+      header .menu a {
+        display: block;
+        font-size: 20px;
+        margin: 20px;
+        padding: 0 15px;
+      }
     }
 
     /* Footer */
-    #footer {
-      padding: 30px 20px;
+    .footer {
+      padding: 40px 0;
       background-color: var(--pr-color);
     }
 
-    #footer ul {
+    .footer ul {
       margin-top: 0;
       padding: 0;
       list-style: none;
-      font-size: 16px;
+      text-align: center;
+      font-size: 18px;
       line-height: 1.6;
       margin-bottom: 0;
     }
 
-    #footer ul li a {
-      text-align: center;
-      color: #F3FFF4;
+    .footer ul a {
+      color: inherit;
       text-decoration: none;
       opacity: 0.8;
     }
 
-    #footer ul li a:hover {
-      opacity: 1;
-    }
-
-    #footer ul li {
+    .footer ul li {
       display: inline-block;
       padding: 0 15px;
     }
 
-    #footer .copyright {
+    .footer ul a:hover {
+      opacity: 1;
+      color: white;
+    }
+
+    .footer .copyright {
       margin-top: 15px;
       text-align: center;
-      font-style: 16px;
+      font-size: 14px;
       color: whitesmoke;
     }
 
-    .button-login a {
-      text-decoration: none;
-      color: #048353;
-    }
-
-    /* Responsive Style */
-
-    /* Dekstop */
-    @media screen and (max-width : 922px) {}
-
-    /* Tablet */
-    @media screen and (max-width : 576px) {}
-
-    /* Smartphones */
-    @media screen and (max-width : 350px) {}
   </style>
-  {% endblock css %}
+
+  {% block css %}{% endblock css %}
 
 </head>
 
 <body>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  
   <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark nav-color position-fixed w-100">
-    <div class="container">
-      <a class="navbar-brand" href="/canwe">
-        <span class="myapp me-2">CanWe</span>
-        <img src="https://cdn-icons-png.flaticon.com/128/2904/2904948.png" width="30" height="30">
-      </a>
+  <header>
+    <a class="brand" href="/canwe">
+      <span>CanWe</span>
+      <img src="https://cdn-icons-png.flaticon.com/128/2904/2904948.png" width="30" height="30">
+    </a>
 
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav mx-auto">
-          <li class="nav-item mx-2">
-            <a class="nav-link" href="/donasi">Donasi</a>
-          </li>
-
-          <li class="nav-item mx-2">
-            <a class="nav-link" href="#">Galang Dana</a>
-          </li>
-
-          <li class="nav-item mx-2">
-            <a class="nav-link" href="#">Histori</a>
-          </li>
-
-          <li class="nav-item mx-2">
-            <a class="nav-link" href="/notifikasi">Notifikasi</a>
-          </li>
-        </ul>
-        {% if user.is_staff %}
-        <div class="mr-4">
-          <button type="button" class="button-login">
-            <a class="button-login" href="{% url 'user:moderator' %}">Moderator</a>
-          </button>
-        </div>
-        {% endif %}
-        {% if user.is_authenticated %}
-        <div>
-          <button type="button" class="button-login">
-            <a class="button-login" href="{% url 'user:logout' %}">Logout</a>
-          </button>
-        </div>
-        {% else %}
-        <div>
-          <button type="button" class="button-login">
-            <a class="button-login" id="loginbtn" href="{% url 'user:login_user' %}">Login</a>
-          </button>
-        </div>
-        {% endif %}
-
+    <div class="menu">
+      <div class="btn">
+        <i class="fas fa-times close-btn"></i>
       </div>
-    </div>
-  </nav>
 
-  <!-- Membedakan navbar saat scroll dan di hero -->
-  <script>
-    const navbar = document.getElementsByTagName('nav')[0];
-    window.addEventListener('scroll', function () {
-      console.log(window.scrollY);
-      if (window.scrollY > 1) {
-        navbar.classList.replace('bg-transparent', 'nav-color');
-      } else if (window.scrollY <= 0) {
-        navbar.classList.replace('nav-color', 'bg-transparent');
-      }
+      <a href="/donasi">Donasi</a>
+      <a href="#">Galang Dana</a>
+      <a href="#">Histori</a>
+      <a href="/notifikasi">Notifikasi</a>
+
+      {% if user.is_authenticated == False %}
+      <a id="login" href="{% url 'user:login_user' %}">Login</a>
+      {% endif %}
+
+      {% if user.is_staff %}
+      <a id="login" href="{% url 'user:moderator' %}">Moderator</a>
+      {% endif %}
+    </div>
+
+    <div class="btn">
+      <i class="fas fa-bars menu-btn"></i>
+    </div>
+  </header>
+
+  <script type="text/javascript">
+    window.addEventListener("scroll", function() {
+      var header = document.querySelector("header");
+      header.classList.toggle('sticky', window.scrollY > 0);
     });
+
+    var menu = document.querySelector('.menu');
+    var menuBtn = document.querySelector('.menu-btn');
+    var closeBtn = document.querySelector('.close-btn');
+
+    menuBtn.addEventListener("click", () => {
+      menu.classList.add('active');
+    })
+
+    closeBtn.addEventListener("click", () => {
+      menu.classList.remove('active');
+    })
   </script>
 
   {% block content %}{% endblock %}
 
   <!-- Footer -->
-  <section id="footer">
-    <ul class="list text-center">
+  <section class="footer">
+    <ul class="list">
       <li>
         <a href="/canwe">Home</a>
       </li>
@@ -215,12 +278,11 @@
       <li>
         <a href="/notifikasi">Notifikasi</a>
       </li>
+
       <li>
         <a href="{% url 'user:login_user' %}">Login</a>
       </li>
     </ul>
-
-    <br>
 
     <p class="copyright">
       Made with
