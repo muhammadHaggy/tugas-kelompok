@@ -3,11 +3,13 @@ from donasi.models import Donasi
 from donasi.forms import Pembayaran
 from django.http import HttpResponse
 from django.core import serializers
+from django.contrib.auth.decorators import login_required
 
-
+@login_required(login_url='/user/login')
 def show_donasi(request):    
     return render(request, 'donasi.html')
 
+@login_required(login_url='/user/login')
 def bayar_donasi(request, id):
     donasi = Donasi.objects.get(pk = id)
     context = {
@@ -21,6 +23,7 @@ def bayar_donasi(request, id):
     }
     return render(request, 'bayar_donasi.html', context)
 
+@login_required(login_url='/user/login')
 def bayar_proses(request, id):
     if request.method == 'POST':
         form = Pembayaran(request.POST)
@@ -33,12 +36,9 @@ def bayar_proses(request, id):
     return HttpResponse(serializers.serialize('json', donasi))
 
 def get_data_donasi(request):
-    donasi = Donasi.objects.all()
+    donasi = Donasi.objects.all().filter(is_approved=True)
     for item in donasi:
             item.urlFoto = item.foto.url
 
     return HttpResponse(serializers.serialize('json', donasi))
 
-def get_data_donasi_id(request, id):
-    donasiTerkumpul = Donasi.objects.get(pk = id).terkumpul
-    return HttpResponse(serializers.serialize('json', donasiTerkumpul))
