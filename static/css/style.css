@@ -1,0 +1,98 @@
+:root {
+    /* primary color */
+    --pr-color: #048353;
+    --scd-color: #01492E;
+  }
+
+  body {
+    font-family: 'Poppins';
+    background-color: #F3FFF4;
+  }
+
+  /* Navbar Style */
+  .navbar-brand {
+    font-weight: 700;
+    font-size: 20px;
+  }
+
+  .nav-link {
+    font-size: 16px;
+  }
+
+  .button-login {
+    width: 107px;
+    height: 40px;
+    background-color: #fff;
+    color: var(--pr-color);
+    border: none;
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 8px;
+  }
+
+  .nav-color {
+    background-color: var(--pr-color);
+    transition: all ease-in-out .3s;
+  }
+
+  .bg-transparent {
+    transition: all ease-in .3s;
+  }
+
+  nav {
+    z-index: 9999;
+  }
+
+  /* Footer */
+  #footer {
+    padding: 30px 20px;
+    background-color: var(--pr-color);
+  }
+
+  #footer ul {
+    margin-top: 0;
+    padding: 0;
+    list-style: none;
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 0;
+  }
+
+  #footer ul li a {
+    text-align: center;
+    color: #F3FFF4;
+    text-decoration: none;
+    opacity: 0.8;
+  }
+
+  #footer ul li a:hover {
+    opacity: 1;
+  }
+
+  #footer ul li {
+    display: inline-block;
+    padding: 0 15px;
+  }
+
+  #footer .copyright {
+    margin-top: 15px;
+    text-align: center;
+    font-style: 16px;
+    color: whitesmoke;
+  }
+
+  .button-login a {
+    text-decoration: none;
+    color: #048353;
+  }
+
+  /* Responsive Style */
+
+  /* Dekstop */
+  @media screen and (max-width : 922px) {}
+
+  /* Tablet */
+  @media screen and (max-width : 576px) {}
+
+  /* Smartphones */
+  @media screen and (max-width : 350px) {}
