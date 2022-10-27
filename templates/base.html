@@ -105,6 +105,11 @@
       color: whitesmoke;
     }
 
+    .button-login a {
+      text-decoration: none;
+      color: #048353;
+    }
+
     /* Responsive Style */
 
     /* Dekstop */
@@ -148,20 +153,27 @@
             <a class="nav-link" href="/notifikasi">Notifikasi</a>
           </li>
         </ul>
-        {% if user.is_authenticated == False %}
+        {% if user.is_staff %}
+        <div class="mr-4">
+          <button type="button" class="button-login">
+            <a class="button-login" href="{% url 'user:moderator' %}">Moderator</a>
+          </button>
+        </div>
+        {% endif %}
+        {% if user.is_authenticated %}
+        <div>
+          <button type="button" class="button-login">
+            <a class="button-login" href="{% url 'user:logout' %}">Logout</a>
+          </button>
+        </div>
+        {% else %}
         <div>
           <button type="button" class="button-login">
             <a class="button-login" id="loginbtn" href="{% url 'user:login_user' %}">Login</a>
           </button>
         </div>
         {% endif %}
-        {% if user.is_staff %}
-      <div>
-        <button type="button" class="button-login">
-          <a class="button-login" id="loginbtn" href="{% url 'user:moderator' %}">Moderator</a>
-        </button>
-      </div>
-      {% endif %}
+
       </div>
     </div>
   </nav>

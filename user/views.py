@@ -1,3 +1,4 @@
+from urllib import response
 from django.shortcuts import get_object_or_404, render
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
@@ -9,6 +10,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from donasi.models import Donasi
 from django.core import serializers
+from django.contrib.auth.models import User
+from user.models import UserDetails
 def index(request):
     return redirect(reverse('user:login_user'))
 # Create your views here.
@@ -36,6 +39,7 @@ def register(request):
         if form.is_valid():
             form.save()
             messages.success(request, 'Akun telah berhasil dibuat!')
+            UserDetails(user=request.user).save()
             return redirect('user:login_user')
 
     context = {'form': form}
@@ -73,3 +77,28 @@ def approve(request, pk):
     
     return HttpResponse()
 
+@login_required(login_url='user/login')
+def logout_user(request):
+    logout(request)
+    response = HttpResponseRedirect(reverse('user:login_user'))
+    response.delete_cookie('last_login')
+    return response
+
+@login_required(login_url='user/login')
+def profile_dashboard(request):
+    if request.method == "POST":
+        user = User.objects.get(pk = request.user.pk)
+        user_detail = UserDetails.objects.get(user=user)
+        user.username = request.POST['username']
+        user.first_name = request.POST['firstname']
+        user.last_name = request.POST['lastname']
+        user.email = request.POST['email']
+        user_detail.tanggal = request.POST['tanggal']
+        user_detail.bio = request.POST['bio']
+        user.save()
+        user_detail.save()
+        return HttpResponse()
+
+    user_detail = UserDetails.objects.get(user=request.user)
+    context = {'user_detail': user_detail}
+    return render(request, 'profile.html', context)

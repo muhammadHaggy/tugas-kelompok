@@ -367,21 +367,31 @@
           <a class="nav-link" href="/notifikasi">Notifikasi</a>
         </li>
       </ul>
-      {% if user.is_authenticated == False %}
+
+    </div>
+    <form class="form-inline btn-group">
+      {% if user.is_staff %}
+      <div class="mr-3">
+        <button type="button" class="button-login">
+          <a class="button-login" href="{% url 'user:moderator' %}">Moderator</a>
+        </button>
+      </div>
+      {% endif %}
+
+      {% if user.is_authenticated %}
+      <div class="pl-2">
+        <button type="button" class="button-login">
+          <a class="button-login" href="{% url 'user:logout' %}">Logout</a>
+        </button>
+      </div>
+      {% else %}
       <div>
         <button type="button" class="button-login">
           <a class="button-login" id="loginbtn" href="{% url 'user:login_user' %}">Login</a>
         </button>
       </div>
       {% endif %}
-      {% if user.is_staff %}
-      <div>
-        <button type="button" class="button-login">
-          <a class="button-login" id="loginbtn" href="{% url 'user:moderator' %}">Moderator</a>
-        </button>
-      </div>
-      {% endif %}
-    </div>
+    </form>
   </div>
 </nav>
 

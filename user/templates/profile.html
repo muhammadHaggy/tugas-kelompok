@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form id="edit-profile-form">
+    {% csrf_token %}
+    <section style="background-color: #eee;" class="pt-5">
+        <div class="col-lg-8 mt-3">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <p class="mb-0">Username</p>
+                        </div>
+                        <div class="col-sm-9" id="username">
+                            <input type="text" id="username-input" name="username" value="{{ user.username }}"
+                                readonly><br>
+
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <p class="mb-0">First name</p>
+                        </div>
+                        <div class="col-sm-9" id="firstname">
+                            <input type="text" id="firstname-input" name="firstname" value="{{ user.first_name }}"
+                                readonly><br>
+
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <p class="mb-0">Last name</p>
+                        </div>
+                        <div class="col-sm-9" id="lastname">
+                            <input type="text" id="lastname-input" name="lastname" value="{{ user.last_name }}"
+                                readonly><br>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <p class="mb-0">Email</p>
+                        </div>
+                        <div class="col-sm-9" id="email">
+                            <input type="text" id="email-input" name="email" size="40" value="{{ user.email }}"
+                                readonly><br>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <p class="mb-0">Tanggal Lahir</p>
+                        </div>
+                        <div class="col-sm-9" id="tanggal">
+                            <input type="datetime-local" id="tanggal-input" name="tanggal" size="40"
+                                value="{{ user_detail.tanggal_lahir }}" readonly><br>
+
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <p class="mb-0">Bio Singkat</p>
+                        </div>
+                        <div class="col-sm-9" id="bio">
+                            <input type="text" id="bio-input" name="bio" size="40" value="{{ user_detail.bio_singkat }}"
+                                readonly><br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="text-center mb-5">
+        <button type="button" class="btn btn-success" id="edit-button">Edit Profile</button>
+        <button type="submit" class="btn btn-success" id="submit-button">Submit Changes</button>
+    </div>
+
+</form>
+
+<script>
+
+    function getFormData($form) {
+        var unindexed_array = $form.serializeArray();
+        var indexed_array = {};
+
+        $.map(unindexed_array, function (n, i) {
+            indexed_array[n['name']] = n['value'];
+        });
+
+        return indexed_array;
+    }
+
+    $('#submit-button').hide();
+    $('#edit-profile-form').submit(function (e) {
+        e.preventDefault();
+        var $form = $(this);
+        var serializedData = $form.serializeArray();
+        console.log(serializedData)
+        $.ajax({
+            url: "{% url 'user:profile' %}",
+            type: 'POST',
+            data: serializedData,
+            dataType: 'text',
+            success: function (data) {
+                location.reload();
+            }
+        });
+    });
+    $('#edit-button').click(function () {
+        $('input').removeAttr('readonly');
+        $('#edit-button').hide();
+        $('#submit-button').show();
+    });
+</script>
+{% endblock content %}
