@@ -1,9 +1,9 @@
-{% extends 'base_notifikasi.html' %}
+{% extends 'base_notifikasi.html'%}
 {% load static %}
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Notifikasi</title>
+    <title>ToDo List</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
@@ -13,12 +13,42 @@
 
   </head>
 
-  <!-- Icon -->
-  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
   {% block content %}
-  <body>
+  <body style="background: #F3FFF4;">
+  
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark position-fixed w-100" style="background-color: #048353;">
+      <div class="container" ">
+        <a class="navbar-brand" href="#">
+          <span class="myapp me-2">CanWe</span>
+          <img src="https://cdn-icons-png.flaticon.com/128/2904/2904948.png" width="30" height="30">
+        </a>
+  
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item mx-2">
+              <a class="nav-link" href="#">Donasi</a>
+            </li>
+  
+            <li class="nav-item mx-2">
+              <a class="nav-link" href="#">Galang Dana</a>
+            </li>
+  
+            <li class="nav-item mx-2">
+              <a class="nav-link" href="">Histori</a>
+            </li>
+  
+            <li class="nav-item mx-2">
+              <a class="nav-link" href="#">Notifikasi</a>
+            </li>
+          </ul>
+  
+          <div>
+            <button class="button-login">Login</button>
+          </div>
+        </div>
+      </div>
+    </nav>
   
     <!-- Hero Section -->
     <section id="hero" style="background-color: #F3FFF4;">
@@ -40,66 +70,19 @@
       </div>
       </div>
       
-      <div class="container" style="padding: 10px;">
-        <div class="container">
-          <div class="header" style=" padding-top: 30px;">
-            <div>
-            <h1>Notifikasi</h1>
-            </div>
+      <div class="container" style=" justify-content: center;">
+        <div class="header" style="text-align: center; justify-content: center; padding-top: 30px;">
+          <div>
+          <h1>Notifikasi</h1>
           </div>
-        </div>
-
-        <div>
-          <div class="container" style="margin-top:30px; justify-content: center;"></div>
-            <div class="container" style="margin-top: 40px; display: flex; justify-content: center;">
-              <!-- Button to Open the Modal -->
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modaladd" style="margin-bottom:10px; display: block; background-color: #63AAFF; border: #63AAFF; width: 250x; height: 50px; font-size: larger;">
-                Create Notification
-              </button>
-            </div>
-              
-          </div>
-        </div>
-  
-  
-      <form action="" method="POST" id="tambahTask">  
-        {% csrf_token %}  
-        <table>  
-            <div class="modal fade" id="modaladd" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header" style="margin-left: 20px;" >
-                      <h3 class="modal-title fs-5" id="exampleModalLabel">Add Notification          </h3>
-                    </div>
-                    <div class="modal-body" style="margin-top: 20px; margin-left: 20px; margin-right: 20px;">
-                        <label for="exampleFormControlInput1" class="form-label">Akun</label>
-                        <input class="form-control" type="text" id="title" name="title" placeholder="Title" aria-label="Title" aria-describedby="basic-addon1">
-                    </div>
-                    <div class="modal-body" style="margin-bottom: 20px; margin-left: 20px; margin-right: 20px;">
-                      <label for="exampleFormControlInput1" class="form-label">Deskripsi</label>
-                      <input class="form-control" type="text" id="description" name="description" placeholder="Description" aria-label="Description" aria-describedby="basic-addon1">
-                  </div>
-                    <div class="modal-footer" style="margin-right: 20px;">
-                      <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" id="createBtn" style="margin-bottom:10px; display: block; background-color: #63AAFF; color: white; border: #63AAFF; ">Create</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-        </table>
-    </form>    
-  </div>
-        
-  <div class="container">
-    <div class="row" style="padding: 30px; justify-content: flex-end; " id="bismillah-container" >
-    </div>
-  </div>
-  
-        
-      <div class="container" style="padding: 20px;">
-        <div class="row" style="padding: 10px; justify-content: flex-end; " id="bismillah-container" >
         </div>
       </div>
-    </div>
+      
+<div class="container">
+  <div class="row" style="padding: 30px; justify-content: flex-end; background-color: #F3FFF4;" id="bismillah-container" >
+  </div>
+</div>
+
 
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
