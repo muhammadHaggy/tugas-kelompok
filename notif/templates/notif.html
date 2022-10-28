@@ -24,123 +24,127 @@
     <section id="hero" style="background-color: #F3FFF4;">
       <div class="hero-section">
         <div class="contains">
-        </div>
-        
+        </div>  
       </div>
     </section>
   
+    <!-- container up -->
     <div class="container" style=" justify-content: center;">
       <div class="header" style="text-align: center;">
+        <div class="container" style=" display: flex; justify-content: center;">
+          <h1>Notifikasi</h1>
+        </div> 
       </div>
-      <div class="container" style=" display: flex; justify-content: center;">
-        <!-- Button to Open the Modal -->
-        <h1>Notifikasi</h1>
-      </div>
-        
-      </div>
-      </div>
-      
-      <div class="container" style="padding: 10px; padding-bottom: 30px;">
-        <div class="container">
-          <div class="header" style=" padding-top: 30px;">
-            <div>
+    </div>
+    
+    <!-- show heading -->
+    <div class="container" style="padding: 10px;">
+      <div class="container">
+        <div class="header" style=" padding-top: 30px;">
+          <div>
             <h1>Notifikasi</h1>
+          </div>
+        </div>
+      </div>
+    
+    <!-- show notification -->
+    <div>
+      <div class="container" style="margin-top:30px; justify-content: center;"></div>
+        <div class="container" style="margin-top: 40px; display: flex; margin-bottom: 40px;">
+          <div class="container">
+            <div class="row" style="justify-content: flex-end; " id="bismillah-container" >
             </div>
           </div>
         </div>
-        
-        
-      <div class="container" style="padding: 20px;">
-        <div class="row" style="padding: 10px; justify-content: flex-end; " id="bismillah-container" >
-        </div>
+          
       </div>
     </div>
+  
+  
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  </body>
+  <script>
 
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
-<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-</body>
-<script>
-
-  function make_card() {
-      let notif = "";
-      $.ajax({
-          url: "{% url 'notif:show_json' %}",
-          type: "GET",
-          dataType: "json",
-          success: function(data){
-              if(data == 0) {
-                  $('#bismillah-container').html("")
-              }
-              else {
-                  for (i of data){
-                      console.log(data)
-                      notif += `
-                    
-                      <div class="notification-list notification-list--unread" >
-                        <div class="notification-list_content">
-                            <div class="notification-list_img">
-                                <img src="https://i.imgur.com/dK4jT6U.png" alt="user">
-                            </div>
-                            <div class="notification-list_detail" style= "margin=20px;">
-                                <p><b>${i.fields.title}</b> mengirimkan pesan</p>
-                                <p class="text-muted">${i.fields.description}</p>
-                            </div>
-                        </div>
-                        <div>
-
-                        <a class="btn btn-outline-danger form-control" onclick="deleteCard(${i.pk})">Delete</a>                          </div>
-                        </div>
-                    </div>`;
-                      $('#bismillah-container').html(notif)
-                  }
-              }
-          },
-          error: function(data) {
-              console.log('Error')
-          }
-      })
-  }
-
-  function deleteCard(pk){
+    function make_card() {
+        let notif = "";
         $.ajax({
-            url: `/notifikasi/delete/${pk}`,
-            type: "DELETE",
-            success: function(data) {
-                console.log(data)
-                $(`#${pk}`).remove()
-                make_card()
+            url: "{% url 'notif:show_json' %}",
+            type: "GET",
+            dataType: "json",
+            success: function(data){
+                if(data == 0) {
+                    $('#bismillah-container').html("")
+                }
+                else {
+                    for (i of data){
+                        console.log(data)
+                        notif += `
+                      
+                        <div class="notification-list notification-list--unread" >
+                          <div class="notification-list_content">
+                              <div class="notification-list_img">
+                                  <img src="https://i.imgur.com/dK4jT6U.png" alt="user">
+                              </div>
+                              <div class="notification-list_detail" style= "margin=20px;">
+                                  <p><b>${i.fields.title}</b> mengirimkan pesan</p>
+                                  <p class="text-muted">${i.fields.description}</p>
+                              </div>
+                          </div>
+                          <div>
+
+                          <a class="btn btn-outline-danger form-control" onclick="deleteCard(${i.pk})">Delete</a>                          </div>
+                          </div>
+                      </div>`;
+                        $('#bismillah-container').html(notif)
+                    }
+                }
+            },
+            error: function(data) {
+                console.log('Error')
             }
         })
     }
 
-  $(document).on("submit", "#tambahTask", function(e) {
-      e.preventDefault();
-      $.ajax ({
-          url: "{% url 'notif:add_ajax' %}",
-          type: "POST",
-          dataType:"json",
-          data: {
-              title:$("#title").val(),
-              description:$("#description").val(),
-              csrfmiddlewaretoken: "{{ csrf_token }}"
-          },
-          success: function(data) {
-              make_card();
-              const inputs = document.querySelectorAll('#title, #description');
-              inputs.forEach(input => {
-                  input.value = '';
-              });
-          }
-      })
-  })
+    function deleteCard(pk){
+          $.ajax({
+              url: `/notifikasi/delete/${pk}`,
+              type: "DELETE",
+              success: function(data) {
+                  console.log(data)
+                  $(`#${pk}`).remove()
+                  make_card()
+              }
+          })
+      }
 
-  $(document).ready(function () {
-      make_card();
-  })
-</script>
+    $(document).on("submit", "#tambahTask", function(e) {
+        e.preventDefault();
+        $.ajax ({
+            url: "{% url 'notif:add_ajax' %}",
+            type: "POST",
+            dataType:"json",
+            data: {
+                title:$("#title").val(),
+                description:$("#description").val(),
+                csrfmiddlewaretoken: "{{ csrf_token }}"
+            },
+            success: function(data) {
+                make_card();
+                const inputs = document.querySelectorAll('#title, #description');
+                inputs.forEach(input => {
+                    input.value = '';
+                });
+            }
+        })
+    })
 
+    $(document).ready(function () {
+        make_card();
+    })
+  </script>
+</html>
 {% endblock content %}

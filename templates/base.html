@@ -285,6 +285,46 @@
 
 <body>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<<<<<<< Updated upstream
+=======
+  
+  <!-- Navbar -->
+  <header class="{% block header_class %} {% endblock header_class %}">
+    <a class="brand" href="/canwe">
+      <span>CanWe</span>
+      <img src="https://cdn-icons-png.flaticon.com/128/2904/2904948.png" width="30" height="30">
+    </a>
+
+    <div class="menu">
+      <div class="btn">
+        <i class="fas fa-times close-btn"></i>
+      </div>
+
+      <a href="/donasi/">Donasi</a>
+      <a href="#">Galang Dana</a>
+      <a href="#">Histori</a>
+      {% if not user.is_staff %}
+      <a href="/notifikasi">Notifikasi</a>
+      {% endif %}
+      {% if user.is_staff %}
+      <a href="/notifikasi/create-notification/">Notifikasi</a>
+      {% endif %}
+      {% if user.is_authenticated %}
+      <a href="/user/profile">Profil</a>
+      {% endif %}
+
+      {% if user.is_staff %}
+      <a id="login" href="{% url 'user:moderator' %}">Moderator</a>
+      {% endif %}
+
+      {% if user.is_authenticated %}
+      <a id="login" href="{% url 'user:logout' %}">Logout</a>
+      {% else %}
+      <a id="login" href="{% url 'user:login_user' %}">Login</a>
+      {% endif %}
+      
+    </div>
+>>>>>>> Stashed changes
 
   <!-- Navbar -->
   <nav class="{% block header_class %} {% endblock header_class %}">
@@ -363,9 +403,17 @@
         <a href="#">Histori</a>
       </li>
 
+      {% if not user.is_staff %}
       <li>
         <a href="/notifikasi/">Notifikasi</a>
       </li>
+      {% endif %}
+      
+      {% if user.is_staff %}
+      <li>
+        <a href="/notifikasi/create-notification/">Notifikasi</a>
+      </li>
+      {% endif %}
 
       <li>
         <a href="{% url 'user:login_user' %}">Login</a>

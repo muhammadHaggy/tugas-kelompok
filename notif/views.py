@@ -13,54 +13,21 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.http.response import JsonResponse, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.admin.views.decorators import staff_member_required
+
 
 # Create your views here.
 @login_required(login_url='/user/')
 def show_notif(request):
-    data = Item.objects.filter(user=request.user)
+    data = Item.objects.all()
     context = {
         'list_todo': data,
         'username': request.user.username,
     }
     return render(request, "notif.html", context)
 
-def register(request):
-    form = UserCreationForm()
 
-    if request.method == "POST":
-        form = UserCreationForm(request.POST)
-        username = request.POST.get('username')
-        password1 = request.POST.get('password')
-        password2 = request.POST.get('password')
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Akun telah berhasil dibuat!')
-            return redirect('notif:login')
-    
-    context = {'form':form}
-    return render(request, 'register.html', context)
-
-def login_user(request):
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            login(request, user) # melakukan login terlebih dahulu
-            response = HttpResponseRedirect(reverse("notif:show_notif")) # membuat response
-            response.set_cookie('last_login', str(datetime.datetime.now())) # membuat cookie last_login dan menambahkannya ke dalam response
-            return response
-        else:
-            messages.info(request, 'Username atau Password salah!')
-    context = {}
-    return render(request, 'login.html', context)
-
-def logout_user(request):
-    logout(request)
-    response = HttpResponseRedirect(reverse('notif:login'))
-    response.delete_cookie('last_login')
-    return response
-
+@staff_member_required
 def create_notif(request):
     if request.method == 'POST':
         title = request.POST.get('notif')
@@ -77,7 +44,7 @@ def delete_notif(request, pk):
 
 @login_required(login_url='/user/')
 def show_json(request):
-    item = Item.objects.filter(user=request.user)
+    item = Item.objects.all()
     return HttpResponse(serializers.serialize('json', item), content_type='application/json')
 
 def add_ajax(request):
