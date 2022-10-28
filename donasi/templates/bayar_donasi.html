@@ -1,85 +1,11 @@
-{% extends 'base_with_navbar.html' %}
+{% extends 'base_bayar_donasi.html' %}
 
 {% block css %}
 <style>
-    :root {
-      /* primary color */
-      --pr-color : #048353; 
-      --scd-color : #01492E;
-    }
-
-    body {
-      font-family: 'Poppins', sans-serif;
-      background-color: #F3FFF4;
-    }
-
-    /* Navbar Style */
-    .navbar-brand {
-      font-weight: 700;
-      font-size: 20px;
-    }
-
-    .nav-link {
-      font-size: 16px;
-    }
-
-    .button-login {
-      width: 107px;
-      height: 40px;
-      background-color: #fff;
-      color: var(--pr-color);
-      border: none;
-      font-size: 16px;
-      font-weight: 700;
-      border-radius: 8px;
-    }
-
-    .nav-color {
-      background-color: var(--pr-color);
-      transition: all ease-in-out .3s;
-    }
-
-    .bg-transparent {
-      transition: all ease-in .3s;
-    }
-
-    nav {
-      z-index: 9999;
-    }
-
-    /* Hero Section */
-    #hero {
-      width: 100%;
-      background: linear-gradient(F3FFF4, F3FFF4), no-repeat center / cover;
-      color: white;
-    }
-
-    .hero-section {
-      width: 80%;
-      height: 100%;
-      max-width: 1000px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-    }
-
-    .hero-section .contains a {
-      text-decoration: none;
-      color: #fff;
-      background: var(--pr-color);
-      padding: 10px 30px;
-      border-radius: 8px;
-      margin-top: 10px;
-      display: inline-block;
-      margin-top: 1rem;
-    }
 
     /* Pembayaran */
     #pembayaran {
-        margin-top: 50px;
-        padding: 4vh 7vw;
+        padding: 15vh 7vw;
         background-position: center;
         background-size: cover;
         background-repeat: no-repeat;
@@ -88,6 +14,7 @@
     .button-back {
         color: var(--pr-color);
         text-decoration: none;
+        font-size: 3vmin;
     }
 
     .glass {
@@ -102,44 +29,43 @@
     #donasi {
         padding: 20px 40px;
         margin: 40px;
-        min-width: fit-content;
         align-items: left;
         display: flex;
         flex-direction: column;
     }
 
     #donasi h2 {
-        font-size: 45px;
+        font-size: 5vmin;
         color: #29452a;
         font-weight: bold;
         margin-top: 10px;
     }
 
     #donasi h3 {
-        font-size: 38px;
+        font-size: 4vmin;
         color: var(--pr-color);
         color: #426246;
-        margin-top: 60px;
+        margin-top: 7vmin;
         font-weight: bold;
     }
 
     #donasi #deskripsi {
         text-align: justify;
-        font-size: 20px;
-        margin-top: 15px;
-        margin-bottom: 80px;
+        font-size: 3vmin;
+        margin-top: 1vmin;
+        margin-bottom: 9vmin;
         color: rgb(80, 80, 80);
     }
 
     #donasi #nominal {
-        font-size: 15px;
+        font-size: 3vmin;
         font-weight: bold;
         color: #048353;
     }
 
     #donasi #masukkan-nominal {
-        font-size: 15px;
-        margin-bottom: 5px;
+        font-size: 3vmin;
+        margin-bottom: 2vmin;
         color: rgb(80, 80, 80);
     }
 
@@ -149,9 +75,9 @@
         box-shadow: 0px 0px 4px #29452a7e;
         width: 100%;
         height: 5%;
-        padding: 10px 15px;
-        margin-bottom: 10px;
-        font-size: 20px;
+        padding: 2vmin 3vmin;
+        margin-bottom: 3vmin;
+        font-size: 3vmin;
     }
 
     .btn-submit {
@@ -160,25 +86,25 @@
 
     input[type=submit] {
         border: none;
-        font-size: 16px;
+        font-size: 3vmin;
         color: #fff;
         padding: 8px 16px;
         background-color: var(--pr-color);
         border-radius: 8px;
         cursor: pointer;
         transition: all 0.1s ease-in;
-        width: 150px;
+        width: fit-content;
     }
 
     .div-message {
         text-align: center;
-        margin-top: 20px;
-        margin-bottom: 20px;
+        margin-top: 3vmin;
+        margin-bottom: 3vmin;
     }
 
     #success {
         text-decoration: none;
-        font-size: 10px;
+        font-size: 2vmin;
     }
 
     #success:hover {
@@ -199,50 +125,11 @@
         opacity: 0;
         transition: all .5s;
     }
-    
-
-    /* Footer */
-    #footer {
-      padding: 30px 20px;
-      background-color: var(--pr-color);
-    }
-
-    #footer ul {
-      margin-top: 0;
-      padding: 0;
-      list-style: none;
-      font-size: 16px;
-      line-height: 1.6;
-      margin-bottom: 0;
-    }
-
-    #footer ul li a {
-      text-align: center;
-      color: #F3FFF4;
-      text-decoration: none;
-      opacity: 0.8;
-    }
-
-    #footer ul li a:hover {
-      opacity: 1;
-    }
-
-    #footer ul li {
-      display: inline-block;
-      padding: 0 15px;
-    }
-
-    #footer .copyright {
-      margin-top: 15px;
-      text-align: center;
-      font-style: 16px;
-      color: whitesmoke;
-    }
 
 </style>
 {% endblock css %}
 
-{% block container %}
+{% block content %}
 <section id="pembayaran" style="background-image: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), url(/media/{{foto_donasi}});">
 
     <section id="donasi" class="glass">
@@ -293,4 +180,4 @@
     }
 
 </script>
-{% endblock container %}
+{% endblock content %}

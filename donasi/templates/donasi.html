@@ -1,88 +1,25 @@
-{% extends 'base_with_navbar.html' %}
+{% extends 'base_bayar_donasi.html' %}
 
 {% block css %}
 <style>
-    :root {
-      /* primary color */
-      --pr-color : #048353; 
-      --scd-color : #01492E;
-    }
-
-    body {
-      font-family: 'Poppins', sans-serif;
-      background-color: #F3FFF4;
-    }
-
-    /* Navbar Style */
-    .navbar-brand {
-      font-weight: 700;
-      font-size: 20px;
-    }
-
-    .nav-link {
-      font-size: 16px;
-    }
-
-    .button-login {
-      width: 107px;
-      height: 40px;
-      background-color: #fff;
-      color: var(--pr-color);
-      border: none;
-      font-size: 16px;
-      font-weight: 700;
-      border-radius: 8px;
-    }
-
-    .nav-color {
-      background-color: var(--pr-color);
-      transition: all ease-in-out .3s;
-    }
-
-    .bg-transparent {
-      transition: all ease-in .3s;
-    }
-
-    nav {
-      z-index: 9999;
-    }
-
-    /* Hero Section */
-    #hero {
-      width: 100%;
-      height: 10vh;
-      background: linear-gradient(F3FFF4, F3FFF4), no-repeat center / cover;
-      color: white;
-    }
-
-    .hero-section {
-      width: 80%;
-      height: 100%;
-      max-width: 1000px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-    }
-
-    .hero-section .contains a {
-      text-decoration: none;
-      color: #fff;
-      background: var(--pr-color);
-      padding: 10px 30px;
-      border-radius: 8px;
-      margin-top: 10px;
-      display: inline-block;
-      margin-top: 1rem;
-    }
-
     /* Card Section */
     h2 {
       padding-bottom: 20px;
       text-align: center;
       font-weight: 500;
       color: var(--pr-color);
+    }
+
+    .donasi {
+      padding: 100px;
+    }
+
+    .makanan {
+      margin-top: 60px;
+    }
+
+    .pendidikan {
+      margin-top: 100px;
     }
 
     .card {
@@ -163,55 +100,19 @@
       transition: all 0.1s ease-in;
     }
 
-    /* Footer */
-    #footer {
-      padding: 30px 20px;
-      background-color: var(--pr-color);
-    }
-
-    #footer ul {
-      margin-top: 0;
-      padding: 0;
-      list-style: none;
-      font-size: 16px;
-      line-height: 1.6;
-      margin-bottom: 0;
-    }
-
-    #footer ul li a {
-      text-align: center;
-      color: #F3FFF4;
-      text-decoration: none;
-      opacity: 0.8;
-    }
-
-    #footer ul li a:hover {
-      opacity: 1;
-    }
-
-    #footer ul li {
-      display: inline-block;
-      padding: 0 15px;
-    }
-
-    #footer .copyright {
-      margin-top: 15px;
-      text-align: center;
-      font-style: 16px;
-      color: whitesmoke;
-    }
 
 </style>
 {% endblock css %}
 
-{% block container %}
+{% block content %}
+
 
 <!-- Donation Cards Section -->
 <section id="donasi">
-    <div class="donasi" style="margin: 60px;">
+    <div class="donasi">
         <div class="row">
             <div class="col-12 col-md-12">
-                <h2 style="text-align: left;">
+                <h2 class="makanan" style="text-align: left;">
                     Donasi Makanan
                 </h2>
             </div>
@@ -220,9 +121,9 @@
         <div id="card-makanan">
         </div>
 
-        <div class="row" style="margin-top: 50px;">
+        <div class="row">
             <div class="col-12 col-md-12">
-                <h2 style="text-align: left;">
+                <h2 class="pendidikan" style="text-align: left;">
                     Donasi Penyuluhan Pendidikan Gizi
                 </h2>
             </div>
@@ -321,4 +222,4 @@
     showDonasi()
 </script>
 
-{% endblock container %}
+{% endblock content %}
