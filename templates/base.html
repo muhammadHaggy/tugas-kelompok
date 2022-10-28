@@ -17,6 +17,8 @@
   <!-- Icon -->
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
 
   <!-- Font -->
   <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
@@ -26,133 +28,213 @@
 
   <style type="text/css">
     :root {
-      /* primary color */
+      --bg-color: #F3FFF4;
       --pr-color: #048353;
       --scd-color: #01492E;
     }
 
     body {
+      min-height: 100vh;
+      background: var(--bg-color);
+      color: var(--text-color);
       font-family: 'Poppins', sans-serif;
-      background-color: #F3FFF4;
-      margin: 0;
-      padding: 0;
-      height: 100vh;
     }
 
     /* Navbar Style */
     * {
-      margin: 0;
       padding: 0;
+      margin: 0;
       box-sizing: border-box;
     }
 
-    #login {
-      background-color: #fff;
-      color: var(--scd-color);
-      width: 120px;
-      height: 35px;
-      padding: 5px 8px;
-      border: none;
-      font-size: 16px;
-      font-weight: 700;
-      border-radius: 8px;
-      text-align: center;
-      justify-content: center;
-    }
-
-    #login:hover {
-      background-color: var(--scd-color);
-      color: white;
-    }
-
-    header {
-      z-index: 999;
-      position: fixed;
-      top: 0;
-      left: 0;
+    nav {
+      height: 70px;
       width: 100%;
-      display: flex;
-      justify-content: space-between;
+      background: transparent;
       align-items: center;
-      padding: 30px 100px;
-      height: 50px;
-      transition: all ease-in .3s;
+      justify-content: space-between;
+      position: fixed;
+      z-index: 999;
     }
 
-    header.sticky {
+    nav.sticky {
+      position: fixed;
       background: var(--pr-color);
-      padding: 30px 100px;
       transition: all ease-in-out .3s;
     }
 
-    header .brand {
-      color: white;
-      font-size: 20px;
-      font-weight: 700;
-      text-decoration: none;
-      letter-spacing: 2px;
+    ul {
+      list-style-type: none;
     }
 
-    header .menu {
-      position: relative;
+    a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .item.menus a:hover {
+      background: white;
+      color: var(--scd-color);
+      border-radius: 6px;
+    }
+
+    .menu li {
+      font-size: 16px;
+      padding: 15px 5px;
+    }
+
+    .menu li a {
+      display: block;
+    }
+
+    .logo a {
+      font-size: 25px;
+      font-weight: 700;
+    }
+
+    .logo a:hover {
+      color: white;
+    }
+
+    /* Mobile Menu */
+    .menu {
       display: flex;
-      justify-content: center;
+      flex-wrap: wrap;
+      justify-content: space-between;
       align-items: center;
     }
 
-    header .menu a {
-      color: white;
-      font-size: 16px;
-      font-weight: 500;
-      text-decoration: none;
-      margin: 0 20px;
-      transition: 0.3s;
+    .toggle {
+      order: 1;
     }
 
-    header .menu a:hover {
-      color: var(--scd-color);
+    .item.button {
+      order: 2;
     }
 
-    header .btn {
-      color: white;
-      font-size: 25px;
-      cursor: pointer;
+    .item {
+      width: 100%;
+      text-align: center;
+      order: 3;
       display: none;
     }
 
-    @media (max-width: 1060px) {
-      header .btn {
+    .item.active {
+      display: block;
+    }
+
+    .item.menus.active {
+      display: block;
+      background: var(--pr-color);
+    }
+
+    .toggle {
+      cursor: pointer;
+    }
+
+    .bars {
+      background: white;
+      display: inline-block;
+      height: 2px;
+      position: relative;
+      width: 18px;
+    }
+
+    .bars::before, .bars::after {
+      background: white;
+      content: "";
+      display: inline-block;
+      height: 2px;
+      position: absolute;
+      width: 18px;
+    }
+
+    .bars::before {
+      top: 5px;
+    }
+
+    .bars::after {
+      top: -5px;
+    }
+
+    /* Tablet Menu */
+    @media all and (min-width:468px) {
+      .menu {
+        justify-content: center;
+      }
+
+      .logo {
+        flex: 1;
+      }
+
+      .item.button {
+        width: auto;
+        order: 1;
         display: block;
       }
 
-      header .menu {
-        position: fixed;
-        background: var(--pr-color);
-        flex-direction: column;
-        min-width: 400px;
-        height: 100vh;
-        width: 100px;
-        top: 0;
-        right: -100%;
-        padding: 80px 50px;
+      .toggle {
+        order: 2;
       }
 
-      header .menu.active {
-        right: 0;
+      .button.secondary {
+        border: 0;
       }
 
-      header .menu .close-btn {
-        position: absolute;
-        top: 0;
-        left: 0;
-        margin: 25px;
+      .button a {
+        text-decoration: none;
+        padding: 7px 15px;
+        background: white;
+        color: var(--pr-color);
+        border-radius: 8px;
       }
 
-      header .menu a {
+      .button.secondary a {
+        background: var(--scd-color);
+        color: white;
+      }
+
+      .button a:hover {
+        transition: all .25s;
+        color: white;
+        background: var(--scd-color);
+      }
+
+      .button.secondary a:hover {
+        background: white;
+        color: var(--scd-color);
+      }
+    }
+
+    /* Desktop Menu */
+    @media all and (min-width: 768px) {
+      .item {
         display: block;
-        font-size: 20px;
-        margin: 20px;
-        padding: 0 15px;
+        width: auto;
+      }
+
+      .toggle {
+        display: none;
+      }
+
+      .logo {
+        order: 0;
+      }
+
+      .item {
+        order: 1;
+      }
+
+      .button {
+        order: 2;
+      }
+
+      .menu li {
+        padding: 15px 10px;
+      }
+
+      .menu li.button {
+        padding-right: 0;
       }
     }
 
@@ -203,61 +285,61 @@
 
 <body>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-  
+
   <!-- Navbar -->
-  <header class="{% block header_class %} {% endblock header_class %}">
-    <a class="brand" href="/canwe">
-      <span>CanWe</span>
-      <img src="https://cdn-icons-png.flaticon.com/128/2904/2904948.png" width="30" height="30">
-    </a>
+  <nav class="{% block header_class %} {% endblock header_class %}">
+    <div class="container">
+      <ul class="menu">
+        <li class="logo">
+          <a href="/canwe">
+            <span>CanWe</span>
+            <img src="https://cdn-icons-png.flaticon.com/128/2904/2904948.png" width="30" height="30">
+          </a>
+        </li>
+  
+        <li class="item menus"><a href="/donasi/">Donasi</a></li>
+        <li class="item menus"><a href="/galang_dana/">Galang Dana</a></li>
+        <li class="item menus"><a href="#">Histori</a></li>
+        <li class="item menus"><a href="/notifikasi/">Notifikasi</a></li>
+        
+        {% if user.is_authenticated %}
+        <li class="item"><a href="/user/profile">Profil</a></li>
+        {% endif %}
 
-    <div class="menu">
-      <div class="btn">
-        <i class="fas fa-times close-btn"></i>
-      </div>
+        {% if user.is_staff %}
+        <li class="item button"><a href="{% url 'user:moderator' %}">Moderator</a></li>
+        {% endif %}
 
-      <a href="/donasi/">Donasi</a>
-      <a href="#">Galang Dana</a>
-      <a href="#">Histori</a>
-      <a href="/notifikasi">Notifikasi</a>
-      {% if user.is_authenticated %}
-      <a href="/user/profile">Profil</a>
-      {% endif %}
+        {% if user.is_authenticated %}
+        <li class="item button secondary"><a href="{% url 'user:logout' %}">Logout</a></li>
+        {% else %}
+        <li class="item button"><a href="{% url 'user:login_user' %}">Login</a></li>
+        {% endif %}
 
-      {% if user.is_staff %}
-      <a id="login" href="{% url 'user:moderator' %}">Moderator</a>
-      {% endif %}
-
-      {% if user.is_authenticated %}
-      <a id="login" href="{% url 'user:logout' %}">Logout</a>
-      {% else %}
-      <a id="login" href="{% url 'user:login_user' %}">Login</a>
-      {% endif %}
-      
+        <li class="toggle"><span class="bars"></span></li>
+      </ul>
     </div>
+  </nav>
 
-    <div class="btn">
-      <i class="fas fa-bars menu-btn"></i>
-    </div>
-  </header>
+  <!-- sidebar effect on click -->
+  <script>
+    $(function() {
+      $(".toggle").on("click", function() {
+        if($(".item").hasClass("active")) {
+          $(".item").removeClass("active");
+        } else {
+          $(".item").addClass("active");
+        }
+      })
+    });
+  </script>
 
+  <!-- navigation bar effect on scroll -->
   <script type="text/javascript">
     window.addEventListener("scroll", function() {
-      var header = document.querySelector("header");
+      var header = document.querySelector("nav");
       header.classList.toggle('sticky', window.scrollY > 0);
     });
-
-    var menu = document.querySelector('.menu');
-    var menuBtn = document.querySelector('.menu-btn');
-    var closeBtn = document.querySelector('.close-btn');
-
-    menuBtn.addEventListener("click", () => {
-      menu.classList.add('active');
-    })
-
-    closeBtn.addEventListener("click", () => {
-      menu.classList.remove('active');
-    })
   </script>
 
   {% block content %}{% endblock %}
