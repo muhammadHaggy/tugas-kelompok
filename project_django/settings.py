@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'canwe',
     'user',
     'donasi',
+    'galang_dana',
     'notif',
 ]
 

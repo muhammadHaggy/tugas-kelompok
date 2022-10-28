@@ -15,3 +15,8 @@ class Donasi(models.Model):
 
     def __str__(self):
         return self.nama
+
+class Mendonasikan(models.Model):
+    donatur = models.ForeignKey(User, on_delete=models.CASCADE)
+    penerima = models.ForeignKey(Donasi, on_delete=models.CASCADE)
+    nominal = models.BigIntegerField()
