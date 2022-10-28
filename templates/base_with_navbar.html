@@ -54,6 +54,12 @@
           <li class="nav-item mx-2">
             <a class="nav-link" href="/notifikasi/">Notifikasi</a>
           </li>
+
+          {% if user.is_authenticated %}
+          <li class="nav-item mx-2">
+            <a class="nav-link" href="/user/profile">Profil</a>
+          </li>
+          {% endif %}
         </ul>
 
         <div>
@@ -82,7 +88,7 @@
   </section>
 
   {% block container %}
-  
+
   {% endblock container %}
 
 
