@@ -1,0 +1,380 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>ToDo List</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+  </head>
+<style>
+    :root {
+      /* primary color */
+      --pr-color : #048353; 
+      --scd-color : #01492E;
+    }
+
+    body {
+      font-family: 'Object Sans';
+      background-color: black;
+    }
+    /* Navbar Style */
+    .navbar-brand {
+      font-weight: 700;
+      font-size: 20px;
+    }
+
+    .nav-link {
+      font-size: 16px;
+    }
+
+    .button-login {
+      width: 107px;
+      height: 40px;
+      background-color: #fff;
+      color: var(--pr-color);
+      border: none;
+      font-size: 16px;
+      font-weight: 700;
+      border-radius: 8px;
+    }
+
+    .nav-color {
+      background-color: var(--pr-color);
+      transition: all ease-in-out .3s;
+    }
+
+    .bg-transparent {
+      transition: all ease-in .3s;
+    }
+
+    nav {
+      z-index: 9999;
+    }
+
+
+/* Footer */
+#footer {
+      padding: 30px 20px;
+      background-color: var(--pr-color);
+    }
+
+    #footer ul {
+      margin-top: 0;
+      padding: 0;
+      list-style: none;
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 0;
+    }
+
+    #footer ul li a {
+      text-align: center;
+      color: #F3FFF4;
+      text-decoration: none;
+      opacity: 0.8;
+    }
+
+    #footer ul li a:hover {
+      opacity: 1;
+    }
+
+    #footer ul li {
+      display: inline-block;
+      padding: 0 15px;
+    }
+
+    #footer .copyright {
+      margin-top: 15px;
+      text-align: center;
+      font-style: 16px;
+      color: whitesmoke;
+    }
+
+    
+.section-50 {
+    padding: 50px 0;
+}
+
+.m-b-50 {
+    margin-bottom: 50px;
+}
+
+.dark-link {
+    color: #333;
+}
+
+.heading-line {
+    position: relative;
+    padding-bottom: 5px;
+}
+
+.heading-line:after {
+    content: "";
+    height: 4px;
+    width: 75px;
+    background-color: #29B6F6;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.notification-ui_dd-content {
+    margin-bottom: 30px;
+}
+
+.notification-list {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: 20px;
+    margin-bottom: 7px;
+    background: #fff;
+    -webkit-box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+}
+
+.modal.show {
+  z-index: 100000!important;
+}
+
+
+.notification-list--unread {
+
+}
+
+.notification-list--unread:hover{
+   border-left: 4px solid #29B6F6;
+    flex-wrap: wrap;
+    box-shadow: 5px 6px 6px 6px #e9ecef;
+    transform: scale(1.005);
+    overflow-y: auto;
+}
+
+.notification-list .notification-list_content {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.notification-list .notification-list_content .notification-list_img img {
+    height: 48px;
+    width: 48px;
+    border-radius: 50px;
+    margin-right: 20px;
+}
+
+.notification-list .notification-list_content .notification-list_detail p {
+    margin-bottom: 5px;
+    line-height: 1.2;
+}
+
+.notification-list .notification-list_feature-img img {
+    height: 48px;
+    width: 48px;
+    border-radius: 5px;
+    margin-left: 20px;
+}
+</style>
+  {% block content %}
+  <body style="background: #F3FFF4;">
+  
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark position-fixed w-100" style="background-color: #048353;">
+      <div class="container" ">
+        <a class="navbar-brand" href="#">
+          <span class="myapp me-2">CanWe</span>
+          <img src="https://cdn-icons-png.flaticon.com/128/2904/2904948.png" width="30" height="30">
+        </a>
+  
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item mx-2">
+              <a class="nav-link" href="#">Donasi</a>
+            </li>
+  
+            <li class="nav-item mx-2">
+              <a class="nav-link" href="#">Galang Dana</a>
+            </li>
+  
+            <li class="nav-item mx-2">
+              <a class="nav-link" href="">Histori</a>
+            </li>
+  
+            <li class="nav-item mx-2">
+              <a class="nav-link" href="#">Notifikasi</a>
+            </li>
+          </ul>
+  
+          <div>
+            <button class="button-login">Login</button>
+          </div>
+        </div>
+      </div>
+    </nav>
+  
+    <!-- Hero Section -->
+    <section id="hero" style="background-color: #F3FFF4;">
+      <div class="hero-section">
+        <div class="contains">
+        </div>
+        
+      </div>
+    </section>
+  
+    <div class="container" style=" justify-content: center;">
+      <div class="header" style="text-align: center;">
+      </div>
+      <div class="container" style=" display: flex; justify-content: center;">
+        <!-- Button to Open the Modal -->
+        <h1>Notifikasi</h1>
+      </div>
+        
+      </div>
+      </div>
+      
+      <div class="container" style=" justify-content: center;">
+        <div class="header" style="text-align: center; justify-content: center; padding-top: 30px;">
+          <div>
+          <h1>Notifikasi</h1>
+          </div>
+        </div>
+      </div>
+
+      
+<div class="container">
+  <div class="row" style="padding: 30px; justify-content: flex-end; background-color: #F3FFF4;" id="bismillah-container" >
+  </div>
+</div>
+<!-- Footer -->
+<section id="footer">
+    <ul class="list text-center">
+      <li>
+        <a href="#">Home</a>
+      </li>
+
+      <li>
+        <a href="#">Donasi</a>
+      </li>
+
+      <li>
+        <a href="#">Galang Dana</a>
+      </li>
+
+      <li>
+        <a href="#">Histori</a>
+      </li>
+
+      <li>
+        <a href="#">Notifikasi</a>
+      </li>
+
+      <li>
+        <a href="#">Login</a>
+      </li>
+    </ul>
+
+    <br>
+
+    <p class="copyright">
+      Made with 
+      <span><ion-icon name="heart"></ion-icon></span> and <span><ion-icon name="sad"></ion-icon></span>
+      from Kelompok D-05
+    </p>
+  </section>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</body>
+<script>
+
+  function make_card() {
+      let notif = "";
+      $.ajax({
+          url: "{% url 'notif:show_json' %}",
+          type: "GET",
+          dataType: "json",
+          success: function(data){
+              if(data == 0) {
+                  $('#bismillah-container').html("")
+              }
+              else {
+                  for (i of data){
+                      console.log(data)
+                      notif += `
+                    
+                      <div class="notification-list notification-list--unread" >
+                        <div class="notification-list_content">
+                            <div class="notification-list_img">
+                                <img src="https://i.imgur.com/dK4jT6U.png" alt="user">
+                            </div>
+                            <div class="notification-list_detail" style= "margin=20px;">
+                                <p><b>${i.fields.title}</b> mengirimkan pesan</p>
+                                <p class="text-muted">${i.fields.description}</p>
+                            </div>
+                        </div>
+                        <div>
+
+                        <a class="btn btn-outline-danger form-control" onclick="deleteCard(${i.pk})">Delete</a>                          </div>
+                        </div>
+                    </div>`;
+                      $('#bismillah-container').html(notif)
+                  }
+              }
+          },
+          error: function(data) {
+              console.log('Error')
+          }
+      })
+  }
+
+  function deleteCard(pk){
+        $.ajax({
+            url: `/notif/delete/${pk}`,
+            type: "DELETE",
+            success: function(data) {
+                console.log(data)
+                $(`#${pk}`).remove()
+                make_card()
+            }
+        })
+    }
+
+  $(document).on("submit", "#tambahTask", function(e) {
+      e.preventDefault();
+      $.ajax ({
+          url: "{% url 'notif:add_ajax' %}",
+          type: "POST",
+          dataType:"json",
+          data: {
+              title:$("#title").val(),
+              description:$("#description").val(),
+              csrfmiddlewaretoken: "{{ csrf_token }}"
+          },
+          success: function(data) {
+              make_card();
+              const inputs = document.querySelectorAll('#title, #description');
+              inputs.forEach(input => {
+                  input.value = '';
+              });
+          }
+      })
+  })
+
+  $(document).ready(function () {
+      make_card();
+  })
+</script>
+
+{% endblock content %}

@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'canwe',
     'user',
     'donasi',
-    'notifikasi',
+    'notif',
 ]
 
 SITE_ID = 1

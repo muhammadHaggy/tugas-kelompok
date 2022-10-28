@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class NotifikasiConfig(AppConfig):
+class NotifConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'notifikasi'
+    name = 'notif'
