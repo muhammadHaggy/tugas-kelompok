@@ -15,7 +15,7 @@ from django.http.response import JsonResponse, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
-@login_required(login_url='/notif/login/')
+@login_required(login_url='/user/')
 def show_notif(request):
     data = Item.objects.filter(user=request.user)
     context = {
@@ -75,7 +75,7 @@ def delete_notif(request, pk):
     Item.objects.filter(id=pk).delete()
     return redirect('notif:show_notif')
 
-@login_required(login_url='/notif/login/')
+@login_required(login_url='/user/')
 def show_json(request):
     item = Item.objects.filter(user=request.user)
     return HttpResponse(serializers.serialize('json', item), content_type='application/json')
