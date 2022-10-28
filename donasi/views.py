@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from donasi.models import Donasi
 from donasi.forms import Pembayaran
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.core import serializers
 from django.contrib.auth.decorators import login_required
 
@@ -36,9 +36,11 @@ def bayar_proses(request, id):
     return HttpResponse(serializers.serialize('json', donasi))
 
 def get_data_donasi(request):
-    donasi = Donasi.objects.all().filter(is_approved=True)
+    donasi = Donasi.objects.filter(is_approved=True)
+    data = []
+    print(donasi)
     for item in donasi:
-            item.urlFoto = item.foto.url
-
-    return HttpResponse(serializers.serialize('json', donasi))
-
+        item.urlFoto = item.foto.url
+        data.append({'pk': item.pk, 'fields': {'deskripsi': item.deskripsi, 'is_approved': item.is_approved, 'nama': item.nama, 'penggalang': item.penggalang.username, 'target': item.target, 'tipe': item.tipe, 'urlFoto': item.urlFoto, 'terkumpul': item.terkumpul,}}) 
+    data = {'data': data}
+    return JsonResponse(data)

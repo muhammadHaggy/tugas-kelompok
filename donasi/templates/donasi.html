@@ -37,10 +37,10 @@
       border-radius: 8px 8px 0px 0px;
     }
 
-    .picture {
+    /* .picture {
       margin-top: auto;
       margin-bottom: auto;
-    }
+    } */
 
     .card-content {
       padding: 40px;
@@ -51,10 +51,13 @@
 
     .title {
       font-size: 20px;
-      font-weight: 500;
       color: #000;
       text-align: left;
       font-weight: bold;
+    }
+
+    .author {
+      font-size: 16px;
     }
 
     .target {
@@ -100,7 +103,6 @@
       transition: all 0.1s ease-in;
     }
 
-
 </style>
 {% endblock css %}
 
@@ -137,13 +139,14 @@
 <script>
     
     async function getDataDonasi() {
-        return fetch("{% url 'donasi:get_data_donasi' %}").then((result) => result.json())
+        // return fetch("{% url 'donasi:get_data_donasi' %}").then((result) => result.json())
+        $.getJSON("{% url 'donasi:get_data_donasi' %}", showDonasi);
     }
 
-    async function showDonasi() {
+    async function showDonasi(json) {
         document.getElementById('card-makanan').innerHTML = ""
         document.getElementById('card-pendidikan').innerHTML = ""
-        const dataDonasi = await getDataDonasi()
+        // const dataDonasi = await getDataDonasi()
 
         let cardMakanan = ``
         let cardPendidikan = ``
@@ -151,14 +154,17 @@
         let counterMakanan = 0
         let counterPendidikan = 0
 
-        dataDonasi.forEach(donasi => {
-            let rupiahIDR = Intl.NumberFormat("en-US", {
+        // dataDonasi.forEach(donasi => {
+        $.each(json.data, function (index, donasi) {
+            let rupiahIDR = Intl.NumberFormat("id", {
                 style: "currency",
                 currency: "IDR",
             });
 
             const target = rupiahIDR.format(`${donasi.fields.target}`)
             const terkumpul = rupiahIDR.format(`${donasi.fields.terkumpul}`)
+
+            console.log(`${donasi.fields.nama}`)
                       
             temp = `\n
             <div class="col-12 col-md-4" style="margin-bottom: 20px;">
@@ -219,7 +225,7 @@
         document.getElementById('card-pendidikan').innerHTML = cardPendidikan
     }
 
-    showDonasi()
+    getDataDonasi()
 </script>
 
 {% endblock content %}

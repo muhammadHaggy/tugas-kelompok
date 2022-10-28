@@ -29,8 +29,7 @@ def login_user(request):
             response = HttpResponseRedirect(
                 reverse("canwe:landingPage"))  # membuat response
             # membuat cookie last_login dan menambahkannya ke dalam response
-            # response.set_cookie('last_login', str(datetime.datetime.now()))
-            request.session['last_login'] = str(datetime.datetime.now())
+            response.set_cookie('last_login', str(datetime.datetime.now()))
             return response
         else:
             messages.info(request, 'Username atau Password salah!')
@@ -42,9 +41,9 @@ def register(request):
     if request.method == "POST":
         form = UserCreationForm(request.POST)
         if form.is_valid():
-            user = form.save()
+            form.save()
             messages.success(request, 'Akun telah berhasil dibuat!')
-            UserDetails(user=user).save()
+            UserDetails(user=request.user).save()
             return redirect('user:login_user')
 
     context = {'form': form}
@@ -110,5 +109,5 @@ def profile_dashboard(request):
         return HttpResponse()
     user_detail_form = UserDetailsForm(instance=user_detail)
     user_form = UserForm(instance=user)
-    context = {'user_detail': user_detail, 'user_form': user_form, 'user_detail_form': user_detail_form, 'last_login':request.session['last_login']}
+    context = {'user_detail': user_detail, 'user_form': user_form, 'user_detail_form': user_detail_form}
     return render(request, 'profile.html', context)
