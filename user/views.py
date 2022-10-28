@@ -41,9 +41,9 @@ def register(request):
     if request.method == "POST":
         form = UserCreationForm(request.POST)
         if form.is_valid():
-            form.save()
+            user = form.save()
             messages.success(request, 'Akun telah berhasil dibuat!')
-            UserDetails(user=request.user).save()
+            UserDetails(user=user).save()
             return redirect('user:login_user')
 
     context = {'form': form}
