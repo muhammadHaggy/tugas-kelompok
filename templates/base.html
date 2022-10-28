@@ -205,7 +205,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
   
   <!-- Navbar -->
-  <header>
+  <header class="{% block header_class %} {% endblock header_class %}">
     <a class="brand" href="/canwe">
       <span>CanWe</span>
       <img src="https://cdn-icons-png.flaticon.com/128/2904/2904948.png" width="30" height="30">
@@ -221,13 +221,16 @@
       <a href="#">Histori</a>
       <a href="/notifikasi">Notifikasi</a>
 
-      {% if user.is_authenticated == False %}
-      <a id="login" href="{% url 'user:login_user' %}">Login</a>
-      {% endif %}
-
       {% if user.is_staff %}
       <a id="login" href="{% url 'user:moderator' %}">Moderator</a>
       {% endif %}
+
+      {% if user.is_authenticated %}
+      <a id="login" href="{% url 'user:logout' %}">Logout</a>
+      {% else %}
+      <a id="login" href="{% url 'user:login_user' %}">Login</a>
+      {% endif %}
+      
     </div>
 
     <div class="btn">
