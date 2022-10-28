@@ -247,7 +247,6 @@
           </div>
         </div>
       </div>
-
       
 <div class="container">
   <div class="row" style="padding: 30px; justify-content: flex-end; background-color: #F3FFF4;" id="bismillah-container" >
@@ -341,7 +340,7 @@
 
   function deleteCard(pk){
         $.ajax({
-            url: `/notif/delete/${pk}`,
+            url: `/notifikasi/delete/${pk}`,
             type: "DELETE",
             success: function(data) {
                 console.log(data)
