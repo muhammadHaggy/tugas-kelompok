@@ -1,7 +1,7 @@
 {% extends 'base_donasi.html' %}
 
 
-{% block content %}
+{% block container %}
 <div class="container mt-5">
     <form id="edit-profile-form">
         {% csrf_token %}
@@ -132,9 +132,10 @@
 
     </form>
 </div>
+{% endblock container %}
 
 
-
+{% block script %}
 <script>
 
     function getFormData($form) {
@@ -166,4 +167,5 @@
 
     $('input').attr('size', '50')
 </script>
-{% endblock content %}
+
+{% endblock script %}
