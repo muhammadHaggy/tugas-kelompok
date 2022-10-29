@@ -20,3 +20,6 @@ class Mendonasikan(models.Model):
     donatur = models.ForeignKey(User, on_delete=models.CASCADE)
     penerima = models.ForeignKey(Donasi, on_delete=models.CASCADE)
     nominal = models.BigIntegerField()
+
+    def __str__(self):
+        return self.donatur.username

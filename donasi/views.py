@@ -1,8 +1,7 @@
 from django.shortcuts import render
-from donasi.models import Donasi
+from donasi.models import Donasi, Mendonasikan
 from donasi.forms import Pembayaran
 from django.http import HttpResponse, JsonResponse
-from django.core import serializers
 from django.contrib.auth.decorators import login_required
 
 @login_required(login_url='/user/login')
@@ -31,9 +30,15 @@ def bayar_proses(request, id):
         if form.is_valid():
             nominal = form.cleaned_data['nominal']
             donasi.terkumpul += nominal
-            donasi.save()
+            donasi.save()           
 
-    return HttpResponse(serializers.serialize('json', donasi))
+            Mendonasikan.objects.create(
+                donatur=request.user,
+                penerima=donasi,
+                nominal=nominal
+            )
+
+    return HttpResponse(b"PAID", status=201)
 
 def get_data_donasi(request):
     donasi = Donasi.objects.filter(is_approved=True)
