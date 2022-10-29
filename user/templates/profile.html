@@ -1,14 +1,14 @@
-{% extends 'base_donasi.html' %}
+{% extends 'base_bootstrap.html' %}
+{% load static %}
 
-
-{% block container %}
+{% block content %}
 <div class="container mt-5">
     <form id="edit-profile-form">
         {% csrf_token %}
         <div class="text-center">
             <h3 class="display-3">Edit Profil</h3>
         </div>
-        <section style="background-color: #eee;">
+        <section>
             <div class="col-lg-8 mt-5 w-100">
                 <!-- <div class="card mb-4">
                 <div class="card-body">
@@ -89,7 +89,7 @@
                     </div>
                 </div>
                 {% else %}
-                <div class="control-group mt-2 text-center">
+                <div class="control-group mt-2">
                     <label class="control-label">{{ field.label }}</label>
                     <div class="controls">{{ field }}
                         {% if field.help_text %}
@@ -114,7 +114,7 @@
                     </div>
                 </div>
                 {% else %}
-                <div class="control-group mt-2 text-center">
+                <div class="control-group mt-2">
                     <label class="control-label">{{ field.label }}</label>
                     <div class="controls">{{ field }}
                         {% if field.help_text %}
@@ -127,45 +127,12 @@
             </div>
         </section>
         <div class="text-center mb-5">
-            <button type="submit" class="btn btn-success mt-5" id="submit-button">Submit Changes</button>
+            <button type="submit" class="btn btn-primary mt-5" id="submit-button">Submit Changes</button>
         </div>
 
     </form>
 </div>
-{% endblock container %}
 
+<script src="{% static 'js/profile_edit.js' %}"></script>
 
-{% block script %}
-<script>
-
-    function getFormData($form) {
-        var unindexed_array = $form.serializeArray();
-        var indexed_array = {};
-
-        $.map(unindexed_array, function (n, i) {
-            indexed_array[n['name']] = n['value'];
-        });
-
-        return indexed_array;
-    }
-
-    $('#edit-profile-form').submit(function (e) {
-        e.preventDefault();
-        var $form = $(this);
-        var serializedData = $form.serializeArray();
-        console.log(serializedData)
-        $.ajax({
-            url: "{% url 'user:profile' %}",
-            type: 'POST',
-            data: serializedData,
-            dataType: 'text',
-            success: function (data) {
-                location.reload();
-            }
-        });
-    });
-
-    $('input').attr('size', '50')
-</script>
-
-{% endblock script %}
+{% endblock content %}
