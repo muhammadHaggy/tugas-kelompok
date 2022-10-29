@@ -1,5 +1,5 @@
 {% extends 'base_bayar_donasi.html' %}
-
+{% load static %}
 {% block css %}
 <style>
 
@@ -149,7 +149,7 @@
             {{ form }}
             <br>
             <div class="btn-submit">
-                <input type="submit" value="Lakukan Donasi" onclick="return bayar()">
+                <input type="submit" value="Lakukan Donasi" onclick="return bayar('{{id}}')">
             </div>
         </form>
 
@@ -160,24 +160,5 @@
     </section>
 </section>
 
-<script>
-    function bayar() {
-        const message = document.getElementById('success')
-
-        fetch('/donasi/bayar/proses/{{id}}', {
-            method: "POST",
-            body: new FormData(document.querySelector('#bayar-donasi'))
-        }).then()
-        document.getElementById('input-nominal').value = ''
-        message.classList.replace('success-hide', 'success')
-        setTimeout(hapusMessage, 3000)
-        return false
-    }
-
-    function hapusMessage() {
-        const message = document.getElementById('success')
-        message.classList.replace('success', 'success-hide')
-    }
-
-</script>
+<script src="{% static 'js/bayar_donasi.js' %}"></script>
 {% endblock content %}
