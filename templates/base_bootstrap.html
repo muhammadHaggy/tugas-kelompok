@@ -51,6 +51,12 @@
                         class="nav-link px-2 text-muted">Donasi</a></li>
                 <li class="nav-item"><a href="{% url 'galang_dana:show_galang_dana' %}"
                         class="nav-link px-2 text-muted">Galang Dana</a></li>
+                {% if not user.is_staff %}
+                <li class="nav-item"><a href="/notifikasi"class="nav-link px-2 text-muted"></a> Notifikasi</a></li>
+                {% endif %}
+                {% if user.is_staff %}
+                <li class="nav-item"><a href="/notifikasi/create-notification/"class="nav-link px-2 text-muted"></a> Notifikasi</a></li>
+                {% endif %}
                 <li class="nav-item"><a href="{% url 'notif:show_notif' %}"
                         class="nav-link px-2 text-muted">Notifikasi</a></li>
                 {% if user.is_authenticated %}

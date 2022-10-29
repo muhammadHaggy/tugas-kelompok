@@ -299,7 +299,14 @@
   
         <li class="item menus"><a href="/donasi/">Donasi</a></li>
         <li class="item menus"><a href="/galang-dana/">Galang Dana</a></li>
-        <li class="item menus"><a href="/notifikasi/">Notifikasi</a></li>
+        
+        {% if not user.is_staff %}
+        <li class="item menus"><a href="/notifikasi">Notifikasi</a></li>
+        {% endif %}
+        
+        {% if user.is_staff %}
+        <li class="item menus"><a href="/notifikasi/create-notification/">Notifikasi</a></li>
+        {% endif %}
         
         {% if user.is_authenticated %}
         <li class="item menus"><a href="/user/profile">Profil</a></li>
