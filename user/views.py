@@ -90,7 +90,7 @@ def logout_user(request):
 @login_required()
 def profile_dashboard(request):
     user = request.user
-    user_detail = UserDetails.objects.get(user=user)
+    user_detail, created = UserDetails.objects.get_or_create(user=user, defaults={'bio_singkat': ''})
     if request.method == "POST":
         user_detail_form = UserDetailsForm(request.POST, instance=user_detail)
         user_form = UserForm(request.POST, instance=user)
