@@ -14,7 +14,7 @@ from django.contrib.auth.models import User
 from user.forms import UserDetailsForm, UserForm
 from user.models import UserDetails
 from notif.models import Item
-
+from django.contrib.admin.views.decorators import staff_member_required
 
 def index(request):
     return redirect(reverse('user:login_user'))
@@ -27,7 +27,7 @@ def login_user(request):
         if user is not None:
             login(request, user)  # melakukan login terlebih dahulu
             response = HttpResponseRedirect(
-                reverse("canwe:landingPage"))  # membuat response
+                reverse("donasi:show_donasi"))  # membuat response
             # membuat cookie last_login dan menambahkannya ke dalam response
             response.set_cookie('last_login', str(datetime.datetime.now()))
             return response
@@ -48,7 +48,7 @@ def register(request):
     context = {'form': form}
     return render(request, 'register.html', context)
 
-@login_required(login_url='user/login')
+@login_required()
 def pending_task_json(request):
     if request.user.is_staff:
         data_donasi_pending = Donasi.objects.filter(is_approved__isnull=True).all()
@@ -62,32 +62,32 @@ def pending_task_json(request):
         return JsonResponse(data)
     return JsonResponse({'error': 'User bukan staff canwe'})
 
-@login_required(login_url='user/login')
+@staff_member_required()
 def moderator(request):
     return render(request, 'moderation.html')
 
-@login_required(login_url='user/login')
+@login_required()
 def reject(request, pk):
     if request.method == "GET" and request.user.is_staff:
         donasi = Donasi.objects.filter(pk=pk).update(is_approved=False)
     
     return HttpResponse()
 
-@login_required(login_url='user/login')
+@login_required()
 def approve(request, pk):
     if request.method == "GET" and request.user.is_staff:
         donasi = Donasi.objects.filter(pk=pk).update(is_approved=True)
     
     return HttpResponse()
 
-@login_required(login_url='user/login')
+@login_required()
 def logout_user(request):
     logout(request)
     response = HttpResponseRedirect(reverse('user:login_user'))
     response.delete_cookie('last_login')
     return response
 
-@login_required(login_url='user/login')
+@login_required()
 def profile_dashboard(request):
     user = request.user
     user_detail = UserDetails.objects.get(user=user)
