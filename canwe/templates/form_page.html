@@ -1,0 +1,271 @@
+{% extends 'base_with_navbar_fixed.html' %}
+{% load static %}
+
+{% block css %}
+<style>
+    *,
+    ::before,
+    ::after {
+        box-sizing: border-box;
+        border-width: 0;
+        border-style: solid;
+    }
+
+    ::before,
+    ::after {
+        content: '';
+    }
+    
+    .mb-3 {
+        margin-bottom: 0.75rem;
+    }
+
+    .mr-3 {
+        margin-right: 0.75rem;
+    }
+
+    .w-full {
+        width: 100%;
+    }
+
+    .border {
+        border-width: 1px;
+    }
+
+    input[type=text],  input[type=email] {
+        height: 2.25rem;
+        width: 100%;
+        border-radius: 0.25rem;
+        border-width: 1px;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+
+    input[type=text]:focus,  input[type=email]:focus {
+        border-width: 2px;
+        outline: 2px solid transparent;
+        outline-offset: 2px;
+    }
+
+    textarea {
+        width: 100%;
+        border-radius: 0.25rem;
+        border-width: 1px;
+        padding: 0.5rem;
+    }
+
+    label {
+        display: block;
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+    }
+
+    .form-container {
+        width: 100%;
+    }
+
+    .form-container {
+        margin-left: auto;
+        margin-right: auto;
+        padding: 1rem;
+    }
+
+    .form-row {
+        display: flex;
+        width: 100%;
+    }
+
+    .form-col {
+        width: 50%;
+    }
+
+    #form-col {
+        min-height: 50vh;
+        padding-top: 100px;
+    }
+
+    h2 {
+      padding-bottom: 20px;
+      text-align: center;
+      font-weight: 500;
+      color: var(--pr-color);
+    }
+
+    .btn-ask {
+      border: none;
+      font-size: 16px;
+      padding: 12px 20px;
+      color: #fff;
+      background-color: var(--pr-color);
+      border-radius: 8px;
+      align-items: center;
+      cursor: pointer;
+      transition: all 0.2s ease-in;
+    }
+
+    .btn-ask:hover {
+      color: #fff;
+      background-color: var(--scd-color);
+      cursor: pointer;
+      transition: all 0.2s ease-in;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    
+
+
+</style>
+{% endblock css %}
+
+{% block content %}
+
+<div class="form-container" id="form-col">
+    <h2>Kirim Pertanyaan</h2>
+
+    <div class="container col-lg-8 row-lg-8">
+        <form id="form_faq" name="form_faq" method="POST" action="">
+            {% csrf_token %}
+            <div class="mb-3 form-row">
+                <div class="mr-3 form-col" id="name">
+                    {{ form.name.label }}
+                    {{ form.name }}
+                </div>
+
+                <div class="form-col" id="email">
+                    {{ form.email.label }}
+                    {{ form.email }}
+                </div>
+            </div>
+
+            <div class="mb-3" id="question">
+                {{ form.question.label }}
+                {{ form.question }}
+            </div>
+            
+            <button id="submit-btn" class="btn-ask" type="submit" data-toggle="modal" data-target="#exampleModal">Kirim</button>
+        </form>
+    </div>
+</div>
+
+<div id="exampleModal" class="modal fade">
+    <div class="modal-dialog modal-confirm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="icon-box">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1443/1443000.png">
+                </div>
+
+                <h4 class="modal-title w-100">Thank You!</h4>
+            </div>
+
+            <div class="modal-body">
+                <p>Your question has been successfully submitted.</p>
+            </div>
+
+            <div class="modal-footer">
+                <div clas="container" style="display:flex; padding: 20px;">
+                    <div style="padding-left: 10px;">
+                        <button class="btn btn-danger btn-block" data-dismiss="modal">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function(){
+        $('.modal').modal('show');
+    });
+
+    async function getQuestion() {
+        return fetch("{% url 'canwe:show_json' %}")
+        .then(response => response.json())
+        .then(param => {
+            return param;
+        })
+        .catch(error => {
+            console.error("ERROR:", error);
+        })
+    }
+
+    async function refreshForm() {
+        getQuestion().then(param => {
+            let todos = "";
+
+            for (let i = 0; i < param.length; i++) {
+                const card = `
+                <div class="card-question">
+                    <h3 class="card-title">${param[i].fields.name}</h3>
+                    <p class="text-muted">${param[i].fields.email}</p>
+                    <p class="card-description">${param[i].fields.question}</p>
+                    <a class="btn-delete card_btn" onclick="deleteCard(${param[i].fields.pk})">
+                        <span><i class="fa fa-trash"></i>
+                            Delete
+                        <span>
+                    </a>
+                </div>
+                `;
+
+                todos += card;
+            }
+
+            document.getElementById("display-pertanyaan").innerHTML = todos;
+        });
+    }
+
+    function deleteCard(pk){
+        $.ajax({
+            url: `/canwe/delete/${pk}`,
+            type: "DELETE",
+            success: function(data) {
+                console.log(data)
+                $(`#${pk}`).remove()
+                refreshForm()
+            }
+        })
+    }
+
+    function addQuestion() {
+        fetch("{% url 'canwe:add_question' %}", {
+            method: "POST",
+            body: new FormData(document.querySelector('#form_faq'))
+        }).then(refreshForm)
+
+        document.getElementById("#form_faq").reset();
+        return false
+    }
+
+    document.getElementById("submit-btn").onclick = addQuestion
+    refreshForm()
+
+    function validateForm() {
+        let x = document.forms["#form_faq"]["name"].value;
+        let y = document.forms["#form_faq"]["email"].value;
+        let z = document.forms["#form_faq"]["question"].value;
+        
+        if (x == "") {
+            alert("Name must be filled out");
+            return false;
+        } else if (y == "") {
+            alert("E-mail must be filled out");
+            return false;
+        } if (z == "") {
+            alert("What do you want to ask?");
+            return false;
+        }
+    }
+
+    document.getElementById("submit-btn").onsubmit = validateForm
+    refreshForm()
+
+</script>
+
+{% endblock content %}

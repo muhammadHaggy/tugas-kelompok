@@ -1,0 +1,170 @@
+{% extends 'base_with_navbar_fixed.html' %}
+{% load static %}
+
+{% block css %}
+<style>
+  *,
+  ::before,
+  ::after {
+    box-sizing: border-box;
+    border-width: 0;
+    border-style: solid;
+  }
+
+  ::before,
+  ::after {
+    content: '';
+  }
+
+  .list-question {
+    min-height: 50vh;
+  }
+
+  h2 {
+    padding-top: 100px;
+    padding-bottom: 20px;
+    text-align: center;
+    font-weight: 500;
+    color: var(--pr-color);
+  }
+
+  /* card for display question */
+  .display-pertanyaan {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .card-question {
+    margin: 20px;
+    padding: 20px;
+    width: 500px;
+    min-height: 200px;
+    display: grid;
+    grid-template-rows: 20px 50px 1fr 50px;
+    border-radius: 10px;
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.25);
+    transition: all 0.2s;
+  }
+
+  .card-question:hover {
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4);
+    transform: scale(1.01);
+  }
+
+  .btn-delete {
+    border: none;
+    font-size: 16px;
+    padding: 12px 20px;
+    color: #fff;
+    background-color: #990002;
+    border-radius: 8px;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease-in;
+  }
+
+
+  .btn-delete:hover {
+    color: #fff;
+    background-color: #550809;
+    cursor: pointer;
+    transition: all 0.2s ease-in;
+  }
+
+  @media (max-width: 1600px) {
+    .display-pertanyaan {
+        justify-content: center;
+    }
+  }
+</style>
+{% endblock css %}
+
+{% block content %}
+
+<div class="list-question">
+  <h2> Daftar Pertanyaan </h2>
+
+  <!-- show question -->
+  <div class="main-container">
+    <div class="display-pertanyaan" id="display-pertanyaan">
+        
+    </div>
+  </div>
+
+  <form id="form_faq" name="form_faq" method="POST" action="">
+    {% csrf_token %}
+    <div class="mb-3 form-row">
+      <div class="mr-3 form-col" id="name"></div>
+      <div class="form-col" id="email"></div>
+    </div>
+    <div class="mb-3" id="question"></div>
+    <button id="submit-btn"></button>
+  </form>
+</div>
+
+<script>
+  async function getQuestion() {
+    return fetch("{% url 'canwe:show_json' %}")
+    .then(response => response.json())
+    .then(param => {
+        return param;
+    })
+    .catch(error => {
+        console.error("ERROR:", error);
+    })
+}
+
+async function refreshForm() {
+    getQuestion().then(param => {
+        let todos = "";
+
+        for (let i = 0; i < param.length; i++) {
+            const card = `
+            <div class="card-question">
+                <h3 class="card-title">${param[i].fields.name}</h3>
+                <p class="text-muted">${param[i].fields.email}</p>
+                <p class="card-description">${param[i].fields.question}</p>
+                <a class="btn-delete card_btn" onclick="deleteCard(${param[i].fields.pk})">
+                    <span><i class="fa fa-trash"></i>
+                        Delete
+                    <span>
+                </a>
+            </div>
+            `;
+
+            todos += card;
+        }
+
+        document.getElementById("display-pertanyaan").innerHTML = todos;
+    });
+}
+
+function deleteCard(pk){
+    $.ajax({
+        url: `/canwe/delete/${pk}`,
+        type: "DELETE",
+        success: function(data) {
+            console.log(data)
+            $(`#${pk}`).remove()
+            refreshForm()
+        }
+    })
+}
+
+function addQuestion() {
+    fetch("{% url 'canwe:add_question' %}", {
+        method: "POST",
+        body: new FormData(document.querySelector('#form_faq'))
+    }).then(refreshForm)
+
+    document.getElementById("#form_faq").reset();
+    return false
+}
+
+document.getElementById("submit-btn").onclick = addQuestion
+refreshForm()
+</script>
+
+{% endblock content %}
