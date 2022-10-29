@@ -347,20 +347,23 @@
       </li>
 
       <li>
-        <a href="#">Galang Dana</a>
-      </li>
-
-      <li>
-        <a href="#">Histori</a>
+        <a href="/galang-dana/">Galang Dana</a>
       </li>
 
       <li>
         <a href="/notifikasi/">Notifikasi</a>
       </li>
 
-      <li>
-        <a href="{% url 'user:login_user' %}">Login</a>
-      </li>
+      {% if user.is_staff %}
+      <li><a href="{% url 'user:moderator' %}">Moderator</a></li>
+      {% endif %}
+
+      {% if user.is_authenticated %}
+      <li><a href="{% url 'user:logout' %}">Logout</a></li>
+      {% else %}
+      <li><a href="{% url 'user:login_user' %}">Login</a></li>
+      {% endif %}
+
     </ul>
 
     <p class="copyright">
