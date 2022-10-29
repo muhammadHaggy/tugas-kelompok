@@ -37,13 +37,12 @@ def login_user(request):
 
 def register(request):
     form = UserCreationForm()
-
     if request.method == "POST":
         form = UserCreationForm(request.POST)
         if form.is_valid():
-            form.save()
+            user = form.save()
             messages.success(request, 'Akun telah berhasil dibuat!')
-            UserDetails(user=request.user).save()
+            UserDetails(user=user).save()
             return redirect('user:login_user')
 
     context = {'form': form}
@@ -90,7 +89,7 @@ def logout_user(request):
 
 @login_required(login_url='user/login')
 def profile_dashboard(request):
-    user = User.objects.get(pk = request.user.pk)
+    user = request.user
     user_detail = UserDetails.objects.get(user=user)
     if request.method == "POST":
         user_detail_form = UserDetailsForm(request.POST, instance=user_detail)
