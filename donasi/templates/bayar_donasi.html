@@ -57,6 +57,12 @@
         color: rgb(80, 80, 80);
     }
 
+    #donasi #terkumpul {
+        font-size: 3vmin;
+        margin-bottom: .5vmin;
+        color: rgb(80, 80, 80);
+    }
+
     #donasi #nominal {
         font-size: 3vmin;
         font-weight: bold;
@@ -140,7 +146,12 @@
         <h2>Pembayaran</h2>
 
         <h3>{{ nama_donasi }}</h3>
+        
+        <a id="id-donasi" hidden>{{ id }}</a>
+
         <p id="deskripsi">{{ deskripsi_donasi }}</p>
+
+        <p id="terkumpul"></p>
 
         <p id="masukkan-nominal">Masukkan nominal donasi kamu:</p>
 

@@ -5,7 +5,7 @@ function bayar(id) {
     fetch(url, {
         method: "POST",
         body: new FormData(document.querySelector('#bayar-donasi'))
-    }).then()
+    }).then(updateTerkumpul)
     document.getElementById('input-nominal').value = ''
     message.classList.replace('success-hide', 'success')
     setTimeout(hapusMessage, 3000)
@@ -16,3 +16,28 @@ function hapusMessage() {
     const message = document.getElementById('success')
     message.classList.replace('success', 'success-hide')
 }
+
+async function getDataDonasiId(id) {
+    let url = '/donasi/get-data-donasi-id/' + id
+    return fetch(url).then((result) => result.json())
+}
+
+async function updateTerkumpul() {
+    let rupiahIDR = Intl.NumberFormat("id", {
+        style: "currency",
+        currency: "IDR",
+    });
+
+    const id = document.getElementById('id-donasi').innerHTML
+    const data = await getDataDonasiId(id)
+    document.getElementById('terkumpul').innerHTML = ""
+
+    let donasiTerkumpul = `Donasi terkumpul: `
+    let jumlah = data.jumlah
+    const jumlahFormatted = rupiahIDR.format(jumlah)
+
+    donasiTerkumpul += jumlahFormatted
+    document.getElementById('terkumpul').innerHTML = donasiTerkumpul
+}
+
+updateTerkumpul(document.getElementById('id-donasi').innerHTML)

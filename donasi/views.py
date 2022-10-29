@@ -49,3 +49,7 @@ def get_data_donasi(request):
         data.append({'pk': item.pk, 'fields': {'deskripsi': item.deskripsi, 'is_approved': item.is_approved, 'nama': item.nama, 'penggalang': item.penggalang.username, 'target': item.target, 'tipe': item.tipe, 'urlFoto': item.urlFoto, 'terkumpul': item.terkumpul,}}) 
     data = {'data': data}
     return JsonResponse(data)
+
+def get_data_donasi_id(request, id):
+    jumlah = Donasi.objects.get(pk = id).terkumpul
+    return JsonResponse({'jumlah': jumlah})
