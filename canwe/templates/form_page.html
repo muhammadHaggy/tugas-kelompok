@@ -116,9 +116,6 @@
         box-sizing: border-box;
     }
 
-    
-
-
 </style>
 {% endblock css %}
 
@@ -178,6 +175,7 @@
     </div>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.1/js/bootstrap.min.js" integrity="sha512-UR25UO94eTnCVwjbXozyeVd6ZqpaAE9naiEUBK/A+QDbfSTQFhPGj5lOR6d8tsgbBk84Ggb5A3EkjsOgPRPcKA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <script>
@@ -206,7 +204,7 @@
                     <h3 class="card-title">${param[i].fields.name}</h3>
                     <p class="text-muted">${param[i].fields.email}</p>
                     <p class="card-description">${param[i].fields.question}</p>
-                    <a class="btn-delete card_btn" onclick="deleteCard(${param[i].fields.pk})">
+                    <a class="btn-delete card_btn" href="/delete/${param[i].pk}">
                         <span><i class="fa fa-trash"></i>
                             Delete
                         <span>
@@ -221,18 +219,6 @@
         });
     }
 
-    function deleteCard(pk){
-        $.ajax({
-            url: `/canwe/delete/${pk}`,
-            type: "DELETE",
-            success: function(data) {
-                console.log(data)
-                $(`#${pk}`).remove()
-                refreshForm()
-            }
-        })
-    }
-
     function addQuestion() {
         fetch("{% url 'canwe:add_question' %}", {
             method: "POST",
@@ -244,26 +230,6 @@
     }
 
     document.getElementById("submit-btn").onclick = addQuestion
-    refreshForm()
-
-    function validateForm() {
-        let x = document.forms["#form_faq"]["name"].value;
-        let y = document.forms["#form_faq"]["email"].value;
-        let z = document.forms["#form_faq"]["question"].value;
-        
-        if (x == "") {
-            alert("Name must be filled out");
-            return false;
-        } else if (y == "") {
-            alert("E-mail must be filled out");
-            return false;
-        } if (z == "") {
-            alert("What do you want to ask?");
-            return false;
-        }
-    }
-
-    document.getElementById("submit-btn").onsubmit = validateForm
     refreshForm()
 
 </script>

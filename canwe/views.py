@@ -47,8 +47,8 @@ def show_json(request):
     item = Contact.objects.all()
     return HttpResponse(serializers.serialize('json', item), content_type="application/json")
 
-@csrf_exempt 
-def delete(request, pk):
-    if request.method == 'DELETE':
-        Contact.objects.filter(id=pk).delete()
-    return JsonResponse({"instance": "Proyek Dihapus"},status=200)
+@staff_member_required
+def delete(request, i):
+    y = Contact.objects.get(id= i)
+    y.delete()
+    return HttpResponseRedirect('/show-question/')

@@ -10,5 +10,5 @@ urlpatterns = [
     path('question-page/', views.add_question, name='add_question'),
     path('json/', views.show_json, name='show_json'),
     path('show-question/', views.question_page, name='question_page'),
-    path('delete/<int:pk>/', views.delete, name='delete'),
+    path('delete/<int:i>/', views.delete, name='delete'),
 ]
