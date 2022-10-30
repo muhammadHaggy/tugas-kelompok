@@ -17,35 +17,28 @@ async function showDonasi(json) {
         fields = donasi.fields
         console.log(fields.nama)
         temp = `\n
-    <div class="col-12 col-md-4" style="margin-bottom: 20px;">
-        <div class="card">
-            <div class="picture">
-                <img src="${fields.urlFoto}" height=80px>
-            </div>
-
-            <div class="text-muted text-center mb-3">
-                Digalang oleh ${fields.penggalang}
-            </div>
-
-            <div class="card-content">
-                <div class="text-center mb-5">
-                    <h3 class="card-title mb-3">${donasi.fields.nama}</h3>
-                    <p class="card-text">${donasi.fields.deskripsi}</p>
+        <div class="card ms-4 mt-4" style="width: 18rem;">
+            <img src="${fields.urlFoto}" class="card-img-top" alt="Foto Donasi">
+            <div class="card-body">
+                <div class="text-muted text-center mb-3">
+                    Digalang oleh ${fields.penggalang}
                 </div>
-                <div class="btn-group mb-4" role="group">
-                    <button class="button-card approve" onclick="approve(${donasi.pk});">
+                <h5 class="card-title">${donasi.fields.nama}</h5>
+                <p class="card-text">${donasi.fields.deskripsi}</p>
+                <div class="text-center">
+                    <button class="btn btn-primary" onclick="approve(${donasi.pk});">
                         Approve
                     </button>
-                    <button class="button-card reject" style="background-color: red;" onclick="reject(${donasi.pk});">
+                    <button class="btn btn-danger" onclick="reject(${donasi.pk});">
                         Reject
                     </button>
                 </div>
             </div>
+
             <div class="card-footer text-muted">
                 Target: ${formatter.format(fields.target)}
             </div>
         </div>
-    </div>
     `
 
         if (donasi.fields.tipe == "Makanan") {
@@ -76,14 +69,14 @@ async function showDonasi(json) {
     });
     if (cardMakanan == '') {
         cardMakanan = `
-        <div class="text-center">
+        <div class="text-center mt-5">
             <h5>No Queue</h5>
         </div>
         `
     }
     if (cardPendidikan == '') {
         cardPendidikan = `
-        <div class="text-center">
+        <div class="text-center mt-5">
             <h5>No Queue</h5>
         </div>
         `
