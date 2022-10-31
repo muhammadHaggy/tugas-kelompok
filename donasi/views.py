@@ -4,7 +4,6 @@ from donasi.forms import Pembayaran
 from django.http import HttpResponse, JsonResponse
 from django.contrib.auth.decorators import login_required
 
-# @login_required(login_url='/user/login')
 def show_donasi(request):    
     return render(request, 'donasi.html')
 
