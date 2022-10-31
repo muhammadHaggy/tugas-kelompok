@@ -8,7 +8,7 @@ class Donasi(models.Model):
     nama = models.CharField(max_length=50)
     deskripsi = models.TextField()
     target = models.BigIntegerField()
-    foto = models.ImageField(upload_to='upload/')
+    foto = models.ImageField(upload_to='')
     terkumpul = models.BigIntegerField(default=0)
     urlFoto = models.TextField(default='')
     is_approved = models.BooleanField(null=True, editable=False)
