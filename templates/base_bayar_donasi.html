@@ -357,9 +357,18 @@
         <a href="/galang-dana/">Galang Dana</a>
       </li>
 
+
+      {% if not user.is_staff %}
       <li>
         <a href="/notifikasi/">Notifikasi</a>
       </li>
+      {% endif %}
+      
+      {% if user.is_staff %}
+      <li>
+        <a href="/notifikasi/create-notification/">Notifikasi</a>
+      </li>
+      {% endif %}
 
       <li>
         <a href="{% url 'user:login_user' %}">Login</a>

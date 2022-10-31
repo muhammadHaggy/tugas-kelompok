@@ -4,7 +4,7 @@ from donasi.forms import Pembayaran
 from django.http import HttpResponse, JsonResponse
 from django.contrib.auth.decorators import login_required
 
-@login_required(login_url='/user/login')
+# @login_required(login_url='/user/login')
 def show_donasi(request):    
     return render(request, 'donasi.html')
 
@@ -43,7 +43,7 @@ def bayar_proses(request, id):
 def get_data_donasi(request):
     donasi = Donasi.objects.filter(is_approved=True)
     data = []
-    print(donasi)
+
     for item in donasi:
         item.urlFoto = item.foto.url
         data.append({'pk': item.pk, 'fields': {'deskripsi': item.deskripsi, 'is_approved': item.is_approved, 'nama': item.nama, 'penggalang': item.penggalang.username, 'target': item.target, 'tipe': item.tipe, 'urlFoto': item.urlFoto, 'terkumpul': item.terkumpul,}}) 

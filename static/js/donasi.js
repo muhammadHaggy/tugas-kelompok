@@ -38,15 +38,26 @@ async function showDonasi(json) {
                         <p class="target">Target: ${target}</p>
                         <p class="terkumpul">Terkumpul: ${terkumpul}</p>
                     </div>
+                </div>
 
-                      <div class="div-button">
-                        <button class="button-card pull-right">
-                            <a href="/donasi/bayar/${donasi.pk}" style="text-decoration: none; color: white;">
-                                Lihat Detail
-                            </a>
-                        </button>
-                      </div>
 
+                <div class="div-button">
+                    <button class="button-card pull-right">`
+
+        if (document.getElementById('is-authenticated').innerHTML == 'true') {
+            temp +=  `\n
+                        <a href="/donasi/bayar/${donasi.pk}" style="text-decoration: none; color: white;">
+                            Lihat Detail
+                        </a>`
+        } else {
+            temp += `\n
+                        <a href="/user/login" style="text-decoration: none; color: white;">
+                            Login untuk Lihat Detail
+                        </a>`
+        }
+
+        temp += `\n
+                    </button>
                 </div>
             </div>
         </div>

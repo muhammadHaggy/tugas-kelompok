@@ -37,11 +37,6 @@
       border-radius: 8px 8px 0px 0px;
     }
 
-    /* .picture {
-      margin-top: auto;
-      margin-bottom: auto;
-    } */
-
     .card-content {
       padding: 40px;
       display: flex;
@@ -76,7 +71,8 @@
     }
 
     .div-button {
-      margin-top: 40px;
+      padding: 40px;
+      margin-top: auto;
       text-align: right;
     }
 
@@ -134,6 +130,13 @@
         <div id="card-pendidikan">
         </div>        
     </div>
+
+    {% if user.is_authenticated %}
+    <a id="is-authenticated" hidden>true</a>
+    {% else %}
+    <a id="is-authenticated" hidden>false</a>
+    {% endif %}
+
 </section>
 
 <script src="{% static 'js/donasi.js' %}"></script>
