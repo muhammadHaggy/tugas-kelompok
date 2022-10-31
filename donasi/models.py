@@ -10,7 +10,7 @@ class Donasi(models.Model):
     target = models.BigIntegerField()
     foto = models.ImageField(upload_to='')
     terkumpul = models.BigIntegerField(default=0)
-    urlFoto = models.TextField(default='')
+    urlFoto = models.TextField(default='upload/')
     is_approved = models.BooleanField(null=True, editable=False)
 
     def __str__(self):
