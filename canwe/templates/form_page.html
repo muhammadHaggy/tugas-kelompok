@@ -1,125 +1,9 @@
 {% extends 'base_with_navbar_fixed.html' %}
-{% load static %}
-
-{% block css %}
-<style>
-    *,
-    ::before,
-    ::after {
-        box-sizing: border-box;
-        border-width: 0;
-        border-style: solid;
-    }
-
-    ::before,
-    ::after {
-        content: '';
-    }
-    
-    .mb-3 {
-        margin-bottom: 0.75rem;
-    }
-
-    .mr-3 {
-        margin-right: 0.75rem;
-    }
-
-    .w-full {
-        width: 100%;
-    }
-
-    .border {
-        border-width: 1px;
-    }
-
-    input[type=text],  input[type=email] {
-        height: 2.25rem;
-        width: 100%;
-        border-radius: 0.25rem;
-        border-width: 1px;
-        padding-left: 0.5rem;
-        padding-right: 0.5rem;
-    }
-
-    input[type=text]:focus,  input[type=email]:focus {
-        border-width: 2px;
-        outline: 2px solid transparent;
-        outline-offset: 2px;
-    }
-
-    textarea {
-        width: 100%;
-        border-radius: 0.25rem;
-        border-width: 1px;
-        padding: 0.5rem;
-    }
-
-    label {
-        display: block;
-        font-size: 0.875rem;
-        line-height: 1.25rem;
-    }
-
-    .form-container {
-        width: 100%;
-    }
-
-    .form-container {
-        margin-left: auto;
-        margin-right: auto;
-        padding: 1rem;
-    }
-
-    .form-row {
-        display: flex;
-        width: 100%;
-    }
-
-    .form-col {
-        width: 50%;
-    }
-
-    #form-col {
-        min-height: 50vh;
-        padding-top: 100px;
-    }
-
-    h2 {
-      padding-bottom: 20px;
-      text-align: center;
-      font-weight: 500;
-      color: var(--pr-color);
-    }
-
-    .btn-ask {
-      border: none;
-      font-size: 16px;
-      padding: 12px 20px;
-      color: #fff;
-      background-color: var(--pr-color);
-      border-radius: 8px;
-      align-items: center;
-      cursor: pointer;
-      transition: all 0.2s ease-in;
-    }
-
-    .btn-ask:hover {
-      color: #fff;
-      background-color: var(--scd-color);
-      cursor: pointer;
-      transition: all 0.2s ease-in;
-    }
-
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-
-</style>
-{% endblock css %}
 
 {% block content %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/form_page.css'%}">
 
 <div class="form-container" id="form-col">
     <h2>Kirim Pertanyaan</h2>
@@ -231,7 +115,6 @@
 
     document.getElementById("submit-btn").onclick = addQuestion
     refreshForm()
-
 </script>
 
 {% endblock content %}
