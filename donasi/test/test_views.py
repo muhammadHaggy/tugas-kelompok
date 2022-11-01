@@ -1,6 +1,7 @@
 from django.test import TestCase, Client
 from django.urls import reverse
 from donasi.views import *
+from donasi.models import Donasi, Mendonasikan
 from django.contrib.auth.models import User
 
 class TestViews(TestCase):
