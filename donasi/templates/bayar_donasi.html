@@ -11,6 +11,12 @@
         background-repeat: no-repeat;
     }
 
+    @media (max-width: 1000px) {
+        #pembayaran {
+            padding: 10vh .1vw;
+        }
+    }
+
     .button-back {
         color: var(--pr-color);
         text-decoration: none;
@@ -34,6 +40,12 @@
         flex-direction: column;
     }
 
+    @media (max-width: 1000px) {
+        #donasi {
+            padding: 4vmin 5vmin;
+        }
+    }
+
     #donasi h2 {
         font-size: 5vmin;
         color: #29452a;
@@ -49,28 +61,29 @@
         font-weight: bold;
     }
 
-    #donasi #deskripsi {
+    #penggalang {
+        font-size: 2vmin;
+
+        color: rgb(81, 110, 88);
+        font-weight: bold;
+    }
+
+    #deskripsi {
         text-align: justify;
         font-size: 3vmin;
-        margin-top: 1vmin;
+        margin-top: 2vmin;
         margin-bottom: 9vmin;
         color: rgb(80, 80, 80);
     }
 
-    #donasi #terkumpul {
-        font-size: 3vmin;
-        margin-bottom: .5vmin;
+    #target, #terkumpul {
+        font-size: 2vmin;
+        margin-bottom: .1vmin;
         color: rgb(80, 80, 80);
     }
 
-    #donasi #nominal {
-        font-size: 3vmin;
-        font-weight: bold;
-        color: #048353;
-    }
-
-    #donasi #masukkan-nominal {
-        font-size: 3vmin;
+    #masukkan-nominal {
+        font-size: 2vmin;
         margin-bottom: 2vmin;
         color: rgb(80, 80, 80);
     }
@@ -81,7 +94,7 @@
         box-shadow: 0px 0px 4px #29452a7e;
         width: 100%;
         height: 5%;
-        padding: 2vmin 3vmin;
+        padding: 1vmin 2vmin;
         margin-bottom: 3vmin;
         font-size: 3vmin;
     }
@@ -92,11 +105,11 @@
 
     input[type=submit] {
         border: none;
-        font-size: 3vmin;
+        font-size: 2vmin;
         color: #fff;
-        padding: 8px 16px;
+        padding: 1vmin 3vmin;
         background-color: var(--pr-color);
-        border-radius: 8px;
+        border-radius: 1vmin;
         cursor: pointer;
         transition: all 0.1s ease-in;
         width: fit-content;
@@ -155,7 +168,11 @@
         
         <a id="id-donasi" hidden>{{ id }}</a>
 
+        <p id="penggalang">Penggalang Dana: {{ penggalang }}</p>
+
         <p id="deskripsi">{{ deskripsi_donasi }}</p>
+
+        <p id="target">{{ target }}</p>
 
         <p id="terkumpul"></p>
 

@@ -11,6 +11,7 @@ def show_donasi(request):
 def bayar_donasi(request, id):
     donasi = Donasi.objects.get(pk = id)
     context = {
+        'penggalang': donasi.penggalang.username,
         'nama_donasi': donasi.nama,
         'deskripsi_donasi': donasi.deskripsi,
         'foto_donasi': donasi.foto,

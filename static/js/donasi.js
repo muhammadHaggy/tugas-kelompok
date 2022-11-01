@@ -7,6 +7,8 @@ async function getDataDonasi() {
 async function showDonasi(json) {
     document.getElementById('card-makanan').innerHTML = ""
     document.getElementById('card-pendidikan').innerHTML = ""
+    document.getElementById('penggalangan-pendidikan-kosong').innerHTML = ""
+    document.getElementById('penggalangan-pendidikan-kosong').innerHTML = ""
 
     let cardMakanan = ``
     let cardPendidikan = ``
@@ -25,7 +27,7 @@ async function showDonasi(json) {
         const terkumpul = rupiahIDR.format(`${donasi.fields.terkumpul}`)
                   
         temp = `\n
-        <div class="col-12 col-md-4" style="margin-bottom: 20px;">
+        <div class="col-12 col-md-4" style="margin-bottom: 2vmin;">
             <div class="card">
                 <div class="picture">
                     <img src="${donasi.fields.urlFoto}">
@@ -89,6 +91,14 @@ async function showDonasi(json) {
             }
         }    
     });
+
+    if (counterMakanan == 0) {
+        document.getElementById('penggalangan-makanan-kosong').innerHTML = `Sayang sekali, saat ini sedang tidak ada penggalangan dana yang dilakukan :(`
+    }
+
+    if (counterPendidikan == 0) {
+        document.getElementById('penggalangan-pendidikan-kosong').innerHTML = `Sayang sekali, saat ini sedang tidak ada penggalangan dana yang dilakukan :(`
+    }
 
     document.getElementById('card-makanan').innerHTML = cardMakanan
     document.getElementById('card-pendidikan').innerHTML = cardPendidikan

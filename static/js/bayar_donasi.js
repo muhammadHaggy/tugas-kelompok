@@ -23,10 +23,6 @@ async function getDataDonasiId(id) {
 }
 
 async function updateTerkumpul() {
-    let rupiahIDR = Intl.NumberFormat("id", {
-        style: "currency",
-        currency: "IDR",
-    });
 
     const id = document.getElementById('id-donasi').innerHTML
     const data = await getDataDonasiId(id)
@@ -39,5 +35,13 @@ async function updateTerkumpul() {
     donasiTerkumpul += jumlahFormatted
     document.getElementById('terkumpul').innerHTML = donasiTerkumpul
 }
+
+let rupiahIDR = Intl.NumberFormat("id", {
+    style: "currency",
+    currency: "IDR",
+});
+
+const target = document.getElementById('target').innerHTML
+document.getElementById('target').innerHTML = 'Target: ' + rupiahIDR.format(target)
 
 updateTerkumpul(document.getElementById('id-donasi').innerHTML)
