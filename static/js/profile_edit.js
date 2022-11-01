@@ -15,7 +15,7 @@ $('#edit-profile-form').submit(function (e) {
     var serializedData = $form.serializeArray();
     console.log(serializedData)
     $.ajax({
-        url: "{% url 'user:profile' %}",
+        url: "/user/profile/",
         type: 'POST',
         data: serializedData,
         dataType: 'text',
