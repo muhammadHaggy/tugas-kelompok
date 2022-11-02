@@ -8,6 +8,18 @@
 {% endblock login_button %}
 
 {% block content %}
+<style>
+    .button.secondary a {
+        background: var(--scd-color);
+        color: blue;
+      }
+
+      .button a:hover {
+        transition: all .25s;
+        color: blue;
+        background: var(--scd-color);
+      }
+</style>
 <div class="outer">
     <div class="login container d-flex flex-column justify-content-center align-items-center vh-100">
 
@@ -41,9 +53,7 @@
             </table>
         </form>
 
-
-
-        Belum mempunyai akun? <a href="{% url 'user:register' %}">Buat Akun</a>
+        Belum mempunyai akun? <a href="{% url 'user:register' %}" button type="button" class="btn btn-link">Buat Akun</button>
 
     </div>
 </div>
