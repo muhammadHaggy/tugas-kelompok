@@ -21,14 +21,15 @@ CanWe hadir untuk membantu menanggulangi permasalahan yang dihadapi masyarakat I
 CanWe mengimplementasikan beberapa fitur, seperti
 1. Donasi
 2. Penggalangan dana
-4. Notifikasi
-5. Profil
+3. Notifikasi
+4. Profil
+5. FAQ
 
 ### Role Peran Pengguna
 1.  User 
 
-    User memiliki otoritas untuk mengakses landing page, melakukan donasi maupun penggalangan dana, dapat melihat riwayat pengeluaran dana, serta mendapatkan notifikasi.
+    User memiliki otoritas untuk mengakses landing page, mengakses halaman profil, melakukan donasi maupun penggalangan dana, mendapatkan notifikasi, serta mengirimkan pertanyaan kepada pengelola website.
 
-2.  Admin 
+2.  Moderator 
 
-    Admin atau administrator berperan sebagai pemegang kendali website dan memiliki akses penuh untuk melakukan moderasi konten yang ada pada aplikasi CanWe.
+    Moderator berperan sebagai pemegang kendali website dan memiliki akses penuh untuk melakukan moderasi konten yang ada pada CanWe.
