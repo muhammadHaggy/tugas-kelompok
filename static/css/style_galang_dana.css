@@ -1,0 +1,41 @@
+#galang-dana-content {
+    padding-top: 70px;
+    padding-bottom: 100px;
+    text-align: center;
+}
+#gd-sec1 {
+    max-width: 100%;
+    height: 80vh;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://dm0qx8t0i9gc9.cloudfront.net/thumbnails/video/EyvF0jkPg/videoblocks-young-man-with-beard-and-glasses-standing-in-street-and-looking-at-camera-guy-seriously-looks-and-then-starts-to-smile_r24oy5qol_thumbnail-1080_01.png') no-repeat center / cover;
+    color: white;
+    margin: auto;
+}
+#gd-sec1-content {
+    padding: 20vh 0;
+    width: 80%;
+    height: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.btn {
+  text-decoration: none;
+  color: #fff;
+  background: var(--pr-color);
+  padding: 10px 30px;
+  border-radius: 8px;
+  display: inline-block;
+}
+.btn:hover {
+  color: whitesmoke;
+  background-color: var(--scd-color);
+  transition: all 0.2s ease-in-out;
+}
+#gd-sec2 {
+    padding-top: 50px;
+}
+#gd-sec3 {
+    padding-top: 50px;
+}
