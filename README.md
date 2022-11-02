@@ -21,9 +21,8 @@ CanWe hadir untuk membantu menanggulangi permasalahan yang dihadapi masyarakat I
 CanWe mengimplementasikan beberapa fitur, seperti
 1. Donasi
 2. Penggalangan dana
-3. Riwayat pengeluaran dana
 4. Notifikasi
-5. Akun
+5. Profil
 
 ### Role Peran Pengguna
 1.  User 
