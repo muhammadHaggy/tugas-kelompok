@@ -11,7 +11,7 @@ def show_donasi(request):
 def bayar_donasi(request, id):
     donasi = Donasi.objects.get(pk = id)
     context = {
-        'penggalang': donasi.penggalang.username,
+        'penggalang': donasi.penggalang.first_name,
         'nama_donasi': donasi.nama,
         'deskripsi_donasi': donasi.deskripsi,
         'foto_donasi': donasi.foto,
@@ -46,7 +46,7 @@ def get_data_donasi(request):
 
     for item in donasi:
         item.urlFoto = item.foto.url
-        data.append({'pk': item.pk, 'fields': {'deskripsi': item.deskripsi, 'is_approved': item.is_approved, 'nama': item.nama, 'penggalang': item.penggalang.username, 'target': item.target, 'tipe': item.tipe, 'urlFoto': item.urlFoto, 'terkumpul': item.terkumpul,}}) 
+        data.append({'pk': item.pk, 'fields': {'deskripsi': item.deskripsi, 'is_approved': item.is_approved, 'nama': item.nama, 'penggalang': item.penggalang.first_name, 'target': item.target, 'tipe': item.tipe, 'urlFoto': item.urlFoto, 'terkumpul': item.terkumpul,}}) 
     data = {'data': data}
     return JsonResponse(data)
 

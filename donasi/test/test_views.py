@@ -12,7 +12,9 @@ class TestViews(TestCase):
         self.donasi = Donasi.objects.create(
             penggalang = self.user,
             target = 0,
-            terkumpul = 0
+            terkumpul = 0,
+            foto = 'test.jpg',
+            is_approved = True
         )
         self.id = self.donasi.pk
 
@@ -54,7 +56,7 @@ class TestViews(TestCase):
         data = []
         for item in donasi:
             item.urlFoto = item.foto.url
-            data.append({'pk': item.pk, 'fields': {'deskripsi': item.deskripsi, 'is_approved': item.is_approved, 'nama': item.nama, 'penggalang': item.penggalang.username, 'target': item.target, 'tipe': item.tipe, 'urlFoto': item.urlFoto, 'terkumpul': item.terkumpul,}}) 
+            data.append({'pk': item.pk, 'fields': {'deskripsi': item.deskripsi, 'is_approved': item.is_approved, 'nama': item.nama, 'penggalang': item.penggalang.first_name, 'target': item.target, 'tipe': item.tipe, 'urlFoto': item.urlFoto, 'terkumpul': item.terkumpul,}}) 
         data = {'data': data}
 
         self.assertEquals(response.status_code, 200)
