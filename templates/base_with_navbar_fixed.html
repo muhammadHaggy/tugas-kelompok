@@ -313,13 +313,13 @@
         {% endif %}
 
         {% if user.is_staff %}
-        <li class="item button"><a href="{% url 'user:moderator' %}">Moderator</a></li>
+        <li class="item button" style="background-color:var(--pr-color);" ><a href="{% url 'user:moderator' %}">Moderator</a></li>
         {% endif %}
 
         {% if user.is_authenticated %}
-        <li class="item button secondary"><a href="{% url 'user:logout' %}">Logout</a></li>
+        <li class="item button secondary"style="background-color:var(--pr-color);"><a href="{% url 'user:logout' %}">Logout</a></li>
         {% else %}
-        <li class="item button"><a href="{% url 'user:login_user' %}">Login</a></li>
+        <li class="item button"style="background-color:var(--pr-color);"><a href="{% url 'user:login_user' %}">Login</a></li>
         {% endif %}
 
         <li class="toggle"><span class="bars"></span></li>

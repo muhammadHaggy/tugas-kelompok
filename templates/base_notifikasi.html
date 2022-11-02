@@ -446,36 +446,31 @@
         {% endif %}
 
         {% if user.is_staff %}
-        <li class="item button"><a href="{% url 'user:moderator' %}">Moderator</a></li>
+        <li class="item button" style="background-color:var(--pr-color);"><a href="{% url 'user:moderator' %}">Moderator</a></li>
         {% endif %}
         
         {% if user.is_authenticated %}
-        <li class="item button secondary"><a href="{% url 'user:logout' %}">Logout</a></li>
+        <li class="item button secondary" style="background-color:var(--pr-color);"><a href="{% url 'user:logout' %}">Logout</a></li>
         {% else %}
-        <li class="item button"><a href="{% url 'user:login_user' %}">Login</a></li>
+        <li class="item button" style="background-color:var(--pr-color);"><a href="{% url 'user:login_user' %}">Login</a></li>
         {% endif %}
 
         <li class="toggle"><span class="bars"></span></li>
       </ul>
     </div>
   </nav>
-  <script type="text/javascript">
-    window.addEventListener("scroll", function() {
-      var header = document.querySelector("header");
-      header.classList.toggle('sticky', window.scrollY > 0);
+
+  <script>
+  //  sidebar effect on click
+    $(function() {
+      $(".toggle").on("click", function() {
+        if($(".item").hasClass("active")) {
+          $(".item").removeClass("active");
+        } else {
+          $(".item").addClass("active");
+        }
+      })
     });
-
-    var menu = document.querySelector('.menu');
-    var menuBtn = document.querySelector('.menu-btn');
-    var closeBtn = document.querySelector('.close-btn');
-
-    menuBtn.addEventListener("click", () => {
-      menu.classList.add('active');
-    })
-
-    closeBtn.addEventListener("click", () => {
-      menu.classList.remove('active');
-    })
   </script>
 
   {% block content %}{% endblock %}
