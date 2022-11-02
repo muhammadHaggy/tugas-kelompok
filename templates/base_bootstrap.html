@@ -1,117 +1,397 @@
-<!doctype html>
+{% load static %}
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{% block title %} {% endblock title %}</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  {% block meta %}
+  {% endblock meta %}
+
+  <!-- Required meta tags -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
+  <!-- Icon -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+
+  <!-- My Style -->
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+  <style type="text/css">
+    :root {
+      --bg-color: #F3FFF4;
+      --pr-color: #048353;
+      --scd-color: #01492E;
+    }
+
+    body {
+      min-height: 100vh;
+      background: var(--bg-color);
+      color: var(--text-color);
+      font-family: 'Poppins', sans-serif;
+    }
+
+    /* Navbar Style */
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    nav {
+      height: 70px;
+      width: 100%;
+      background: var(--pr-color);
+      align-items: center;
+      justify-content: space-between;
+      position: fixed;
+      z-index: 999;
+    }
+
+    nav.sticky {
+      position: fixed;
+      background: var(--pr-color);
+      transition: all ease-in-out .3s;
+    }
+
+    ul {
+      list-style-type: none;
+    }
+
+    a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .item.menus a:hover {
+      background: white;
+      color: var(--scd-color);
+      border-radius: 6px;
+    }
+
+    .menu li {
+      font-size: 16px;
+      padding: 15px 5px;
+    }
+
+    .menu li a {
+      display: block;
+    }
+
+    .logo a {
+      font-size: 25px;
+      font-weight: 700;
+    }
+
+    .logo a:hover {
+      color: white;
+    }
+
+    /* Mobile Menu */
+    .menu {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .toggle {
+      order: 1;
+    }
+
+    .item.button {
+      order: 2;
+    }
+
+    .item {
+      width: 100%;
+      text-align: center;
+      order: 3;
+      display: none;
+    }
+
+    .item.active {
+      display: block;
+    }
+
+    .item.menus.active {
+      display: block;
+      background: var(--pr-color);
+    }
+
+    .toggle {
+      cursor: pointer;
+    }
+
+    .bars {
+      background: white;
+      display: inline-block;
+      height: 2px;
+      position: relative;
+      width: 18px;
+    }
+
+    .bars::before, .bars::after {
+      background: white;
+      content: "";
+      display: inline-block;
+      height: 2px;
+      position: absolute;
+      width: 18px;
+    }
+
+    .bars::before {
+      top: 5px;
+    }
+
+    .bars::after {
+      top: -5px;
+    }
+
+    /* Tablet Menu */
+    @media all and (min-width:468px) {
+      .menu {
+        justify-content: center;
+      }
+
+      .logo {
+        flex: 1;
+      }
+
+      .item.button {
+        width: auto;
+        order: 1;
+        display: block;
+      }
+
+      .toggle {
+        order: 2;
+      }
+
+      .button.secondary {
+        border: 0;
+      }
+
+      .button a {
+        text-decoration: none;
+        padding: 7px 15px;
+        background: white;
+        color: var(--pr-color);
+        border-radius: 8px;
+      }
+
+      .button.secondary a {
+        background: var(--scd-color);
+        color: white;
+      }
+
+      .button a:hover {
+        transition: all .25s;
+        color: white;
+        background: var(--scd-color);
+      }
+
+      .button.secondary a:hover {
+        background: white;
+        color: var(--scd-color);
+      }
+    }
+
+    /* Desktop Menu */
+    @media all and (min-width: 768px) {
+      .item {
+        display: block;
+        width: auto;
+      }
+
+      .toggle {
+        display: none;
+      }
+
+      .logo {
+        order: 0;
+      }
+
+      .item {
+        order: 1;
+      }
+
+      .button {
+        order: 2;
+      }
+
+      .menu li {
+        padding: 15px 10px;
+      }
+
+      .menu li.button {
+        padding-right: 0;
+      }
+    }
+
+    /* Footer */
+    .footer {
+      padding: 40px 0;
+      background-color: var(--pr-color);
+    }
+
+    .footer ul {
+      margin-top: 0;
+      padding: 0;
+      list-style: none;
+      text-align: center;
+      font-size: 18px;
+      line-height: 1.6;
+      margin-bottom: 0;
+    }
+
+    .footer ul a {
+      color: inherit;
+      text-decoration: none;
+      opacity: 0.8;
+    }
+
+    .footer ul li {
+      display: inline-block;
+      padding: 0 15px;
+    }
+
+    .footer ul a:hover {
+      opacity: 1;
+      color: white;
+    }
+
+    .footer .copyright {
+      margin-top: 15px;
+      text-align: center;
+      font-size: 14px;
+      color: whitesmoke;
+    }
+
+  </style>
+
+  {% block css %}{% endblock css %}
+
 </head>
 
-<body style="height: 100%;">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
-        crossorigin="anonymous"></script>
-    <nav class="navbar navbar-expand-lg bg-success">
-        <div class="container-fluid">
-            <a class="navbar-brand text-light" href="#">
-                CanWe
-                <img src="https://cdn-icons-png.flaticon.com/128/2904/2904948.png" alt="Logo" width="30" height="24"
-                    class="d-inline-block align-text-top">
-            </a>
+<body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
-
-            <div class="collapse navbar-collapse multi-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link text-light" href="{% url 'donasi:show_donasi' %}">Donasi</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light" href="{% url 'galang_dana:show_galang_dana' %}">Galang Dana</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light" href="{% url 'notif:show_notif' %}">Notifikasi</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light {% if user.is_authenticated == False %}disabled{% endif %}"
-                            href="{% url 'user:profile' %}">Profil</a>
-                    </li>
-                </ul>
-            </div>
-            <div>
-                <div class="collapse navbar-collapse multi-collapse" id="navbar-button">
-                    <ul class="navbar-nav">
-                        {% if user.is_staff %}
-                        <li class="nav-item">
-                            <a class="btn btn-outline-primary text-light"
-                                href="{% url 'user:moderator' %}">Moderator</a>
-                        </li>
-                        {% endif %}
-                        {% block login_button %}
-                        <li class="nav-item">
-                        {% if user.is_authenticated %}
-                        <a class="btn btn-outline-danger text-light ms-2" href="{% url 'user:logout' %}">Logout</a>
-                        {% else %}
-                        <a class="btn btn-outline-primary text-light ms-2" href="{% url 'user:login_user' %}">Login</a>
-                        {% endif %}
-                        </li>
-                        {% endblock login_button %}
-                    </ul>
-                </div>
-            </div>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse"
-                aria-controls="navbarNav navbar-button" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-        </div>
-
-    </nav>
-
-
-    {% block content %}
-    {% endblock content %}
-
-
+  <!-- Navbar -->
+  <nav class="{% block header_class %} {% endblock header_class %}">
     <div class="container">
-        <footer class="py-3 my-4">
-            <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-                <li class="nav-item"><a href="/" class="nav-link px-2 text-muted">Home</a></li>
-                <li class="nav-item"><a href="{% url 'donasi:show_donasi' %}"
-                        class="nav-link px-2 text-muted">Donasi</a></li>
-                <li class="nav-item"><a href="{% url 'galang_dana:show_galang_dana' %}"
-                        class="nav-link px-2 text-muted">Galang Dana</a></li>
-                {% if not user.is_staff %}
-                <li class="nav-item"><a href="{% url 'notif:show_notif' %}" class="nav-link px-2 text-muted">
-                        Notifikasi</a></li>
-                {% endif %}
-                {% if user.is_staff %}
-                <li class="nav-item"><a href="{% url 'notif:create-notification' %}"
-                        class="nav-link px-2 text-muted">Notifikasi</a></li>
-                {% endif %}
-                {% if user.is_authenticated %}
-                <li class="nav-item"><a href="{% url 'user:profile' %}" class="nav-link px-2 text-muted">Profil</a></li>
-                {% endif %}
-            </ul>
-            <p class="text-center text-muted">Made with
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart"
-                    viewBox="0 0 16 16">
-                    <path
-                        d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
-                </svg>
-                and
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                    class="bi bi-emoji-smile-upside-down" viewBox="0 0 16 16">
-                    <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm0-1a8 8 0 1 1 0 16A8 8 0 0 1 8 0z" />
-                    <path
-                        d="M4.285 6.433a.5.5 0 0 0 .683-.183A3.498 3.498 0 0 1 8 4.5c1.295 0 2.426.703 3.032 1.75a.5.5 0 0 0 .866-.5A4.498 4.498 0 0 0 8 3.5a4.5 4.5 0 0 0-3.898 2.25.5.5 0 0 0 .183.683zM7 9.5C7 8.672 6.552 8 6 8s-1 .672-1 1.5.448 1.5 1 1.5 1-.672 1-1.5zm4 0c0-.828-.448-1.5-1-1.5s-1 .672-1 1.5.448 1.5 1 1.5 1-.672 1-1.5z" />
-                </svg>
-                by Kelompok D-05
-            </p>
-        </footer>
+      <ul class="menu">
+        <li class="logo">
+          <a href="/canwe">
+            <span>CanWe</span>
+            <img src="https://cdn-icons-png.flaticon.com/128/2904/2904948.png" width="30" height="30">
+          </a>
+        </li>
+  
+        <li class="item menus"><a href="/donasi/">Donasi</a></li>
+        <li class="item menus"><a href="/galang-dana/">Galang Dana</a></li>
+        
+        {% if not user.is_staff %}
+        <li class="item menus"><a href="/notifikasi">Notifikasi</a></li>
+        {% endif %}
+        
+        {% if user.is_staff %}
+        <li class="item menus"><a href="/notifikasi/create-notification/">Notifikasi</a></li>
+        {% endif %}
+        
+        {% if user.is_authenticated %}
+        <li class="item menus"><a href="/user/profile">Profil</a></li>
+        {% endif %}
+
+        {% if user.is_staff %}
+        <li class="item button"><a href="{% url 'user:moderator' %}">Moderator</a></li>
+        {% endif %}
+
+        {% if user.is_authenticated %}
+        <li class="item button secondary"><a href="{% url 'user:logout' %}">Logout</a></li>
+        {% else %}
+        <li class="item button"><a href="{% url 'user:register' %}">Register</a></li>
+        {% endif %}
+
+        <li class="toggle"><span class="bars"></span></li>
+      </ul>
     </div>
+  </nav>
+
+  <!-- sidebar effect on click -->
+  <script>
+    $(function() {
+      $(".toggle").on("click", function() {
+        if($(".item").hasClass("active")) {
+          $(".item").removeClass("active");
+        } else {
+          $(".item").addClass("active");
+        }
+      })
+    });
+  </script>
+
+  {% block content %}{% endblock %}
+
+  <!-- Footer -->
+  <section class="footer">
+    <ul class="list">
+      <li>
+        <a href="/canwe/">Home</a>
+      </li>
+
+      <li>
+        <a href="/donasi/">Donasi</a>
+      </li>
+
+      <li>
+        <a href="/galang-dana/">Galang Dana</a>
+      </li>
+
+      {% if not user.is_staff %}
+      <li>
+        <a href="/notifikasi/">Notifikasi</a>
+      </li>
+      {% endif %}
+      
+      {% if user.is_staff %}
+      <li>
+        <a href="/notifikasi/create-notification/">Notifikasi</a>
+      </li>
+      {% endif %}
+
+      {% if user.is_staff %}
+      <li><a href="{% url 'user:moderator' %}">Moderator</a></li>
+      {% endif %}
+
+      {% if user.is_authenticated %}
+      <li><a href="{% url 'user:logout' %}">Logout</a></li>
+      {% else %}
+      <li><a href="{% url 'user:register' %}">Register</a></li>
+      {% endif %}
+
+    </ul>
+
+    <p class="copyright">
+      Made with
+      <span>
+        <ion-icon name="heart"></ion-icon>
+      </span> and <span>
+        <ion-icon name="sad"></ion-icon>
+      </span>
+      from Kelompok D-05
+    </p>
+  </section>
+
 </body>
 
 </html>

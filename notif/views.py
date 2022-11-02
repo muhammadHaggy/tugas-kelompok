@@ -15,7 +15,6 @@ from django.http.response import JsonResponse, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.admin.views.decorators import staff_member_required
 
-
 # Create your views here.
 @login_required(login_url='/user/')
 def show_notif(request):
@@ -25,7 +24,6 @@ def show_notif(request):
         'username': request.user.username,
     }
     return render(request, "notif.html", context)
-
 
 @staff_member_required
 def create_notif(request):
@@ -37,10 +35,6 @@ def create_notif(request):
         obj.save()
         response = HttpResponseRedirect(reverse("notif:show_notif"))
     return render(request, 'tambah2.html')
-
-def delete_notif(request, pk):
-    Item.objects.filter(id=pk).delete()
-    return redirect('notif:show_notif')
 
 @login_required(login_url='/user/')
 def show_json(request):
