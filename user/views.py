@@ -41,6 +41,8 @@ def register(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
+            user.first_name = user.username
+            user.save()
             messages.success(request, 'Akun telah berhasil dibuat!')
             UserDetails(user=user).save()
             return redirect('user:login_user')
