@@ -1,7 +1,6 @@
 # CanWe <img src="https://cdn-icons-png.flaticon.com/128/2904/2904948.png" width="30" height="30">
 
 ![Heroku workflow](https://github.com/muhammadHaggy/tugas-kelompok/actions/workflows/dpl.yml/badge.svg)
-![Build Status](https://github.com/muhammadHaggy/tugas-kelompok/actions/workflows/dpl.yml/badge.svg)
 
 ### Nama Anggota
 1. 2106750370 - Muhammad Haggy
