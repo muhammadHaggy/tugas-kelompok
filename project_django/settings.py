@@ -31,6 +31,14 @@ DEBUG = True
 ALLOWED_HOSTS = ["*"]
 CSRF_TRUSTED_ORIGINS = ["https://canwe.up.railway.app"]
 
+# CORS setting for flutter app
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SAMESITE = 'None'
+SESSION_COOKIE_SAMESITE = 'None'
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -46,6 +54,8 @@ INSTALLED_APPS = [
     'donasi',
     'galang_dana',
     'notif',
+    'authentication',
+    'corsheaders',
 ]
 
 SITE_ID = 1
@@ -59,6 +69,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     "whitenoise.middleware.WhiteNoiseMiddleware",
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'project_django.urls'
@@ -102,7 +113,6 @@ DATABASES = {
 #         'PORT': '5932',
 #     }
 # }
-
 
 
 # Password validation
