@@ -2,6 +2,9 @@ from django.shortcuts import render
 from django.contrib.auth import authenticate, login as auth_login
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.forms import UserCreationForm
+
+from user.models import UserDetails
 
 
 @csrf_exempt
@@ -33,5 +36,20 @@ def login(request):
     else:
         return JsonResponse({
             "status": False,
-            "message": "Use POST request."
+            "message": "Use POST request!"
         })
+
+@csrf_exempt
+def register(request):
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            user.first_name = user.username
+            user.save()
+            UserDetails(user=user).save()
+            return JsonResponse({"status": True, "message": "Account successfuly created!"})
+        else:
+            return JsonResponse({"status": False, "message": form.errors.as_text()})
+
+    return JsonResponse({"status": False, "message": "Use POST request!"})
