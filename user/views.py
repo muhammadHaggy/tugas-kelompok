@@ -15,6 +15,7 @@ from user.forms import UserDetailsForm, UserForm
 from user.models import UserDetails
 from notif.models import Item
 from django.contrib.admin.views.decorators import staff_member_required
+from django.views.decorators.csrf import csrf_exempt
 
 def index(request):
     return redirect(reverse('user:login_user'))
@@ -112,3 +113,20 @@ def profile_dashboard(request):
     user_form = UserForm(instance=user)
     context = {'user_detail': user_detail, 'user_form': user_form, 'user_detail_form': user_detail_form}
     return render(request, 'profile.html', context)
+
+@login_required()
+@csrf_exempt
+def profile_dashboard_json(request):
+    user = request.user
+    user_detail, created = UserDetails.objects.get_or_create(user=user, defaults={'bio_singkat': ''})
+    if request.method == "POST":
+        user.username = request.POST['username']
+        user.first_name = request.POST['firstname']
+        user.last_name = request.POST['lastname']
+        user.email = request.POST['email']
+        user_detail.tanggal = request.POST['tanggal']
+        user_detail.bio = request.POST['bio']
+        user.save()
+        user_detail.save()
+        return JsonResponse({"status": True, "message":"Successfully updated!"})
+    return JsonResponse({"status": True, "username": user.username, "firstname": user.first_name, "lastname": user.last_name, "email": user.email, "tanggal": user_detail.tanggal, "bio": user_detail.bio})

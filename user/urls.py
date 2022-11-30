@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import approve, index, login_user, moderator, pending_task_json, register, reject, logout_user, profile_dashboard
+from .views import profile_dashboard_json ,approve, index, login_user, moderator, pending_task_json, register, reject, logout_user, profile_dashboard
 
 app_name = 'user'
 
@@ -12,5 +12,7 @@ urlpatterns = [
     path('moderator/', moderator, name='moderator'),
     path('moderator/approve/<int:pk>', approve, name='approve'),
     path('moderator/reject/<int:pk>', reject, name='reject'),
+    path('profile/json', profile_dashboard_json, name='profile-json'),
     path('profile/', profile_dashboard, name='profile'),
+
 ]
