@@ -120,13 +120,22 @@ def profile_dashboard_json(request):
     user = request.user
     user_detail, created = UserDetails.objects.get_or_create(user=user, defaults={'bio_singkat': ''})
     if request.method == "POST":
-        user.username = request.POST['username']
-        user.first_name = request.POST['firstname']
-        user.last_name = request.POST['lastname']
-        user.email = request.POST['email']
-        user_detail.tanggal_lahir = request.POST['tanggal']
-        user_detail.bio_singkat = request.POST['bio']
-        user.save()
-        user_detail.save()
-        return JsonResponse({"status": True, "message":"Successfully updated!"})
+        user_detail_form = UserDetailsForm(request.POST, instance=user_detail)
+        user_form = UserForm(request.POST, instance=user)
+        if (user_form.is_valid() and user_detail_form.is_valid()):
+            user_form.save()
+            user_detail_form.save()
+            return JsonResponse({"status": True, "message":"Successfully updated!"})
+        
+        else:
+            return JsonResponse({"status": False, "message":user_form.errors.as_ul + user_detail_form.errors.as_ul})
+
+        # user.username = request.POST['username']
+        # user.first_name = request.POST['firstname']
+        # user.last_name = request.POST['lastname']
+        # user.email = request.POST['email']
+        # user_detail.tanggal_lahir = request.POST['tanggal']
+        # user_detail.bio_singkat = request.POST['bio']
+        # user.save()
+        # user_detail.save()
     return JsonResponse({"status": True, "username": user.username, "firstname": user.first_name, "lastname": user.last_name, "email": user.email, "tanggal": user_detail.tanggal_lahir, "bio": user_detail.bio_singkat})
