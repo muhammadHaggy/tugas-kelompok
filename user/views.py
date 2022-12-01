@@ -138,4 +138,4 @@ def profile_dashboard_json(request):
         # user_detail.bio_singkat = request.POST['bio']
         # user.save()
         # user_detail.save()
-    return JsonResponse({"status": True, "username": user.username, "firstname": user.first_name, "lastname": user.last_name, "email": user.email, "tanggal": user_detail.tanggal_lahir, "bio": user_detail.bio_singkat})
+    return JsonResponse({"status": True, "username": user.username, "first_name": user.first_name, "last_name": user.last_name, "email": user.email, "tanggal_lahir": user_detail.tanggal_lahir, "bio_singkat": user_detail.bio_singkat})
