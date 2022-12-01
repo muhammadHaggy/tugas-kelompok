@@ -95,7 +95,6 @@ def profile_dashboard(request):
     user = request.user
     user_detail, created = UserDetails.objects.get_or_create(user=user, defaults={'bio_singkat': ''})
     if request.method == "POST":
-        print(request.POST)
         user_detail_form = UserDetailsForm(request.POST, instance=user_detail)
         user_form = UserForm(request.POST, instance=user)
         if (user_form.is_valid() and user_detail_form.is_valid()):
@@ -121,6 +120,7 @@ def profile_dashboard_json(request):
     user = request.user
     user_detail, created = UserDetails.objects.get_or_create(user=user, defaults={'bio_singkat': ''})
     if request.method == "POST":
+        print(request.POST)
         user_detail_form = UserDetailsForm(request.POST, instance=user_detail)
         user_form = UserForm(request.POST, instance=user)
         if (user_form.is_valid() and user_detail_form.is_valid()):
