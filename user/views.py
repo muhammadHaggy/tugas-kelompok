@@ -124,9 +124,9 @@ def profile_dashboard_json(request):
         user.first_name = request.POST['firstname']
         user.last_name = request.POST['lastname']
         user.email = request.POST['email']
-        user_detail.tanggal = request.POST['tanggal']
-        user_detail.bio = request.POST['bio']
+        user_detail.tanggal_lahir = request.POST['tanggal']
+        user_detail.bio_singkat = request.POST['bio']
         user.save()
         user_detail.save()
         return JsonResponse({"status": True, "message":"Successfully updated!"})
-    return JsonResponse({"status": True, "username": user.username, "firstname": user.first_name, "lastname": user.last_name, "email": user.email, "tanggal": user_detail.tanggal, "bio": user_detail.bio})
+    return JsonResponse({"status": True, "username": user.username, "firstname": user.first_name, "lastname": user.last_name, "email": user.email, "tanggal": user_detail.tanggal_lahir, "bio": user_detail.bio_singkat})
