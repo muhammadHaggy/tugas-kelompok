@@ -125,8 +125,7 @@ def profile_dashboard_json(request:HttpRequest):
         if (user_form.is_valid() and user_detail_form.is_valid()):
             user_form.save()
             user_detail_form.save()
-            # return JsonResponse({"status": True, "message":"Successfully updated!"})
-            return JsonResponse(request.POST.dict())
+            return JsonResponse({"status": True, "message":"Successfully updated!"})
         
         else:
             return JsonResponse({"status": False, "message":user_form.errors.as_ul + user_detail_form.errors.as_ul})
