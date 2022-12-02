@@ -2,7 +2,7 @@ from urllib import response
 from django.shortcuts import get_object_or_404, render
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
-from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
+from django.http import HttpRequest, HttpResponse, HttpResponseRedirect, JsonResponse
 import datetime
 from django.urls import reverse
 from django.contrib import messages
@@ -116,7 +116,7 @@ def profile_dashboard(request):
 
 @login_required()
 @csrf_exempt
-def profile_dashboard_json(request):
+def profile_dashboard_json(request:HttpRequest):
     user = request.user
     user_detail, created = UserDetails.objects.get_or_create(user=user, defaults={'bio_singkat': ''})
     if request.method == "POST":
@@ -125,7 +125,8 @@ def profile_dashboard_json(request):
         if (user_form.is_valid() and user_detail_form.is_valid()):
             user_form.save()
             user_detail_form.save()
-            return JsonResponse({"status": True, "message":"Successfully updated!"})
+            # return JsonResponse({"status": True, "message":"Successfully updated!"})
+            return JsonResponse(request.POST.dict())
         
         else:
             return JsonResponse({"status": False, "message":user_form.errors.as_ul + user_detail_form.errors.as_ul})
