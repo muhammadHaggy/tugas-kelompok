@@ -1,4 +1,5 @@
 import datetime
+import json
 
 from django.shortcuts import render
 from notif.models import Item
@@ -35,6 +36,19 @@ def create_notif(request):
         obj.save()
         response = HttpResponseRedirect(reverse("notif:show_notif"))
     return render(request, 'tambah2.html')
+
+@csrf_exempt
+def create_notif_flutter(request):
+    if request.method == 'POST':
+        newItem = json.loads(request.body)
+
+        title = newItem['title']
+        description = newItem['description']
+        user = newItem['user']
+
+        newKategori = Item(title=title, description=description, user=user)
+        newKategori.save();
+        return JsonResponse({"instance": "Item Berhasil Dibuat!"}, status=200)
 
 def show_json(request):
     item = Item.objects.all()
