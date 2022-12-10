@@ -31,8 +31,8 @@ def create_notif(request):
     if request.method == 'POST':
         title = request.POST.get('notif')
         description = request.POST.get('description')
-        user = request.user
-        obj = Item.objects.create (title=title, description=description, user=user)
+        # user = request.user
+        obj = Item.objects.create (title=title, description=description)
         obj.save()
         response = HttpResponseRedirect(reverse("notif:show_notif"))
     return render(request, 'tambah2.html')
@@ -46,7 +46,7 @@ def create_notif_flutter(request):
         description = newItem['description']
         user = newItem['user']
 
-        newKategori = Item(title=title, description=description, user=user)
+        newKategori = Item(title=title, description=description)
         newKategori.save();
         return JsonResponse({"instance": "Item Berhasil Dibuat!"}, status=200)
 
@@ -59,7 +59,7 @@ def add_ajax(request):
         title = request.POST.get('title')
         description = request.POST.get('description')
         user = request.user
-        item = Item(title=title, description=description, user=user)
+        item = Item(title=title, description=description)
         item.save()
     return JsonResponse({"instance": "Proyek Dibuat"},status=200)
 
