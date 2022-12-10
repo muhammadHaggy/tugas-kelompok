@@ -36,7 +36,6 @@ def create_notif(request):
         response = HttpResponseRedirect(reverse("notif:show_notif"))
     return render(request, 'tambah2.html')
 
-@login_required(login_url='/user/')
 def show_json(request):
     item = Item.objects.all()
     return HttpResponse(serializers.serialize('json', item), content_type='application/json')

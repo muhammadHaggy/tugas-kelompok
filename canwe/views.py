@@ -42,7 +42,6 @@ def add_question(request):
         return HttpResponse(b"CREATED", status=201)
     return HttpResponseNotFound()
 
-@login_required(login_url='/user/login')
 def show_json(request):
     item = Contact.objects.all()
     return HttpResponse(serializers.serialize('json', item), content_type="application/json")
