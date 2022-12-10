@@ -39,4 +39,4 @@ def create_galang_dana(request):
 
 def get_user_count_json(request):
     all_donatur = UserDetails.objects.all()
-    return HttpResponse(serializers.serialize("json", all_donatur))
+    return HttpResponse(serializers.serialize("json", all_donatur), content_type="application/json")
