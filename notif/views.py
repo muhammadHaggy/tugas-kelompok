@@ -15,6 +15,7 @@ from django.urls import reverse
 from django.http.response import JsonResponse, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.admin.views.decorators import staff_member_required
+from django.shortcuts import get_object_or_404
 
 # Create your views here.
 @login_required(login_url='/user/')
@@ -66,3 +67,21 @@ def delete(request, pk):
     if request.method == 'DELETE':
         Item.objects.filter(id=pk).delete()
     return JsonResponse({"instance": "Proyek Dihapus"},status=200)
+
+@csrf_exempt
+def flutter_delete(request, pk):
+    if request.method == "POST":
+        item = get_object_or_404(Item, id=pk, user=request.user)
+        item.delete()
+
+        return JsonResponse({
+            "status": True,
+            "message": "Successfully Deleted News!"
+            # Insert any extra data if you want to pass data to Flutter
+            }, status=200)
+
+    else:
+        return JsonResponse({
+            "status": False,
+            "message": "Failed to delete news, check your permission."
+            }, status=401)
