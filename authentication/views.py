@@ -15,8 +15,9 @@ def login_logic(request, username, password):
             # Redirect to a success page.
             return JsonResponse({
                 "status": True,
-                "message": "Successfully Logged In!"
+                "message": "Successfully Logged In!",
                 # Insert any extra data if you want to pass data to Flutter
+                "is_admin": user.is_staff
             }, status=200)
         else:
             return JsonResponse({
