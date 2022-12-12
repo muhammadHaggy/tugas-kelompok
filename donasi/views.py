@@ -41,7 +41,7 @@ def bayar_proses(request, id):
                 nominal=nominal
             )
 
-    return JsonResponse("PAID", status=201)
+    return JsonResponse({'message':"PAID"}, status=201)
 
 def get_data_donasi(request):
     donasi = Donasi.objects.filter(is_approved=True)
