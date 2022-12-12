@@ -11,6 +11,4 @@ urlpatterns = [
     path('add_ajax/', add_ajax, name='add_ajax'),  
     path('delete/<int:pk>/', delete, name='delete'),
     path('create_notif_flutter/', create_notif_flutter, name='create_notif_flutter'),
-    path('delete_flutter/<int:pk>/', flutter_delete, name='delete-flutter'),
-
 ]

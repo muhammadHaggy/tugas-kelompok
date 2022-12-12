@@ -46,8 +46,8 @@ def create_notif_flutter(request):
         title = newItem['title']
         description = newItem['description']
 
-        newKategori = Item(title=title, description=description)
-        newKategori.save();
+        newItem = Item(title=title, description=description)
+        newItem.save();
         return JsonResponse({"instance": "Item Berhasil Dibuat!"}, status=200)
 
 def show_json(request):
@@ -67,21 +67,3 @@ def delete(request, pk):
     if request.method == 'DELETE':
         Item.objects.filter(id=pk).delete()
     return JsonResponse({"instance": "Proyek Dihapus"},status=200)
-
-@csrf_exempt
-def flutter_delete(request, pk):
-    if request.method == "POST":
-        item = get_object_or_404(Item, id=pk, user=request.user)
-        item.delete()
-
-        return JsonResponse({
-            "status": True,
-            "message": "Successfully Deleted News!"
-            # Insert any extra data if you want to pass data to Flutter
-            }, status=200)
-
-    else:
-        return JsonResponse({
-            "status": False,
-            "message": "Failed to delete news, check your permission."
-            }, status=401)
