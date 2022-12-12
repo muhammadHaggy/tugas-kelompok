@@ -35,9 +35,9 @@ def create_galang_dana(request):
                 foto=form.cleaned_data['foto']
             )
             new_donasi.save()
-            return HttpResponse(b"CREATED", status=201)
+            return JsonResponse({'message': 'sukses'})
 
-    return HttpResponseNotFound()
+    return JsonResponse({'message': 'failed'})
 
 def create_galang_dana_flutter(request):
     if request.method == 'POST':
