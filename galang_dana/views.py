@@ -7,6 +7,7 @@ from galang_dana.forms import FormGalangDana
 from django.http import HttpResponse, HttpResponseNotFound
 from django.http.response import JsonResponse
 from django.core import serializers
+from django.views.decorators.csrf import csrf_exempt
 
 from django.contrib.auth.decorators import login_required
 
@@ -20,6 +21,7 @@ def show_buat_galang_dana(request):
     context = {'form': FormGalangDana}
     return render(request, 'buat-galang-dana.html', context)
 
+@csrf_exempt
 def create_galang_dana(request):
     if request.method == "POST":
 
