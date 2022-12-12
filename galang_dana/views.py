@@ -1,9 +1,11 @@
+import json
 from django.shortcuts import render
 from donasi.models import Donasi
 from user.models import UserDetails
 from galang_dana.forms import FormGalangDana
 
 from django.http import HttpResponse, HttpResponseNotFound
+from django.http.response import JsonResponse
 from django.core import serializers
 
 from django.contrib.auth.decorators import login_required
@@ -36,6 +38,22 @@ def create_galang_dana(request):
             return HttpResponse(b"CREATED", status=201)
 
     return HttpResponseNotFound()
+
+def create_galang_dana_flutter(request):
+    if request.method == 'POST':
+        new_item = json.loads(request.body)
+        
+        new_donasi = Donasi(
+            penggalang=request.user,
+            tipe=new_item['tipe'],
+            nama=new_item['judul'],
+            deskripsi=new_item['deskripsi'],
+            target=new_item['target'],
+            foto=new_item['foto']
+        )
+        new_donasi.save()
+
+        return JsonResponse({'instance': 'Galang Dana Berhasi Dibuat!'}, status=200)
 
 def get_user_count_json(request):
     all_donatur = UserDetails.objects.all()
