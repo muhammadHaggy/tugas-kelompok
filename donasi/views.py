@@ -3,6 +3,8 @@ from donasi.models import Donasi, Mendonasikan
 from donasi.forms import Pembayaran
 from django.http import HttpResponse, JsonResponse
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
+
 
 def show_donasi(request):    
     return render(request, 'donasi.html')
@@ -23,6 +25,7 @@ def bayar_donasi(request, id):
     return render(request, 'bayar_donasi.html', context)
 
 @login_required(login_url='/user/login')
+@csrf_exempt
 def bayar_proses(request, id):
     if request.method == 'POST':
         form = Pembayaran(request.POST)
