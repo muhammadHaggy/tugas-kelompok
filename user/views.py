@@ -74,14 +74,14 @@ def reject(request, pk):
     if request.method == "GET" and request.user.is_staff:
         donasi = Donasi.objects.filter(pk=pk).update(is_approved=False)
     
-    return HttpResponse()
+    return JsonResponse({"status": True, "message":"Donasi rejected"})
 
 @login_required()
 def approve(request, pk):
     if request.method == "GET" and request.user.is_staff:
         donasi = Donasi.objects.filter(pk=pk).update(is_approved=True)
     
-    return HttpResponse()
+    return JsonResponse({"status": True, "message":"Donasi approved"})
 
 @login_required()
 def logout_user(request):
