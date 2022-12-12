@@ -51,3 +51,16 @@ def delete(request, i):
     y = Contact.objects.get(id= i)
     y.delete()
     return HttpResponseRedirect('/show-question/')
+
+def add_question_flutter(request):
+    if request.method == 'POST':
+        newItem = json.loads(request.body)
+
+        name = newItem['name']
+        email = newItem['email']
+        question = newItem['question']
+
+        newItem = Contact(name=name, email=email, question=question)
+        newItem.save()
+
+        return JsonResponse({"instance": "Item Berhasil Dibuat!"}, status=200)

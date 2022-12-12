@@ -11,4 +11,5 @@ urlpatterns = [
     path('json/', views.show_json, name='show_json'),
     path('show-question/', views.question_page, name='question_page'),
     path('delete/<int:i>/', views.delete, name='delete'),
+    path('question-page-flutter/', views.add_question_flutter, name='add_question_flutter'),
 ]
