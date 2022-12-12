@@ -1,5 +1,5 @@
 from django.urls import path
-from notif.views import show_notif, create_notif_flutter, flutter_delete
+from notif.views import show_notif, create_notif_flutter
 from notif.views import create_notif, show_json, add_ajax, delete
 
 app_name = 'notif'
