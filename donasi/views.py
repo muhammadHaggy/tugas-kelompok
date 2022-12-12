@@ -24,8 +24,8 @@ def bayar_donasi(request, id):
     }
     return render(request, 'bayar_donasi.html', context)
 
-@login_required(login_url='/user/login')
-@csrf_exempt
+# @login_required(login_url='/user/login')
+# @csrf_exempt
 def bayar_proses(request, id):
     if request.method == 'POST':
         form = Pembayaran(request.POST)
