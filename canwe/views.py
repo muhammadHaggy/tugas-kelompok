@@ -36,7 +36,7 @@ def add_question(request):
         email = request.POST.get('email')
         question = request.POST.get('question')
 
-        obj = Contact(user=request.user, name=name, email=email, question=question)
+        obj = Contact(name=name, email=email, question=question)
         obj.save()
 
         return HttpResponse(b"CREATED", status=201)
